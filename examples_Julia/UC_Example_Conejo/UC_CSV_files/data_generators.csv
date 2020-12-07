@@ -1,0 +1,4 @@
+Unit,FixedCost,VariableCost,StartUpCost,ShutdownCost,MinPowerOut,MaxPowerOut,RampDownLimit,RampShutDownLimit,RampUpLimit,RampStartUpLimit,Uini
+1,5,0.1,20,0.5,50,350,300,300,200,200,0
+2,7,0.125,18,0.3,80,200,150,150,100,100,0
+3,6,0.15,5,1,40,140,100,100,100,100,1
