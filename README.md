@@ -13,4 +13,4 @@ GRACE is a Julia-based package for power systems optimization based on the CPLEX
 * CPLEX Optimization Studio V12.10 or later
 
 ## License
-GRACE is available under the MIT License (see LICENSE.txt)
+GRACE is available under the [MIT License](https://github.com/power-systems-op/grace-arpae/blob/main/LICENSE)
