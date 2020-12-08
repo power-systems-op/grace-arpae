@@ -23,10 +23,19 @@ The UC is formulated based on the information of the following table
 
 Generating units 1 and 2 are off-line prior to the first time period of the considered planning horizon, while generating unit 3 is online and producing 100MW.
 
-## Expected Result
+## Expected Results
 
 
 ### Commitment Status of Generating Units
-
+| Generating Unit/ Period 	| 1 	| 2 	| 3 	|
+|-------------------------	|---	|---	|---	|
+| #1                      	| 1 	| 1 	| 1 	|
+| #2                      	| 0 	| 1 	| 0 	|
+| #3                      	| 0 	| 1 	| 1 	|
 
 ### Power Outputs of generating units
+| Generating Unit/ Period 	| 1   	| 2   	| 3   	|
+|-------------------------	|-----	|-----	|-----	|
+| #1                      	| 160 	| 350 	| 350 	|
+| #2                      	| 0   	| 100 	| 0   	|
+| #3                      	| 0   	| 50  	| 50  	|
