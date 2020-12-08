@@ -7,7 +7,7 @@ model = Model(CPLEX.Optimizer)
 set_optimizer_attribute(model, "CPX_PARAM_EPINT", 1e-5)
 
 const N_GEN = 145
-const N_HRS = 1500
+const N_HRS = 500
 
 const NUCLEAR_CAPACITY = 11463.10 # in MW
 const NUCLEAR_CF = 0.87 # Reported in Bandar's Paper

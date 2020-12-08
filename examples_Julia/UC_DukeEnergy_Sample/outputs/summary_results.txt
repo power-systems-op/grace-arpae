@@ -1,0 +1,28 @@
+Cover cuts applied:  107
+Flow cuts applied:  75
+Mixed integer rounding cuts applied:  974
+Zero-half cuts applied:  168
+Lift and project cuts applied:  1
+Gomory fractional cuts applied:  15
+
+Root node processing (before b&c):
+  Real time             =  180.75 sec. (50517.03 ticks)
+Parallel b&c, 16 threads:
+  Real time             = 6296.34 sec. (1445900.66 ticks)
+  Sync time (average)   = 1443.30 sec.
+  Wait time (average)   =    2.93 sec.
+                          ------------
+Total (root+branch&cut) = 6477.09 sec. (1496417.69 ticks)
+------------------------------------
+------- TERMINATION STATUS -------
+Optimal result
+------------------------------------
+------- OBJECTIVE VALUE -------
+Objective value: 1.595944793303043e8
+------------------------------------
+------- PRIMAL STATUS -------
+FEASIBLE_POINT
+------------------------------------
+------- DUAL STATUS -------
+NO_SOLUTION
+------------------------------------
