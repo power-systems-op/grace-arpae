@@ -7,7 +7,7 @@ model = Model(CPLEX.Optimizer)
 set_optimizer_attribute(model, "CPX_PARAM_EPINT", 1e-5)
 
 const N_GEN = 145
-const N_HRS = 500
+const N_HRS = 24
 
 dfGenerator = CSV.read(".//inputs//data_generators.csv", DataFrame)
 dfDemand = CSV.read(".//inputs//demand_reserves.csv", DataFrame)
@@ -30,7 +30,7 @@ dfDemand = CSV.read(".//inputs//demand_reserves.csv", DataFrame)
 
 #Demand constraint
 #for t in 1:N_HRS
-@constraint(model, constDemand[t=1:N_HRS], sum(genOut[g, t] for g=1:N_GEN) == dfDemand.DemandNode01[t])
+@constraint(model, constDemand[t=1:N_HRS], sum(genOut[g, t] for g=1:N_GEN) == dfDemand.Demand[t])
 #end
 
 #Power bounds
@@ -46,7 +46,7 @@ dfDemand = CSV.read(".//inputs//demand_reserves.csv", DataFrame)
 @constraint(model, constRampDown[t=2:N_HRS, g=1:N_GEN], (genOut[g,t-1] - genOut[g,t]) <= (dfGenerator.RampDownLimit[g]*genOnOff[g,t] + dfGenerator.RampShutDownLimit[g]*genShutDown[g,t]))
 
 #Reserves
-@constraint(model, constReserves[t=1:N_HRS], sum(dfGenerator.MaxPowerOut[g]*genOnOff[g,t] for g=1:N_GEN) >= (dfDemand.DemandNode01[t] + dfDemand.Reserves[t]))
+@constraint(model, constReserves[t=1:N_HRS], sum(dfGenerator.MaxPowerOut[g]*genOnOff[g,t] for g=1:N_GEN) >= (dfDemand.Demand[t] + dfDemand.Reserves[t]))
 
 mystatus = optimize!(model)
 
@@ -64,6 +64,7 @@ else
     error("The model was not solved correctly.")
 end
 
+
 #Printing general results
 println("------------------------------------")
 println("------- OBJECTIVE VALUE -------")
@@ -80,23 +81,24 @@ println(JuMP.dual_status(model))
 #Storing decision variables results
 #Store whole model (TBD)
 #write_to_file(model, ".//outputs//my_model.mps")
+typeFileAccess = "w+"
 
-open(".//outputs//resultsGenOut.csv", "w") do io
+open(".//outputs//resultsGenOut.csv", typeFileAccess) do io
            #writedlm(io, [x y], ',')
            writedlm(io,  JuMP.value.(genOut), ',')
     end;
 
-open(".//outputs//resultsGenCommit.csv", "w") do io
+open(".//outputs//resultsGenCommit.csv", typeFileAccess) do io
                #writedlm(io, [x y], ',')
                writedlm(io, JuMP.value.(genOnOff), ',')
          end;
 
-open(".//outputs//resultsGenStartUp.csv", "w") do io
+open(".//outputs//resultsGenStartUp.csv", typeFileAccess) do io
               #writedlm(io, [x y], ',')
               writedlm(io, JuMP.value.(genStartUp), ',')
         end;
 
-open(".//outputs//resultsGenShutDown.csv", "w") do io
+open(".//outputs//resultsGenShutDown.csv", typeFileAccess) do io
               #writedlm(io, [x y], ',')
               writedlm(io, JuMP.value.(genShutDown), ',')
         end;
@@ -124,7 +126,6 @@ println("------- GENERATORS COMMITED --------")
 for t=1:num_print_hrs
   print("Hour ", t-1, "\t")
 end
-println("")
 
 for g=1:num_print_gen
   for t=1:num_print_hrs
@@ -133,3 +134,12 @@ for g=1:num_print_gen
   end
   println("\t Generator: $g")
 end
+
+println("-------------------------------")
+println("----------LAST DAY GEN OFF/ON---------")
+print(JuMP.value.(genOnOff[:,end]))
+
+
+println("-------------------------------")
+#Clean memory
+GC.gc()

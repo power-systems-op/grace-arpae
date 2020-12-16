@@ -1,0 +1,11 @@
+┌ Info: Log file for UC model for 145 generators
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:44
+┌ Info: Data from generators and demand downloaded correcly
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:51
+Optimization Execution for day 1: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:103 =# @elapsed optimize!(model) = 6.378707999
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:103
+┌ Info: Optimization objective: 
+│   optimal_objective = 3.3902940424795826e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:109
