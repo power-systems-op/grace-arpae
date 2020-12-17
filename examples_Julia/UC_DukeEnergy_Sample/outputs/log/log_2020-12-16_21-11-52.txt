@@ -1,0 +1,1987 @@
+┌ Info: Log file for UC model for 145 generators
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:42
+┌ Info: Data from generators and demand downloaded correcly
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:48
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day1.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 1: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 3.777155301
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 3.3903698005430503e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day2.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 2: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 8.3595735
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 5.306163796317698e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day3.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 3: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 6.1542778
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 5.601200018206589e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day4.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 4: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 9.620817
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 5.720019542476941e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day5.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 5: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 3.099103899
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 4.9278019447285775e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day6.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 6: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 4.9124483
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 4.958357507098648e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day7.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 7: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 13.6461283
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 6.359228610268861e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day8.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 8: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 15.597909599
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 5.495420085019302e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day9.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 9: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 24.9431973
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 6.660544096652139e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day10.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 10: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 26.8345921
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 1.038091011820959e7
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day11.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 11: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 22.456827999
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 1.125317262218861e7
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day12.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 12: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 10.735736699
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 9.283072854474884e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day13.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 13: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 14.035485
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 9.0117161882666e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day14.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 14: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 11.378648301
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 1.0015651875847077e7
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day15.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 15: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 9.3227671
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 9.532282281573657e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day16.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 16: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 24.3350086
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 1.0492991505975205e7
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day17.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 17: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 18.9108978
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 9.92024683953703e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day18.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 18: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 4.2635442
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 6.964105708326009e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day19.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 19: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 3.5611696
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 5.9392320224645585e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day20.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 20: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 2.8980439
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 6.302397502552437e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day21.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 21: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 31.4710232
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 1.5327082522908382e7
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day22.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 22: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 16.0000533
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 1.4584361513143409e7
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day23.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 23: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 12.447403101
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 9.060733591141578e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day24.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 24: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 5.866691901
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 5.709257432636285e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day25.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 25: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 14.183715901
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 9.374689251950316e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day26.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 26: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 310.207675899
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 9.885144209560137e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day27.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 27: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 75.0788063
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 8.863228010359256e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day28.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 28: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 13.7233773
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 8.419188377945095e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day29.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 29: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 11.3250475
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 8.60544083265632e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day30.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 30: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 17.9840985
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 1.2721022992982848e7
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day31.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 31: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 13.7826476
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 1.3319528675228111e7
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day32.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 32: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 9.594649099
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 1.0081966361532383e7
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day33.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 33: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 9.836489601
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 6.439746546576161e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day34.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 34: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 10.593604
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 5.4853394457948655e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day35.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 35: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 5.6707434
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 6.370790600412181e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day36.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 36: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 5.9997224
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 5.438041574275907e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day37.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 37: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 4.6049323
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 4.96080456523122e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day38.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 38: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 7.044113501
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 4.863235494129019e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day39.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 39: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 6.2000623
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 4.33590451018076e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day40.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 40: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 4.521419
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 5.93890065575755e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day41.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 41: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 9.683489001
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 7.793439760171543e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day42.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 42: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 5.2080719
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 7.381572167536903e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day43.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 43: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 19.0580366
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 6.839266970418205e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day44.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 44: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 10.621708099
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 6.676534706648405e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day45.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 45: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 4.7316761
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 7.48875292805886e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day46.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 46: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 9.725605701
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 5.13356489308426e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day47.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 47: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 5.486017299
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 5.050220517332228e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day48.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 48: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 21.317663501
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 7.097199236921836e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day49.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 49: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 7.2137339
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 6.229708876671928e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day50.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 50: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 21.3773604
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 9.025407170637282e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day51.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 51: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 5.7370517
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 1.0420669305127827e7
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day52.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 52: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 12.259353101
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 6.991109531995727e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day53.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 53: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 3.988893901
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 6.14044849847254e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day54.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 54: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 243.389771099
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 6.841369970454729e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day55.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 55: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 15.257485999
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 4.979453246003915e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day56.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 56: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 14.0791354
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 6.66951906358614e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day57.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 57: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 13.759325599
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 6.819879832377953e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day58.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 58: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 5.7254318
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 5.8629591432038e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day59.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 59: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 4.5697493
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 5.4254622669354435e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day60.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 60: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 14.392269999
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 5.776789715689277e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day61.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 61: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 10.7878699
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 4.827454459375349e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day62.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 62: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 3.065901299
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 4.929578422335213e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day63.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 63: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 20.835880999
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 7.068384346071e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day64.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 64: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 22.678792001
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 9.342111142869929e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day65.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 65: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 6.8199409
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 1.0761703844704451e7
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day66.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 66: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 99.8674836
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 9.642038435175233e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day67.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 67: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 22.8952391
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 7.241326561215052e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day68.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 68: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 7.7743397
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 5.95892867522598e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day69.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 69: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 3.7899796
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 4.316713193172758e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day70.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 70: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 5.8922764
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 4.75179775403279e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day71.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 71: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 12.5452079
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 5.665850105398881e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day72.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 72: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 4.5561133
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 6.412289601901487e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day73.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 73: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 4.042016001
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 4.994943464383289e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day74.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 74: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 10.9042665
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 4.253313603306666e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day75.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 75: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 3.594146
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 3.9779750179595696e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day76.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 76: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 3.9255634
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 4.9568814191620825e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day77.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 77: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 9.199881401
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 6.704832559747643e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day78.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 78: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 12.371321699
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 6.931392824509658e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day79.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 79: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 9.3639891
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 7.235036859388377e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day80.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 80: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 9.3221362
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 5.888681385089451e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day81.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 81: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 8.350506001
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 5.622263115742378e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day82.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 82: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 7.7869857
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 4.649060993057115e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day83.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 83: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 8.866398601
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 4.646822407608973e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day84.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 84: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 5.5197536
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 4.589188226945054e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day85.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 85: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 3.767795
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 5.019019013001515e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day86.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 86: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 25.942826899
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 6.646336285235962e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day87.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 87: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 8.849491399
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 6.216047837498209e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day88.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 88: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 8.2400771
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 4.79693570726379e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day89.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 89: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 17.1153456
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 3.3253353932462824e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day90.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 90: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 6.9999869
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 3.2532519281515977e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day91.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 91: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 15.3004364
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 6.154832803602864e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day92.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 92: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 14.7204859
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 7.751539670155229e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day93.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 93: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 4.5264134
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 6.498013899547758e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day94.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 94: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 4.5162058
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 4.779515710929563e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day95.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 95: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 4.9607859
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 4.315558930982594e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day96.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 96: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 3.8787752
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 3.4652589056325494e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day97.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 97: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 9.9567619
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 3.3735660746508045e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day98.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 98: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 3.305078599
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 4.95559109399549e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day99.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 99: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 6.107777399
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 4.749743476383658e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day100.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 100: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 9.951497001
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 4.73771391577386e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day101.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 101: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 8.900681001
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 4.877389789188339e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day102.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 102: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 3.654606699
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 4.643915690847602e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day103.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 103: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 9.7048308
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 4.0283241611918597e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day104.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 104: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 17.0007632
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 4.245977361163024e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day105.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 105: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 5.4950737
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 4.2008575665584495e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day106.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 106: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 6.245773201
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 4.427518107736286e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day107.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 107: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 4.785855401
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 4.82880416702676e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day108.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 108: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 3.910953099
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 5.205655095965539e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day109.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 109: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 8.4704636
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 4.269926969622183e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day110.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 110: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 5.195182299
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 3.1524041037050094e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day111.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 111: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 4.5848876
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 2.953183000221107e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day112.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 112: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 10.7107335
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 4.339904771536434e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day113.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 113: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 11.139013199
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 5.335105357071719e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day114.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 114: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 13.726485301
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 6.256059634368353e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day115.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 115: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 95.2861489
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 5.714851555791978e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day116.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 116: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 12.351829399
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 4.720055333210772e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day117.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 117: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 5.1421288
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 3.4493740136165093e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day118.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 118: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 7.0346399
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 4.466417137603227e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day119.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 119: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 4.1910475
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 5.033714952709234e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day120.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 120: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 26.5505161
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 6.961262093974422e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day121.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 121: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 12.893326401
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 7.233905484612974e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day122.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 122: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 15.873095601
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 7.475478325313844e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day123.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 123: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 14.5183562
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 6.772307469699926e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day124.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 124: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 5.046515
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 6.258744752192501e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day125.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 125: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 5.531805601
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 4.94863785545543e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day126.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 126: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 19.8102999
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 6.037657816929009e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day127.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 127: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 30.3578342
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 6.324058492811318e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day128.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 128: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 19.561420299
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 7.050752943209894e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day129.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 129: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 180.691198101
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 6.600546063770598e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day130.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 130: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 43.2346511
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 6.033651237682584e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day131.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 131: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 14.3595776
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 5.115590296693094e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day132.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 132: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 11.443203
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 4.49561864520501e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day133.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 133: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 21.896948801
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 5.911398651048679e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day134.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 134: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 7.8033847
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 4.416678104759308e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day135.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 135: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 11.2393883
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 4.424849924974775e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day136.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 136: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 11.9468834
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 5.577186508324897e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day137.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 137: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 20.048943499
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 7.4225685091727795e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day138.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 138: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 6.297436699
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 8.396276207464326e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day139.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 139: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 7.9689187
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 8.276431905248759e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day140.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 140: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 20.123080599
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 9.59061503186861e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day141.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 141: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 102.4370905
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 9.41749815320525e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day142.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 142: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 21.804782501
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 6.983039280900663e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day143.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 143: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 28.420033099
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 8.83904299993531e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day144.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 144: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 22.673151701
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 1.158241198675695e7
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day145.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 145: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 126.4129841
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 1.0270497795960877e7
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day146.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 146: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 264.3196098
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 1.0250658028382115e7
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day147.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 147: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 21.5340167
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 9.939056268244116e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day148.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 148: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 22.4589664
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 1.2654365773161575e7
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day149.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 149: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 9.635679199
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 1.3235420620446013e7
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day150.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 150: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 20.7363728
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 1.2839647977316841e7
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day151.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 151: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 161.8952688
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 1.035891934517338e7
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day152.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 152: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 16.1706037
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 6.736922330891949e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day153.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 153: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 16.4383104
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 7.73285905203317e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day154.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 154: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 21.3418031
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 8.599573151286881e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day155.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 155: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 47.0447946
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 7.629308746868409e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day156.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 156: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 74.1755814
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 8.296255899789171e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day157.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 157: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 29.628429399
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 9.236464373197425e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day158.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 158: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 443.9793201
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 6.964805366431292e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day159.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 159: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 23.1683534
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 6.483567212314112e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day160.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 160: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 5.4231208
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 5.709146433760423e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day161.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 161: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 146.1920057
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 8.501866799861338e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day162.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 162: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 19.3493915
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 7.651355811124736e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day163.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 163: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 4.092614301
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 4.987689060817975e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day164.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 164: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 15.5155028
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 6.201131167936601e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day165.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 165: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 14.4702934
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 5.493039269128794e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day166.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 166: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 25.772713099
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 5.573340056416915e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day167.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 167: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 30.836122399
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 7.942565277949801e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day168.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 168: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 11.0568662
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 1.2271406021448012e7
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day169.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 169: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 20.446494899
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 1.1069374219181392e7
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day170.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 170: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 27.3779391
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 1.058641172652564e7
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day171.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 171: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 61.641529601
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 1.0917541925484538e7
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day172.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 172: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 33.062328199
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 9.371167956894938e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day173.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 173: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 13.058747099
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 7.403524285534378e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day174.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 174: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 11.619771701
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 6.728237186720071e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day175.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 175: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 16.0464321
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 1.2125470629732596e7
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day176.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 176: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 22.9407831
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 1.1226927318799812e7
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day177.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 177: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 16.9375799
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 1.0663982510367345e7
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day178.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 178: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 16.3432846
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 1.2067258568429539e7
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day179.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 179: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 38.2297123
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 1.1724635431655448e7
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day180.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 180: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 30.278888699
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 1.0716467438933095e7
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: UC Optimization solved in (s):
+│   elapsedTime = 4594.569224599
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:204

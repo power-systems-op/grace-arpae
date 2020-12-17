@@ -29,7 +29,7 @@ ENV["JULIA_DEBUG"] = "all"
 const N_GEN = 145
 const N_HRS = 24
 const INITIAL_DAY = 1
-const FINAL_DAY = 1
+const FINAL_DAY = 180
 
 #curentTime = Dates.format(now(), "yyyy-mm-dd_HH-MM-SS");
 # Logging file
