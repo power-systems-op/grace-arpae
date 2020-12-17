@@ -29,7 +29,7 @@ ENV["JULIA_DEBUG"] = "all"
 const N_GEN = 145
 const N_HRS = 24
 const INITIAL_DAY = 1
-const FINAL_DAY = 190
+const FINAL_DAY = 1
 
 #curentTime = Dates.format(now(), "yyyy-mm-dd_HH-MM-SS");
 # Logging file
@@ -49,6 +49,8 @@ dfDemand = CSV.read(".//inputs//demand_reserves.csv", DataFrame)
 
 typeFileAccess = "w+";
 
+t1 = time_ns()
+@time begin
 for day in INITIAL_DAY:FINAL_DAY
     println("---------------------------")
     @info println("Solving UC for day: $day")
@@ -135,8 +137,10 @@ for day in INITIAL_DAY:FINAL_DAY
         #suboptimal_solution = value.(genOnOff)
         suboptimal_objective = JuMP.objective_value(model)
         println("Time limit was exceeded")
+        close(io_log)
     else
         error("The model was not solved correctly.")
+        close(io_log)
     end
 
     #Printing general results
@@ -191,8 +195,13 @@ for day in INITIAL_DAY:FINAL_DAY
 
   global typeFileAccess = "a+";
 end
-
+end #time
 #close(ioGenOut)
 #Releasing memory
+
+t2 = time_ns()
+elapsedTime = (t2 -t1)/1.0e9;
+@info "UC Optimization solved in (s):" elapsedTime = (t2 -t1)/1.0e9;
+
 GC.gc();
 close(io_log);
