@@ -1,0 +1,1384 @@
+┌ Info: Log file for UC model for 145 generators
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:42
+┌ Info: Data from generators and demand downloaded correcly
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:48
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 1: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 6.79625
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 3.3903698005430503e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 2: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 13.6286067
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 5.306163796317698e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 3: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 9.800161
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 5.601200018206589e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 4: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 14.345483301
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 5.720019542476941e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 5: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 5.0348581
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 4.9278019447285775e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 6: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 7.935345
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 4.958357507098648e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 7: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 19.420446099
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 6.359228610268861e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 8: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 24.0735829
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 5.495420085019302e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 9: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 34.014376001
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 6.660544096652139e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 10: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 36.573116401
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 1.038091011820959e7
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 11: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 35.074575999
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 1.125317262218861e7
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 12: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 15.0797977
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 9.283072854474884e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 13: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 19.8468184
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 9.0117161882666e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 14: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 15.759274801
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 1.0015651875847077e7
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 15: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 12.0647058
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 9.532282281573657e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 16: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 33.5635806
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 1.0492991505975205e7
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 17: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 24.7148541
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 9.92024683953703e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 18: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 5.5871295
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 6.964105708326009e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 19: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 4.5751497
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 5.9392320224645585e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 20: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 3.5228607
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 6.302397502552437e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 21: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 39.3271209
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 1.5327082522908382e7
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 22: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 19.9093079
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 1.4584361513143409e7
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 23: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 15.343722401
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 9.060733591141578e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 24: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 7.7811516
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 5.709257432636285e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 25: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 18.829494501
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 9.374689251950316e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 26: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 349.2129126
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 9.885144209560137e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 27: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 85.3623077
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 8.863228010359256e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 28: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 17.553134801
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 8.419188377945095e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 29: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 12.989595799
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 8.60544083265632e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 30: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 25.6565522
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 1.2721022992982848e7
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 31: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 17.7352977
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 1.3319528675228111e7
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 32: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 12.223462801
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 1.0081966361532383e7
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 33: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 12.132634999
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 6.439746546576161e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 34: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 13.50544
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 5.4853394457948655e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 35: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 7.843501
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 6.370790600412181e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 36: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 8.400400499
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 5.438041574275907e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 37: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 5.718934099
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 4.96080456523122e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 38: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 9.231251399
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 4.863235494129019e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 39: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 7.150332
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 4.33590451018076e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 40: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 5.3522378
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 5.93890065575755e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 41: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 11.4132031
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 7.793439760171543e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 42: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 5.807716601
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 7.381572167536903e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 43: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 20.5152988
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 6.839266970418205e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 44: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 10.839684
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 6.676534706648405e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 45: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 5.1898698
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 7.48875292805886e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 46: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 10.025038399
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 5.13356489308426e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 47: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 4.929521699
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 5.050220517332228e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 48: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 22.1728996
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 7.097199236921836e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 49: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 7.2485962
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 6.229708876671928e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 50: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 23.8684267
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 9.025407170637282e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 51: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 6.2554138
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 1.0420669305127827e7
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 52: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 15.2936036
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 6.991109531995727e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 53: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 4.690715
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 6.14044849847254e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 54: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 232.355513001
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 6.841369970454729e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 55: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 15.787407001
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 4.979453246003915e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 56: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 16.9001767
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 6.66951906358614e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 57: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 14.6097009
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 6.819879832377953e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 58: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 6.0608006
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 5.8629591432038e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 59: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 4.667382599
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 5.4254622669354435e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 60: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 14.447496
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 5.776789715689277e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 61: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 10.3332107
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 4.827454459375349e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 62: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 3.0621499
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 4.929578422335213e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 63: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 21.6199618
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 7.068384346071e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 64: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 23.5597351
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 9.342111142869929e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 65: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 8.3865948
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 1.0761703844704451e7
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 66: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 110.717303
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 9.642038435175233e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 67: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 22.868779401
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 7.241326561215052e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 68: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 7.2943868
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 5.95892867522598e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 69: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 4.065834
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 4.316713193172758e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 70: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 6.848193301
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 4.75179775403279e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 71: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 15.2847326
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 5.665850105398881e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 72: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 4.6823478
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 6.412289601901487e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 73: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 4.3630471
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 4.994943464383289e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 74: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 10.9681449
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 4.253313603306666e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 75: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 3.600359901
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 3.9779750179595696e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 76: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 3.755496699
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 4.9568814191620825e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 77: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 9.3901974
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 6.704832559747643e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 78: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 13.152224
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 6.931392824509658e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 79: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 10.0026599
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 7.235036859388377e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 80: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 9.9126624
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 5.888681385089451e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 81: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 7.8257238
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 5.622263115742378e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 82: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 7.8231076
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 4.649060993057115e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 83: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 9.5757861
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 4.646822407608973e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 84: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 5.317992899
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 4.589188226945054e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 85: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 3.6860767
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 5.019019013001515e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 86: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 23.6664049
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 6.646336285235962e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 87: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 8.0368005
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 6.216047837498209e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 88: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 7.932570999
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 4.79693570726379e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 89: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 16.5794664
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 3.3253353932462824e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 90: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 6.5852269
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 3.2532519281515977e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 91: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 14.4459324
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 6.154832803602864e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 92: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 12.626455899
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 7.751539670155229e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 93: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 4.065714399
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 6.498013899547758e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 94: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 4.334315701
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 4.779515710929563e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 95: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 4.8965858
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 4.315558930982594e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 96: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 3.7614897
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 3.4652589056325494e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 97: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 8.4651234
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 3.3735660746508045e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 98: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 2.9438475
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 4.95559109399549e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 99: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 5.6555096
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 4.749743476383658e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 100: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 8.9129132
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 4.73771391577386e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 101: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 9.3939191
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 4.877389789188339e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 102: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 3.472444399
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 4.643915690847602e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 103: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 8.318448501
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 4.0283241611918597e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 104: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 15.5041336
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 4.245977361163024e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 105: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 5.0676887
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 4.2008575665584495e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 106: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 5.5590443
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 4.427518107736286e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 107: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 4.5120278
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 4.82880416702676e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 108: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 3.446517099
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 5.205655095965539e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 109: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 7.3288041
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 4.269926969622183e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 110: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 5.0228712
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 3.1524041037050094e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 111: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 4.706336899
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 2.953183000221107e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 112: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 9.1856208
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 4.339904771536434e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 113: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 9.3526209
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 5.335105357071719e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 114: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 12.416375801
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 6.256059634368353e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 115: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 84.4594939
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 5.714851555791978e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 116: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 11.5162361
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 4.720055333210772e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 117: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 5.0976181
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 3.4493740136165093e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 118: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 6.899487
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 4.466417137603227e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 119: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 3.9144571
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 5.033714952709234e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 120: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 22.725328
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 6.961262093974422e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 121: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 12.332279401
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 7.233905484612974e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 122: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 13.762677099
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 7.475478325313844e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 123: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 13.009000799
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 6.772307469699926e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 124: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 5.122757301
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 6.258744752192501e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 125: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 5.2909148
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 4.94863785545543e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 126: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 18.1828848
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 6.037657816929009e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 127: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 27.952805
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 6.324058492811318e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 128: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 18.4984697
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 7.050752943209894e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 129: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 168.6162607
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 6.600546063770598e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 130: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 49.5682622
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 6.033651237682584e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 131: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 11.7475419
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 5.115590296693094e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 132: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 10.9814861
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 4.49561864520501e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 133: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 20.3694332
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 5.911398651048679e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 134: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 7.473899199
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 4.416678104759308e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 135: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 10.9749012
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 4.424849924974775e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 136: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 11.9402425
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 5.577186508324897e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 137: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 17.827200501
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 7.4225685091727795e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 138: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 6.0131337
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 8.396276207464326e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 139: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 6.7695521
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 8.276431905248759e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 140: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 19.638382199
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 9.59061503186861e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 141: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 96.8349292
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 9.41749815320525e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 142: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 18.7711099
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 6.983039280900663e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 143: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 28.281331499
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 8.83904299993531e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 144: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 23.3887771
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 1.158241198675695e7
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 145: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 123.083066101
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 1.0270497795960877e7
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 146: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 254.2926997
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 1.0250658028382115e7
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 147: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 19.4119788
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 9.939056268244116e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 148: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 21.286304001
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 1.2654365773161575e7
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 149: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 9.191234401
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 1.3235420620446013e7
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 150: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 19.260373901
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 1.2839647977316841e7
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 151: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 144.3721274
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 1.035891934517338e7
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 152: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 14.8928599
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 6.736922330891949e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 153: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126 =# @elapsed optimize!(model) = 15.349478
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:126
+┌ Info: Optimization objective: 
+│   optimal_objective = 7.73285905203317e6
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:132
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\examples_Julia\UC_DukeEnergy_Sample\UC_DukeEnergy_DA.jl:54
+Optimization Execution for day 154: 
