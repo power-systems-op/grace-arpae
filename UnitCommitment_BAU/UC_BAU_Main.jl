@@ -27,9 +27,9 @@ using BenchmarkTools, Logging, Dates
 ENV["JULIA_DEBUG"] = "all"
 
 const N_GEN = 145
-const N_HRS = 24
+const N_HRS = 168
 const INITIAL_DAY = 1
-const FINAL_DAY = 180
+const FINAL_DAY = 1
 
 #curentTime = Dates.format(now(), "yyyy-mm-dd_HH-MM-SS");
 # Logging file
@@ -203,5 +203,6 @@ t2 = time_ns()
 elapsedTime = (t2 -t1)/1.0e9;
 @info "UC Optimization solved in (s):" elapsedTime = (t2 -t1)/1.0e9;
 
+#Cleaning garbage collector
 GC.gc();
-close(io_log);
+close(io_log); #

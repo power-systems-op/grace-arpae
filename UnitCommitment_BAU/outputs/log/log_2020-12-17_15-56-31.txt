@@ -1,0 +1,18 @@
+┌ Info: Log file for UC model for 145 generators
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:42
+┌ Info: Data from generators and demand downloaded correcly
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:48
+┌ Info: nothing
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:56
+┌ Debug: .//outputs//demandTEMP_day1.csv
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:61
+Optimization Execution for day 1: 
+┌ Info: Time elapsed (s):
+│   #= C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128 =# @elapsed optimize!(model) = 231.5350647
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:128
+┌ Info: Optimization objective: 
+│   optimal_objective = 3.5691626421989344e7
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:134
+┌ Info: UC Optimization solved in (s):
+│   elapsedTime = 250.7692202
+└ @ Main C:\Users\rapiduser\github\GRACE-ARPAE\UnitCommitment_BAU\UC_BAU_Main.jl:204
