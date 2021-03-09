@@ -5,9 +5,10 @@
 using CPLEX
 using CSV
 using DataFrames
+using Dates
+using DelimitedFiles
 using JuMP
-using XLSX
-
+#using XLSX
 
 # Constants
 const N_Gens =  24 # number of conventional generators
@@ -18,9 +19,28 @@ const N_Blocks =7
 const N_Hrs = 24
 const INITIAL_DAY = 1
 const FINAL_DAY = 1
+
+const FILE_ACCESS_OVER = "w+"
+const FILE_ACCESS_APPEND = "a+"
+
+
+# Logging file
+io_log = open(
+    string(
+        ".//outputs//log//UC_BAU_",
+        Dates.format(now(), "yyyy-mm-dd_HH-MM-SS"),
+        ".txt",
+    ),
+    FILE_ACCESS_APPEND,
+)
+
+t1 = time_ns()
+#include("import_data.jl")
+
 ##
 ########################### Importing input data from the input spreadsheets
 # Generators' specification
+#=
 DF_Generators = DataFrame(XLSX.readtable(".\\inputs\\data_generators.XLSX", "data_generators")...)
 
 # Generators location map: if a generator g is located in zone z Map_Gens[g,z]=1; and 0 otherwise
@@ -30,10 +50,9 @@ Map_Gens = convert(Matrix, DF_Map_Gens[:,2:N_Zones+1])
 # Storage Units' specification and location
 DF_Storage = DataFrame(XLSX.readtable(".\\inputs\\data_storage.XLSX", "data_storage")...) # storage specs
 DF_Map_Storage = DataFrame(XLSX.readtable(".\\inputs\\data_storage.XLSX", "location_storage")...) # storage location as a dataframe
-Map_Storage = convert(Matrix, DF_Map_Gens[:,2:N_Zones+1]) # convert storage location data to  a matrix
+Map_Storage = convert(Matrix, DF_Map_Storage[:,2:N_Zones+1]) # convert storage location data to  a matrix
 
 # energy demand at each location
-#DF_Dems = DataFrame(XLSX.readtable(".\\Inputs\\data_demand.XLSX", "data_demand")...)
 Demands = XLSX.readdata(".\\inputs\\data_demand.XLSX", "data_demand", "B2:K25")
 # There is no map for the demand data. Instead we take the input demand data for each zone. In other words, Demand[t,z] represents demand at zone z and time t
 
@@ -44,6 +63,54 @@ TranS = XLSX.readdata(".\\inputs\\data_transmission.XLSX", "LineSusceptance","B2
 # Up and down Reserve Requirements data
 Reserve_Req_Up = XLSX.readdata(".\\inputs\\data_reserve_reqs.XLSX", "data_reserve_reqs","B2:B25") # Hourly Up Reserve requirement data
 Reserve_Req_Dn = XLSX.readdata(".\\inputs\\data_reserve_reqs.XLSX", "data_reserve_reqs","C2:C25")# Hourly down reserve requirement data
+=#
+
+df_gens = CSV.read(".//inputs//csv//data_generators.csv", DataFrame);
+map_gens = readdlm(".//inputs//csv//location_generators.csv", ','; header = true);
+df_storage = CSV.read(".//inputs//csv//data_storage.csv", DataFrame);
+map_storage = readdlm(".//inputs//csv//location_storage.csv", ','; header = true);
+demands = readdlm(".//inputs//csv//data_demand.csv", ','; header = true);
+tranc = readdlm(".//inputs//csv//LineCapacity.csv", ','; header = true);
+trans = readdlm(".//inputs//csv//LineSusceptance.csv", ','; header = true);
+reserve_reqs = readdlm(".//inputs//csv//data_reserve_reqs.csv", ','; header = true);
+# Reorganize data
+demands_head = demands[2];
+demands = demands[1];
+demands = demands[:, 2:size(demands,2)];
+
+map_gens_head = map_gens[2];
+map_gens = map_gens[1];
+map_gens = map_gens[:,2:N_Zones+1]
+#map_gens = convert(Array{Int32,2}, map_gens[:,2:N_Zones+1]);
+
+map_storage_head = map_storage[2];
+map_storage = map_storage[1];
+map_storage = map_storage[:,2:N_Zones+1]
+#map_storage = convert(Array{Int32,2}, map_storage[:,2:N_Zones+1]);
+
+tranc_head = tranc[2];
+tranc = tranc[1];
+tranc = tranc[:,2:size(tranc,2)];
+
+trans_head = trans[2];
+trans = trans[1];
+trans = trans[:,2:size(trans,2)];
+
+reserve_reqs_head = reserve_reqs[2];
+reserve_reqs = reserve_reqs[1];
+reserve_req_up = reserve_reqs[:,2];
+reserve_req_dn = reserve_reqs[:,3];
+
+
+DF_Generators = df_gens
+Map_Gens = map_gens
+DF_Storage = df_storage
+Map_Storage = map_storage
+Demands = demands
+TranC = tranc
+TranS = trans
+Reserve_Req_Up = reserve_req_up
+Reserve_Req_Dn = reserve_req_dn
 
 ## Pre-processing the data to calculate the model inputs:
 #=
@@ -78,6 +145,7 @@ end
 ReqDnTimeInit_I = round.(Int,ReqDnTimeInit)
 =#
 ##
+
 # The time range lower-bound for min up constrain using the alternative approach
 lbu=zeros(N_Gens, N_Hrs)
 for g in 1:N_Gens , t in 1:N_Hrs
@@ -224,10 +292,70 @@ println("Objective value: ", JuMP.objective_value(UCmodel))
     println("Day: 1 solved")
     println("---------------------------")
 
+    system_cost = JuMP.objective_value(UCmodel)
+    model_solve_time = JuMP.solve_time(UCmodel)
+
+    write(io_log, "System cost:\t $system_cost\n")
+    write(io_log, "Time to solve model (s):\t $model_solve_time\n")
+
+
 ## Write the optimal outcomes into spreadsheets
 ############# Later we need to include a variable for day so the cell number in which the results are printed is updated accordingly
 
 # Write the conventional generators' schedules
+#genOut_head = string.(fill("G",N_GEN), 1:N_GEN)
+gen_out_head = ["Hour", "GeneratorID", "VariableCost", "MinPowerOut",
+                "MaxPowerOut", "Output", "On/off", "ShutDown", "Startup"]
+
+open(".//outputs//GenOutputs.csv", FILE_ACCESS_OVER) do io
+    writedlm(io, permutedims(gen_out_head), ',')
+    for t in 1:N_Hrs, g=1:N_Gens
+        cell_n = ((t-1)*N_Gens)+g+1 # +1 is to start from the second row and leave the first row for typing
+        # In the above line, we should also make  usre +1 is only applied to the first day so the results are not printed on labels
+        writedlm(io, hcat(t, g, DF_Generators.VariableCost[g],
+        DF_Generators.MinPowerOut[g], DF_Generators.MaxPowerOut[g],
+        JuMP.value.(genOut[g,t]), JuMP.value.(genOnOff[g,t]),
+        JuMP.value.(genShutDown[g,t]), JuMP.value.(genStartUp[g,t]) ), ',')
+    end # ends the loop
+end;
+
+
+
+# Write storage units' schedules
+
+gen_storage_out_head = ["Hour", "StorageUniID", "Power", "EnergyLimit", "Charge_St",
+                    "Discharge_St", "Idle_St", "storgChrgPwr", "storgDiscPwr",
+                    "storgSOC", "storgResUp", "storgResDn"]
+
+
+open(".//outputs//StorageOutputs.csv", FILE_ACCESS_OVER) do io
+    writedlm(io, permutedims(gen_storage_out_head), ',')
+    for t in 1:N_Hrs, p=1:N_StorgUs
+        cell_n = ((t-1)*N_StorgUs)+p+1 # +1 is to start from the second row and leave the first row for typing
+        # In the above line, we should also make  usre +1 is only applied to the first day so the results are not printed on labels
+        writedlm(io, hcat(t, p, DF_Storage.Power[p],
+            DF_Storage.Power[p]/DF_Storage.PowerToEnergRatio[p],
+            JuMP.value.(storgChrg[p,t]), JuMP.value.(storgDisc[p,t]),
+            JuMP.value.(storgIdle[p,t]), JuMP.value.(storgChrgPwr[p,t]),
+            JuMP.value.(storgDiscPwr[p,t]), JuMP.value.(storgSOC[p,t]),
+            JuMP.value.(storgResUp[p,t]), JuMP.value.(storgResDn[p,t]) ), ',')
+    end # ends the loop
+end;
+
+
+# Write the transmission flow schedules
+tran_flow_head = ["Time period", "Source", "Sink", "Flow", "TransCap"]
+open(".//outputs//TranFlowOutputs.csv", FILE_ACCESS_OVER) do io
+    writedlm(io, permutedims(tran_flow_head), ',')
+    for t in 1:N_Hrs, n=1:N_Zones, m=1:M_Zones
+        cell_n = ((t-1)*N_Zones*M_Zones)+((n-1)*N_Zones)+m+1 # +1 is to start from the second row and leave the first row for typing
+        # In the above line, we should also make  usre +1 is only applied to the first day so the results are not printed on labels
+        writedlm(io, hcat(t, n, m, JuMP.value.(powerFlow[n,m,t]),
+                TranC[n,m] ), ',')
+    end # ends the loop
+end;
+
+#=
 XLSX.openxlsx(".\\outputs\\GenOutputs.xlsx", mode="w") do xf
     sheet = xf[1]
     XLSX.rename!(sheet, "new_sheet")
@@ -248,7 +376,6 @@ XLSX.openxlsx(".\\outputs\\GenOutputs.xlsx", mode="w") do xf
 
 end # ends "do"
 
-# Writhe storage units' schedules
 XLSX.openxlsx(".\\outputs\\StorageOutputs.xlsx", mode="w") do xf
     sheet = xf[1]
     XLSX.rename!(sheet, "new_sheet")
@@ -272,6 +399,7 @@ XLSX.openxlsx(".\\outputs\\StorageOutputs.xlsx", mode="w") do xf
 
 end # ends "do"
 
+
 # Write the transmission flow schedules
 XLSX.openxlsx(".\\outputs\\TranFlowOutputs.xlsx", mode="w") do tf
     sheet = tf[1]
@@ -287,3 +415,10 @@ XLSX.openxlsx(".\\outputs\\TranFlowOutputs.xlsx", mode="w") do tf
         sheet[XLSX.CellRef(cell_n,5)] = TranC[n,m]
     end # ends the loop
 end # ends "do"
+
+=#
+t2 = time_ns()
+elapsedTime = (t2 -t1)/1.0e9;
+
+write(io_log, "Whole program time execution (s):\t $elapsedTime\n")
+close(io_log);

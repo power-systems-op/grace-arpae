@@ -1,0 +1,3 @@
+System cost:	 5.012016629380441e6
+Time to solve model (s):	 10.921000003814697
+Whole program time execution (s):	 15.760766801
