@@ -30,7 +30,7 @@ Map_Gens = convert(Matrix, DF_Map_Gens[:,2:N_Zones+1])
 # Storage Units' specification and location
 DF_Storage = DataFrame(XLSX.readtable(".\\inputs\\data_storage.XLSX", "data_storage")...) # storage specs
 DF_Map_Storage = DataFrame(XLSX.readtable(".\\inputs\\data_storage.XLSX", "location_storage")...) # storage location as a dataframe
-Map_Storage = convert(Matrix, DF_Map_Gens[:,2:N_Zones+1]) # convert storage location data to  a matrix
+Map_Storage = convert(Matrix, DF_Map_Storage[:,2:N_Zones+1]) # convert storage location data to  a matrix
 
 # energy demand at each location
 #DF_Dems = DataFrame(XLSX.readtable(".\\Inputs\\data_demand.XLSX", "data_demand")...)
