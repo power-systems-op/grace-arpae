@@ -75,3 +75,6 @@ push!(MrBrown.monthlyIncomes, 850)
 print("MrBrown's mobthly incomes are: $(MrBrown.monthlyIncomes)\n")
 
 MrBrown.company = "GE"
+FUCR.genoffon
+
+C:\Users\rapiduser\Ali_Julia
