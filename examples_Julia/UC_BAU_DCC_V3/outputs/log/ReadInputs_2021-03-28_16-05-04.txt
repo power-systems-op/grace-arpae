@@ -1,0 +1,1 @@
+Whole program time execution (s):	 19.853024501
