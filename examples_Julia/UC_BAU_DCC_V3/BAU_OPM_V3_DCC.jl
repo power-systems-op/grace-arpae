@@ -18,7 +18,7 @@ const N_Zones = 2
 const M_Zones = 2
 const N_Blocks =7
 const INITIAL_DAY = 1
-const FINAL_DAY = 2
+const FINAL_DAY = 7
 #TODO: check if constant INITIAL_HR_BUCR should exist
 const INITIAL_HR_FUCR = 6 # represents the running time for the first WA unit commitment run. INITIAL_HR_FUCR=0 means the FUCR's optimal outcomes are ready at 00:00
 const INITIAL_HR_SUCR = 17 #  represents the running time for the second WA unit commitment run. INITIAL_HR_SUCR=17 means the SUCR's optimal outcomes are ready at 17:00
@@ -304,7 +304,6 @@ FUCR_Init_UpTime = zeros(N_Gens)
 FUCR_Init_DownTime = zeros(N_Gens)
 FUCR_Init_storgSOC = zeros(N_StorgUs)
 
-
 SUCR_Init_genOnOff = zeros(N_Gens)
 SUCR_Init_genOut = zeros(N_Gens)
 SUCR_Init_UpTime = zeros(N_Gens)
@@ -312,7 +311,7 @@ SUCR_Init_DownTime = zeros(N_Gens)
 SUCR_Init_storgSOC = zeros(N_StorgUs)
 
 BUCR1_Init_genOnOff = zeros(N_Gens)
-BUCR1_Init_genOut = zeros(N_Gens)
+BUCR1_Init_genOut = zeros(Float64, N_Gens)
 BUCR1_Init_UpTime = zeros(N_Gens)
 BUCR1_Init_DownTime = zeros(N_Gens)
 BUCR1_Init_storgSOC = zeros(N_StorgUs)
@@ -386,6 +385,8 @@ lb_MDT = round.(Int, lbd)
 ## The foor loop runs two WAUC models and the RTUC models every day
 for day = INITIAL_DAY:FINAL_DAY
     # Setting initial values
+    #TODO: Change these assignments, to avoid replacing the objects
+    #  only copy their values
     if day ==1
         global FUCR_Init_genOnOff = DF_Generators.StatusInit
         global FUCR_Init_genOut = DF_Generators.PowerInit
@@ -949,7 +950,7 @@ for day = INITIAL_DAY:FINAL_DAY
 
         println("------------------------------------")
         println("------- BAUC1 OBJECTIVE VALUE -------")
-        println("Objective value for day ", day, " and hour ", h+INITIAL_HR_FUCR,"is:", JuMP.objective_value(BUCR1model))
+        println("Objective value for day ", day, " and hour ", h+INITIAL_HR_FUCR," is: ", JuMP.objective_value(BUCR1model))
         println("------------------------------------")
         println("------- BAUC1 PRIMAL STATUS -------")
         println(primal_status(BUCR1model))
@@ -1104,8 +1105,9 @@ for day = INITIAL_DAY:FINAL_DAY
     # This must be updated later when we run two WAUCs every day and then RTUCs
     # Setting initial values for BUCR1 (next hour), SUCR1, and BUCR2
         for g=1:N_Gens
+            #println("Gen: $g", ", BUCR1_genOnOff: ", JuMP.value.(BUCR1_genOnOff[g]), ", BUCR1_genOut: ", JuMP.value.(BUCR1_genOut[g]))
             global BUCR1_Init_genOnOff[g] = JuMP.value.(BUCR1_genOnOff[g]);
-            global BUCR1_Init_genOut[g] = JuMP.value.(BUCR1_genOut[g]);
+            global BUCR1_Init_genOut[g] = round(Int, JuMP.value.(BUCR1_genOut[g]));
             if h==(INITIAL_HR_SUCR-INITIAL_HR_FUCR)
                 global BUCR2_Init_genOnOff[g] = JuMP.value.(BUCR1_genOnOff[g]);
                 global BUCR2_Init_genOut[g] = JuMP.value.(BUCR1_genOut[g]);
@@ -1532,9 +1534,7 @@ for day = INITIAL_DAY:FINAL_DAY
         end #
 
         BUCR2model = direct_model(CPLEX.Optimizer())
-        #BUCR2model=Model(with_optimizer(CPLEX.Optimizer))
         #set_optimizer_attribute(BUCR2model, "CPX_PARAM_EPINT", 1e-5)
-        #set_optimizer_attribute(BUCR2model, "CPX_PARAM_EPINT", 0.2)
         #set_optimizer_attribute(BUCR2model, "CPX_PARAM_EPGAP", 0.00001)
 
         # Declaring the decision variables for conventional generators
@@ -1827,15 +1827,15 @@ for day = INITIAL_DAY:FINAL_DAY
     # Setting initial values for BUCR2 (next hour), FUCR, and BUCR1
         for g=1:N_Gens
             # set the initiali values to be fed to the next hour BUCR2
-            global BUCR2_Init_genOnOff[g] = JuMP.value.(BUCR2_genOnOff[g]); #
-            global BUCR2_Init_genOut[g] = JuMP.value.(BUCR2_genOut[g]);
+            global BUCR2_Init_genOnOff[g] = round(Int,JuMP.value.(BUCR2_genOnOff[g])); #
+            global BUCR2_Init_genOut[g] = round(Int, JuMP.value.(BUCR2_genOut[g]));
             # Set the initial values fed to the next FUCR and BUCR1
 
         #    if h==(24-INITIAL_HR_SUCR+INITIAL_HR_FUCR)
-            global BUCR1_Init_genOnOff[g] = JuMP.value.(BUCR2_genOnOff[g]);
-            global BUCR1_Init_genOut[g] = JuMP.value.(BUCR2_genOut[g]);
-            global FUCR_Init_genOnOff[g] = JuMP.value.(BUCR2_genOnOff[g]);
-            global FUCR_Init_genOut[g] = JuMP.value.(BUCR2_genOut[g]);
+            global BUCR1_Init_genOnOff[g] = round(Int,JuMP.value.(BUCR2_genOnOff[g]));
+            global BUCR1_Init_genOut[g] = round(Int, JuMP.value.(BUCR2_genOut[g]));
+            global FUCR_Init_genOnOff[g] = round(Int, JuMP.value.(BUCR2_genOnOff[g]));
+            global FUCR_Init_genOut[g] = round(Int, JuMP.value.(BUCR2_genOut[g]));
         #    end
         end
 
