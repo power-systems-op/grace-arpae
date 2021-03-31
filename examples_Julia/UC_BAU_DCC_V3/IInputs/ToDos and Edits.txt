@@ -1,0 +1,31 @@
+Include initial values for the storage at Friday and Monday
+
+Include regional reserve requirements
+
+# The column title for NoLoad Heat Rate must be "NoLoadHR"
+
+# In the generator's reserve limits, we have used spinning reserve limits 
+
+# Update the format of renewable generation data
+
+# In the orgninal data sheet, all ramp rate limits are in MW/Mins. They must be converted to MW/Hour. Minimum and maximum generation limits must be taken into account as well. 
+Shutdown ramp rate to be the maximum of hourly ramp rate and minimum generation limit and not beyond maximum generation limit.
+Startup ramp rate follows the same rule
+
+# The heat rate curves data is wrong
+
+# nuclear''s min and max in not identical
+
+# the input files format for hydro, solar, and wind is not consistent
+
+#Update storage
+#Print names and scheduled reeserves 
+
+Inconsistent column names: 
+Spinning reserve limit, UpTimeInit, DownTimeInit, ShutdownCost, FastStart
+
+ramp rate limits must be in MW/Hour
+
+Total gen and total demand not equal. total gen is higher than total demand 
+
+The generators and storage file headers for their names must be consitent with wthat is used in he code for printing the resulyts 
