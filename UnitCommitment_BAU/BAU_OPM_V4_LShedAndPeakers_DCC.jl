@@ -499,8 +499,8 @@ for day = INITIAL_DAY:FINAL_DAY
                                        +DF_Peakers.NoLoadHR[g]*FuelPrice[g,day]*FUCR_peakerOnOff[g,t]
                                        +((DF_Peakers.HotStartU_FixedCost[g]+(DF_Peakers.HotStartU_HeatRate[g]*FuelPrice[g,day]))*FUCR_peakerStartUp[g,t])
                                        +DF_Peakers.ShutdownCost[g]*FUCR_peakerShutDown[g, t] for g in 1:N_Gens) for g in 1:N_Gens) for t in 1:N_Hrs_FUCR)
-                                       +sum(sum((FUCR_Demand_Curt[n,t]*DemandCurt_C)+(FUCR_OverGen[n,t]*OverGen_C) for n=1:N_Zones) for t=1:N_Hrs_FUCR) ) ) ) )
-end
+                                       +sum(sum((FUCR_Demand_Curt[n,t]*DemandCurt_C)+(FUCR_OverGen[n,t]*OverGen_C) for n=1:N_Zones) for t=1:N_Hrs_FUCR) ) )
+
     #TODO: Include the no-load costs in OF ?
 
     #Initialization of commitment and dispatch variables at t=0 (representing the last hour of previous scheduling horizon day=day-1 and t=24)
@@ -1853,7 +1853,7 @@ end
     end
 end
 
-    #TODO: Delete this section
+#TODO: Delete this section
     #=
         # Write the conventional generators' schedules
         #XLSX.openxlsx(".\\outputs\\GenOutputs.xlsx", mode="w") do xf

@@ -221,26 +221,6 @@ open(".//outputs//csv//BUCR1_TranFlowOutputs.csv", FILE_ACCESS_OVER) do io
     writedlm(io, permutedims(BUCR_TranFlowOutputs_header), ',')
 end; # closes file
 
-# Write the conventional generators' schedules
-open(".//outputs//csv//BUCR1_GenOutputs.csv", FILE_ACCESS_OVER) do io
-    writedlm(io, permutedims(BUCR_GenOutputs_header), ',')
-end; # closes file
-
-# Write storage units' optimal schedules in CSV file
-open(".//outputs//csv//BUCR1_StorageOutputs.csv", FILE_ACCESS_OVER) do io
-    writedlm(io, permutedims(BUCR_StorageOutputs_header), ',')
-end; # closes file
-
-# Write the conventional generators' schedules
-open(".//outputs//csv//SUCR_GenOutputs.csv", FILE_ACCESS_OVER) do io
-    writedlm(io, permutedims(SUCR_GenOutputs_header), ',')
-end; # closes file
-
-# Writing storage units' optimal schedules in CSV file
-open(".//outputs//csv//SUCR_StorageOutputs.csv", FILE_ACCESS_OVER) do io
-    writedlm(io, permutedims(SUCR_StorageOutputs_header), ',')
-end; # closes file
-
 # Writing the transmission flow schedules into spreadsheets
 open(".//outputs//csv//SUCR_TranFlowOutputs.csv", FILE_ACCESS_OVER) do io
     writedlm(io, permutedims(SUCR_TranFlowOutputs_header), ',')
@@ -249,17 +229,17 @@ end; # closes file
 ## Creating the output spreadsheet that save the optimal outcomes as
 # reported by WA and RT UC Models
 # Write the conventional generators' schedules
-open(".//outputs//csv//BUCR2_GenOutputs.csv", FILE_ACCESS_OVER) do io
+open(".//outputs//csv//BUCR_GenOutputs.csv", FILE_ACCESS_OVER) do io
     writedlm(io, permutedims(BUCR_GenOutputs_header), ',')
 end; # closes file
 
 # Writing storage units' optimal schedules into CSV file
-open(".//outputs//csv//BUCR2_StorageOutputs.csv", FILE_ACCESS_OVER) do io
+open(".//outputs//csv//BUCR_StorageOutputs.csv", FILE_ACCESS_OVER) do io
     writedlm(io, permutedims(BUCR_StorageOutputs_header), ',')
 end; # closes file
 
 # Writing the transmission flow schedules in CSV file
-open(".//outputs//csv//BUCR2_TranFlowOutputs.csv", FILE_ACCESS_OVER) do io
+open(".//outputs//csv//BUCR_TranFlowOutputs.csv", FILE_ACCESS_OVER) do io
     writedlm(io, permutedims(BUCR_TranFlowOutputs_header), ',')
 end; # closes file
 
@@ -889,7 +869,7 @@ for day = INITIAL_DAY:FINAL_DAY
         # Later we need to include a variable for day so the cell number in which the results are printed is updated accordingly
 
         # Write the conventional generators' schedules
-        open(".//outputs//csv//BUCR1_GenOutputs.csv", FILE_ACCESS_APPEND) do io
+        open(".//outputs//csv//BUCR_GenOutputs.csv", FILE_ACCESS_APPEND) do io
             for g=1:N_Gens
                 writedlm(io, hcat(day, h+INITIAL_HR_FUCR, g, DF_Generators.UNIT_ID[g],
     				DF_Generators.MinPowerOut[g], DF_Generators.MaxPowerOut[g],
@@ -899,7 +879,7 @@ for day = INITIAL_DAY:FINAL_DAY
         end; # closes file
 
         # Writing storage units' optimal schedules in CSV file
-        open(".//outputs//csv//BUCR1_StorageOutputs.csv", FILE_ACCESS_APPEND) do io
+        open(".//outputs//csv//BUCR_StorageOutputs.csv", FILE_ACCESS_APPEND) do io
             for p=1:N_StorgUs
                 writedlm(io, hcat(day, h+INITIAL_HR_FUCR, p, DF_Storage.Name[p],
     				DF_Storage.Power[p], DF_Storage.Power[p]/DF_Storage.PowerToEnergRatio[p],
@@ -910,7 +890,7 @@ for day = INITIAL_DAY:FINAL_DAY
         end; # closes file
 
         # Writing the transmission flow schedules in CSV file
-        open(".//outputs//csv//BUCR1_TranFlowOutputs.csv", FILE_ACCESS_APPEND) do io
+        open(".//outputs//csv//BUCR_TranFlowOutputs.csv", FILE_ACCESS_APPEND) do io
             for n=1:N_Zones, m=1:M_Zones
                 writedlm(io, hcat(day, h+INITIAL_HR_FUCR, n, m,
                     JuMP.value.(BUCR1_powerFlow[n,m]), TranC[n,m] ), ',')
@@ -1414,7 +1394,7 @@ for day = INITIAL_DAY:FINAL_DAY
         # Write the optimal outcomes into spreadsheets###########
         ############# Later we need to include a variable for day so the cell number in which the results are printed is updated accordingly
         # Write the conventional generators' schedules
-        open(".//outputs//csv//BUCR2_GenOutputs.csv", FILE_ACCESS_APPEND) do io
+        open(".//outputs//csv//BUCR_GenOutputs.csv", FILE_ACCESS_APPEND) do io
             for g=1:N_Gens
                 writedlm(io, hcat(day, h+INITIAL_HR_SUCR, g, DF_Generators.UNIT_ID[g],
                     DF_Generators.MinPowerOut[g], DF_Generators.MaxPowerOut[g],
@@ -1424,7 +1404,7 @@ for day = INITIAL_DAY:FINAL_DAY
         end; # closes file
 
         # Writing storage units' optimal schedules into CSV file
-        open(".//outputs//csv//BUCR2_StorageOutputs.csv", FILE_ACCESS_APPEND) do io
+        open(".//outputs//csv//BUCR_StorageOutputs.csv", FILE_ACCESS_APPEND) do io
             for p=1:N_StorgUs
                 writedlm(io, hcat(day, h+INITIAL_HR_SUCR, p, DF_Storage.Name[p],
                         DF_Storage.Power[p], DF_Storage.Power[p]/DF_Storage.PowerToEnergRatio[p],
@@ -1435,7 +1415,7 @@ for day = INITIAL_DAY:FINAL_DAY
         end; # closes file
 
         # Writing the transmission flow schedules in CSV file
-        open(".//outputs//csv//BUCR2_TranFlowOutputs.csv", FILE_ACCESS_APPEND) do io
+        open(".//outputs//csv//BUCR_TranFlowOutputs.csv", FILE_ACCESS_APPEND) do io
             for n=1:N_Zones, m=1:M_Zones
                 writedlm(io, hcat(day, h+INITIAL_HR_FUCR, n, m,
                     JuMP.value.(BUCR2_powerFlow[n,m]), TranC[n,m]), ',')

@@ -1,0 +1,111 @@
+Running model from day 1 to day 2 with the following parameters:
+Load-Shedding Penalty: 10000, Over-generation Penalty: 12000
+Max Load-Shedding Penalty 100, Max Over-generation Penalty: 100
+┌ Info: ("FUCR Obj. value for day ", 1, " is ", 1.910574140767569e7)
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V4_LShed_DCC.jl:589
+┌ Info: Data from generators and Demand downloaded correctly
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V4_LShed_DCC.jl:597
+┌ Info: ("BAUC1 Obj. value for day ", 1, " and hour ", 18, " is: ", -8820.688817150003)
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V4_LShed_DCC.jl:857
+┌ Info: ("BAUC1 Obj. value for day ", 1, " and hour ", 19, " is: ", -16298.621809706092)
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V4_LShed_DCC.jl:857
+┌ Info: ("BAUC1 Obj. value for day ", 1, " and hour ", 20, " is: ", -21129.202751350003)
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V4_LShed_DCC.jl:857
+┌ Info: ("BAUC1 Obj. value for day ", 1, " and hour ", 21, " is: ", -18471.912867307663)
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V4_LShed_DCC.jl:857
+┌ Info: ("BAUC1 Obj. value for day ", 1, " and hour ", 22, " is: ", 1328.3441455922439)
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V4_LShed_DCC.jl:857
+┌ Info: ("BAUC1 Obj. value for day ", 1, " and hour ", 23, " is: ", 12012.917501739954)
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V4_LShed_DCC.jl:857
+┌ Info: ("BAUC1 Obj. value for day ", 1, " and hour ", 24, " is: ", 11644.454180040018)
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V4_LShed_DCC.jl:857
+┌ Info: ("BAUC1 Obj. value for day ", 1, " and hour ", 25, " is: ", 9086.7633088)
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V4_LShed_DCC.jl:857
+┌ Info: ("BAUC1 Obj. value for day ", 1, " and hour ", 26, " is: ", 2518.588626384735)
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V4_LShed_DCC.jl:857
+┌ Info: ("BAUC1 Obj. value for day ", 1, " and hour ", 27, " is: ", -9728.800463229418)
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V4_LShed_DCC.jl:857
+┌ Info: ("BAUC1 Obj. value for day ", 1, " and hour ", 28, " is: ", -7838.9667738080025)
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V4_LShed_DCC.jl:857
+┌ Info: ("BAUC2 Obj. value for day ", 1, " and hour ", 18, " is: ", -14702.54174682498)
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V4_LShed_DCC.jl:1383
+┌ Info: ("BAUC2 Obj. value for day ", 1, " and hour ", 19, " is: ", 7285.108946886772)
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V4_LShed_DCC.jl:1383
+┌ Info: ("BAUC2 Obj. value for day ", 1, " and hour ", 20, " is: ", 3829.0697344409855)
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V4_LShed_DCC.jl:1383
+┌ Info: ("BAUC2 Obj. value for day ", 1, " and hour ", 21, " is: ", -828.9461579600029)
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V4_LShed_DCC.jl:1383
+┌ Info: ("BAUC2 Obj. value for day ", 1, " and hour ", 22, " is: ", -8403.166346760001)
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V4_LShed_DCC.jl:1383
+┌ Info: ("BAUC2 Obj. value for day ", 1, " and hour ", 23, " is: ", -23696.48663878502)
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V4_LShed_DCC.jl:1383
+┌ Info: ("BAUC2 Obj. value for day ", 1, " and hour ", 24, " is: ", -41591.236434817314)
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V4_LShed_DCC.jl:1383
+┌ Info: ("BAUC2 Obj. value for day ", 1, " and hour ", 25, " is: ", -44722.27046468657)
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V4_LShed_DCC.jl:1383
+┌ Info: ("BAUC2 Obj. value for day ", 1, " and hour ", 26, " is: ", -44872.83529980005)
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V4_LShed_DCC.jl:1383
+┌ Info: ("BAUC2 Obj. value for day ", 1, " and hour ", 27, " is: ", -46416.954799805244)
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V4_LShed_DCC.jl:1383
+┌ Info: ("BAUC2 Obj. value for day ", 1, " and hour ", 28, " is: ", -44872.83529980002)
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V4_LShed_DCC.jl:1383
+┌ Info: ("BAUC2 Obj. value for day ", 1, " and hour ", 29, " is: ", -44872.83529980002)
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V4_LShed_DCC.jl:1383
+┌ Info: ("BAUC2 Obj. value for day ", 1, " and hour ", 30, " is: ", -35458.904580450006)
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V4_LShed_DCC.jl:1383
+┌ Info: ("FUCR Obj. value for day ", 2, " is ", 2.265669893336487e7)
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V4_LShed_DCC.jl:589
+┌ Info: Data from generators and Demand downloaded correctly
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V4_LShed_DCC.jl:597
+┌ Info: ("BAUC1 Obj. value for day ", 2, " and hour ", 18, " is: ", -15009.62003916502)
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V4_LShed_DCC.jl:857
+┌ Info: ("BAUC1 Obj. value for day ", 2, " and hour ", 19, " is: ", -3138.7821610867977)
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V4_LShed_DCC.jl:857
+┌ Info: ("BAUC1 Obj. value for day ", 2, " and hour ", 20, " is: ", 17773.955575734377)
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V4_LShed_DCC.jl:857
+┌ Info: ("BAUC1 Obj. value for day ", 2, " and hour ", 21, " is: ", 16428.17110863328)
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V4_LShed_DCC.jl:857
+┌ Info: ("BAUC1 Obj. value for day ", 2, " and hour ", 22, " is: ", 12654.434073294979)
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V4_LShed_DCC.jl:857
+┌ Info: ("BAUC1 Obj. value for day ", 2, " and hour ", 23, " is: ", 17144.230853289366)
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V4_LShed_DCC.jl:857
+┌ Info: ("BAUC1 Obj. value for day ", 2, " and hour ", 24, " is: ", 18009.828663140535)
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V4_LShed_DCC.jl:857
+┌ Info: ("BAUC1 Obj. value for day ", 2, " and hour ", 25, " is: ", 9966.277935171936)
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V4_LShed_DCC.jl:857
+┌ Info: ("BAUC1 Obj. value for day ", 2, " and hour ", 26, " is: ", 1398.3189466893673)
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V4_LShed_DCC.jl:857
+┌ Info: ("BAUC1 Obj. value for day ", 2, " and hour ", 27, " is: ", -9724.696205556393)
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V4_LShed_DCC.jl:857
+┌ Info: ("BAUC1 Obj. value for day ", 2, " and hour ", 28, " is: ", 2292.407420396805)
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V4_LShed_DCC.jl:857
+┌ Info: ("BAUC2 Obj. value for day ", 2, " and hour ", 18, " is: ", 47154.68673309055)
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V4_LShed_DCC.jl:1383
+┌ Info: ("BAUC2 Obj. value for day ", 2, " and hour ", 19, " is: ", 48074.537357628345)
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V4_LShed_DCC.jl:1383
+┌ Info: ("BAUC2 Obj. value for day ", 2, " and hour ", 20, " is: ", 35709.33094909787)
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V4_LShed_DCC.jl:1383
+┌ Info: ("BAUC2 Obj. value for day ", 2, " and hour ", 21, " is: ", 19054.3574962914)
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V4_LShed_DCC.jl:1383
+┌ Info: ("BAUC2 Obj. value for day ", 2, " and hour ", 22, " is: ", 9314.665855005063)
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V4_LShed_DCC.jl:1383
+┌ Info: ("BAUC2 Obj. value for day ", 2, " and hour ", 23, " is: ", 2912.9827664494514)
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V4_LShed_DCC.jl:1383
+┌ Info: ("BAUC2 Obj. value for day ", 2, " and hour ", 24, " is: ", -22927.683549165726)
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V4_LShed_DCC.jl:1383
+┌ Info: ("BAUC2 Obj. value for day ", 2, " and hour ", 25, " is: ", -35105.49772235751)
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V4_LShed_DCC.jl:1383
+┌ Info: ("BAUC2 Obj. value for day ", 2, " and hour ", 26, " is: ", -41956.893322855234)
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V4_LShed_DCC.jl:1383
+┌ Info: ("BAUC2 Obj. value for day ", 2, " and hour ", 27, " is: ", -44601.11232447624)
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V4_LShed_DCC.jl:1383
+┌ Info: ("BAUC2 Obj. value for day ", 2, " and hour ", 28, " is: ", -43203.882965654135)
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V4_LShed_DCC.jl:1383
+┌ Info: ("BAUC2 Obj. value for day ", 2, " and hour ", 29, " is: ", -38220.72875458002)
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V4_LShed_DCC.jl:1383
+┌ Info: ("BAUC2 Obj. value for day ", 2, " and hour ", 30, " is: ", -15101.741141350081)
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V4_LShed_DCC.jl:1383
+Whole program time execution (s):	 861.7420588
+┌ Info: Whole Program solved in (s):
+│   elapsedTime = 861.7420588
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V4_LShed_DCC.jl:1485
