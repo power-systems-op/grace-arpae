@@ -1390,7 +1390,6 @@ for day = INITIAL_DAY:FINAL_DAY
         println(JuMP.dual_status(BUCR2model))
         println("Day: ", day, " and hour ", h+INITIAL_HR_SUCR, " solved")
         println("---------------------------")
-        ds
 
         #########################################################
         # Write the optimal outcomes into spreadsheets###########
