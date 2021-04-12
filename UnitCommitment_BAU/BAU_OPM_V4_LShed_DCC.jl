@@ -4,8 +4,9 @@ Model of Duke's Energy Sytem
 
 Author: Ali Daraeepour
 Date: 03/31/2021
+Version: 4.0
 References:
-- https://
+- https://https://github.com/power-systems-op/grace-arpae/blob/main/LICENSE
 
 ...
 # Arguments
@@ -1389,6 +1390,7 @@ for day = INITIAL_DAY:FINAL_DAY
         println(JuMP.dual_status(BUCR2model))
         println("Day: ", day, " and hour ", h+INITIAL_HR_SUCR, " solved")
         println("---------------------------")
+        ds
 
         #########################################################
         # Write the optimal outcomes into spreadsheets###########
