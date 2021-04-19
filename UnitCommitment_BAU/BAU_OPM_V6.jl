@@ -1,4 +1,5 @@
 #using Queryverse
+using CpuId
 using DataFrames
 using Dates
 using DelimitedFiles
@@ -55,11 +56,12 @@ logger = SimpleLogger(io_log)
 flush(io_log)
 global_logger(logger)
 
+@info "Hardware Features: " cpuinfo()
+
 write(io_log, "Running model from day $INITIAL_DAY to day $FINAL_DAY with the following parameters:\n")
 write(io_log, "Load-Shedding Penalty: $DemandCurt_C, Over-generation Penalty: $OverGen_C\n")
 write(io_log, "Max Load-Shedding Penalty $DemandCurt_Max, Max Over-generation Penalty: $OverGen_Max\n")
 write(io_log, "MaxGenLimit Viol Penalty: $ViolPenalty, OptimalityGap: $OverGen_C\n")
-
 
 t1 = time_ns()
 ##
@@ -281,72 +283,12 @@ end; # closes file
 open(".//outputs//csv//BUCR_Curtail.csv", FILE_ACCESS_OVER) do io
     writedlm(io, permutedims(BUCR_Curtail_header), ',')
 end; # closes file
-## Creating the output spreadsheet that save the optimal outcomes as reported by WA and RT UC Models
-######## Spreadsheets for the first unit commitment run
-# Creating Conventional generating units' schedules in the first unit commitment run
-#TODO: ELiminate this section with the outputs
-#=
-XLSX.openxlsx(".\\outputs\\FUCR_GenOutputs.xlsx", mode="w") do xf
-    sheet = xf[1]
-    XLSX.rename!(sheet, "new_sheet")
-    sheet["A1:M1"] = ["Day" "Hour" "GeneratorID" "Name" "MinPowerOut" "MaxPowerOut" "Output" "On/off" "ShutDown" "Startup"  "UpSPinReserve" "NonSpinReserve" "DownReserve"]
-end
-# Creating the spreadsheet for saving Conventional generating units' schedules in the first unit commitment run
-XLSX.openxlsx(".\\outputs\\FUCR_StorageOutputs.xlsx", mode="w") do xf
-    sheet = xf[1]
-    XLSX.rename!(sheet, "new_sheet")
-    sheet["A1:N1"] = ["Day" "Hour" "StorageUniID" "Name" "Power" "EnergyLimit" "Charge_St" "Discharge_St" "Idle_St" "storgChrgPwr" "storgDiscPwr" "storgSOC" "storgResUp" "storgResDn"]
-end
-#Creating the spreadsheet for writing and saving the transmission flow schedules in the first unit commitment run
-XLSX.openxlsx(".\\outputs\\FUCR_TranFlowOutputs.xlsx", mode="w") do tf
-    sheet = tf[1]
-    XLSX.rename!(sheet, "new_sheet_II")
-    sheet["A1:F1"] = ["Day" "Time period" "Source" "Sink" "Flow" "TransCap"]
-end
-######## Spreadsheets for the second unit commitment run
-# Creating Conventional generating units' schedules in the second unit commitment run
-XLSX.openxlsx(".\\outputs\\SUCR_GenOutputs.xlsx", mode="w") do xf
-    sheet = xf[1]
-    XLSX.rename!(sheet, "new_sheet")
-    sheet["A1:M1"] = ["Day" "Hour" "GeneratorID" "Name" "MinPowerOut" "MaxPowerOut" "Output" "On/off" "ShutDown" "Startup"  "UpSPinReserve" "NonSpinReserve" "DownReserve"]
-end
-# Creating the spreadsheet for saving Conventional generating units' schedules in the second unit commitment run
-XLSX.openxlsx(".\\outputs\\SUCR_StorageOutputs.xlsx", mode="w") do xf
-    sheet = xf[1]
-    XLSX.rename!(sheet, "new_sheet")
-    sheet["A1:N1"] = ["Day" "Hour" "StorageUniID" "Name" "Power" "EnergyLimit" "Charge_St" "Discharge_St" "Idle_St" "storgChrgPwr" "storgDiscPwr" "storgSOC" "storgResUp" "storgResDn"]
-end
-#Creating the spreadsheet for writing and saving the transmission flow schedules in the second unit commitment run
-XLSX.openxlsx(".\\outputs\\SUCR_TranFlowOutputs.xlsx", mode="w") do tf
-    sheet = tf[1]
-    XLSX.rename!(sheet, "new_sheet_II")
-    sheet["A1:F1"] = ["Day" "Time period" "Source" "Sink" "Flow" "TransCap"]
-end
-######## Spreadsheets for the first BUCR (BUCR1)
-# Creating Conventional generating units' schedules in the second unit commitment run
-XLSX.openxlsx(".\\outputs\\BUCR_GenOutputs.xlsx", mode="w") do xf
-    sheet = xf[1]
-    XLSX.rename!(sheet, "new_sheet")
-    sheet["A1:K1"] = ["Day" "Hour" "GeneratorID" "Name" "VariableCost" "MinPowerOut" "MaxPowerOut" "Output" "On/off" "ShutDown" "Startup"]
-end
-# Creating the spreadsheet for saving Conventional generating units' schedules in the second unit commitment run
-XLSX.openxlsx(".\\outputs\\BUCR_StorageOutputs.xlsx", mode="w") do xf
-    sheet = xf[1]
-    XLSX.rename!(sheet, "new_sheet")
-    sheet["A1:N1"] = ["Day" "Hour" "StorageUniID" "Name" "Power" "EnergyLimit" "Charge_St" "Discharge_St" "Idle_St" "storgChrgPwr" "storgDiscPwr" "storgSOC" "storgResUp" "storgResDn"]
-end
-#Creating the spreadsheet for writing and saving the transmission flow schedules in the second unit commitment run
-XLSX.openxlsx(".\\outputs\\BUCR_TranFlowOutputs.xlsx", mode="w") do tf
-    sheet = tf[1]
-    XLSX.rename!(sheet, "new_sheet_II")
-    sheet["A1:F1"] = ["Day" "Time period" "Source" "Sink" "Flow" "TransCap"]
-end
-=#
+
 
 ## Creating variables that transfer optimal schedules between the Models
 
-#### Some of the below variables may be unneccsary and can be deletetd. Check at the end
-FUCRtoBUCR1_genOnOff = zeros(N_Gens,INITIAL_HR_SUCR-INITIAL_HR_FUCR)
+# TODO: Some of the below variables may be unnecessary and can be deletetd. Check at the end
+FUCRtoBUCR1_genOnOff = zeros(Int8, N_Gens,INITIAL_HR_SUCR-INITIAL_HR_FUCR)
 FUCRtoBUCR1_genOut = zeros(N_Gens,INITIAL_HR_SUCR-INITIAL_HR_FUCR)
 FUCRtoBUCR1_genOut_Block = zeros(N_Gens,N_Blocks,INITIAL_HR_SUCR-INITIAL_HR_FUCR)
 FUCRtoBUCR1_genStartUp = zeros(N_Gens,INITIAL_HR_SUCR-INITIAL_HR_FUCR)
@@ -2377,3 +2319,17 @@ elapsedTime = (t2 -t1)/1.0e9;
 write(io_log, "Whole program time execution (s):\t $elapsedTime\n")
 @info "Whole Program solved in (s):" elapsedTime;
 close(io_log);
+
+
+## TODO:
+# 1. Fix type instability. Eliminate use of global variables"
+#  A global variable might have its value, and therefore its type, change at any point.
+# This makes it difficult for the compiler to optimize code using global variables.
+
+# To read data, I suggest using defined data type, convert the data after read it,
+# or use functions to avoid instability data type conditions
+#readdlm("page-blocks.data",(Int64, Int64,Int64,Float64,Float64,Float64,Float64,Int64,Int64,Int64, Int64))
+
+# 2. Replace variables for structures
+# 3. Create functions to encapsulate different "tasks" in the code
+# 4. Add error(s) handling
