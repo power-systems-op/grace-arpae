@@ -23,7 +23,6 @@ end;
 @time sum_global_type()
 @time sum_global()
 
-#=
 function pos(x)
 	if x < 0
 		return 0
@@ -32,9 +31,5 @@ function pos(x)
 	end
 end
 
-pos(-1)
-pos(2.5)
-
 typeof(pos(-1))
 typeof(pos(2.5))
-=#
