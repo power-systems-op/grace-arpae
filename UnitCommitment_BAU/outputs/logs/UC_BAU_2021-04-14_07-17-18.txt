@@ -1,8 +1,0 @@
-Running model from day 1 to day 10 with the following parameters:
-Load-Shedding Penalty: 3000, Over-generation Penalty: 4000
-Max Load-Shedding Penalty 100, Max Over-generation Penalty: 100
-MaxGenLimit Viol Penalty: 500, OptimalityGap: 4000
-Whole program time execution (s):	 2345.1014859
-┌ Info: Whole Program solved in (s):
-│   elapsedTime = 2345.1014859
-└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V6.jl:2378

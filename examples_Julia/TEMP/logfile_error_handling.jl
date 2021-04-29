@@ -73,10 +73,10 @@ elapsedTime = (t2 -t1)/1.0e9;
 function resilient_square_root(x::Number)
     try
         sqrt(x)
+        @debug "Positive Squared Root"
     catch err
         if isa(err, DomainError)
             @debug "Negative Squared Root"
-
             sqrt(complex(x))
         end
     end

@@ -1,0 +1,386 @@
+┌ Info: Hardware Features: 
+│   cpuinfo() = | Cpu Property       | Value                                                      |
+|:------------------ |:---------------------------------------------------------- |
+| Brand              | Intel(R) Xeon(R) CPU E5-2680 v3 @ 2.50GHz                  |
+| Vendor             | :Intel                                                     |
+| Architecture       | :Haswell                                                   |
+| Model              | Family: 0x06, Model: 0x3f, Stepping: 0x00, Type: 0x00      |
+| Cores              | 2 physical cores, 2 logical cores (on executing CPU)       |
+|                    | No Hyperthreading hardware capability detected             |
+| Clock Frequencies  | Not supported by CPU                                       |
+| Data Cache         | Level 1:3 : (32, 256, 30720) kbytes                        |
+|                    | 64 byte cache line size                                    |
+| Address Size       | 48 bits virtual, 43 bits physical                          |
+| SIMD               | 256 bit = 32 byte max. SIMD vector size                    |
+| Time Stamp Counter | TSC is accessible via `rdtsc`                              |
+|                    | TSC runs at constant rate (invariant from clock frequency) |
+| Perf. Monitoring   | Performance Monitoring Counters (PMC) are not supported    |
+| Hypervisor         | Yes, VMware                                                |
+
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:84
+Running model from day 1 to day 2 with the following parameters:
+Load-Shedding Penalty: 3000, Over-generation Penalty: 4000
+Max Load-Shedding Penalty 100, Max Over-generation Penalty: 100
+MaxGenLimit Viol Penalty: 500, OptimalityGap: 4000
+┌ Info: Time to read input data (s): 1.6456568
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:152
+┌ Info: FUCRmodel for day: 1 setup executed in (s): 21.2337282
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:826
+┌ Debug: FUCRmodel for day: 1 optimized executed in (s):  100.06399989128113
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:851
+┌ Info: Write FUCRmodel results for day 1: 4.7454268 executed in (s)
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:917
+┌ Info: FUCRtoBUCR1 data handling for day 1 executed in (s): 0.110055
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1002
+┌ Info: BUCR1model for day: 1, hour 7 setup executed in (s):  8.6097438
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1220
+┌ Debug: BUCR1model for day: 1, hour 7 optimized executed in (s): 0.19499993324279785
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1245
+┌ Info: Write BUCR1model results for day 1 and hour 7 executed in (s): 0.3288079
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1308
+┌ Info: FUCRtoBUCR1 data handling for day 1 executed in (s): 9.3069583
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1002
+┌ Info: BUCR1model for day: 1, hour 8 setup executed in (s):  0.0329848
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1220
+┌ Debug: BUCR1model for day: 1, hour 8 optimized executed in (s): 0.24499988555908203
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1245
+┌ Info: Write BUCR1model results for day 1 and hour 8 executed in (s): 0.0276785
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1308
+┌ Info: FUCRtoBUCR1 data handling for day 1 executed in (s): 9.6831853
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1002
+┌ Info: BUCR1model for day: 1, hour 9 setup executed in (s):  0.0377003
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1220
+┌ Debug: BUCR1model for day: 1, hour 9 optimized executed in (s): 0.5469999313354492
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1245
+┌ Info: Write BUCR1model results for day 1 and hour 9 executed in (s): 0.040533
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1308
+┌ Info: FUCRtoBUCR1 data handling for day 1 executed in (s): 10.5563513
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1002
+┌ Info: BUCR1model for day: 1, hour 10 setup executed in (s):  0.036516
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1220
+┌ Debug: BUCR1model for day: 1, hour 10 optimized executed in (s): 0.41699981689453125
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1245
+┌ Info: Write BUCR1model results for day 1 and hour 10 executed in (s): 0.0274827
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1308
+┌ Info: FUCRtoBUCR1 data handling for day 1 executed in (s): 11.0526784
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1002
+┌ Info: BUCR1model for day: 1, hour 11 setup executed in (s):  0.0383188
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1220
+┌ Debug: BUCR1model for day: 1, hour 11 optimized executed in (s): 0.3959999084472656
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1245
+┌ Info: Write BUCR1model results for day 1 and hour 11 executed in (s): 0.0284872
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1308
+┌ Info: FUCRtoBUCR1 data handling for day 1 executed in (s): 11.5823177
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1002
+┌ Info: BUCR1model for day: 1, hour 12 setup executed in (s):  0.0353788
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1220
+┌ Debug: BUCR1model for day: 1, hour 12 optimized executed in (s): 0.2050001621246338
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1245
+┌ Info: Write BUCR1model results for day 1 and hour 12 executed in (s): 0.0364949
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1308
+┌ Info: FUCRtoBUCR1 data handling for day 1 executed in (s): 11.8756662
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1002
+┌ Info: BUCR1model for day: 1, hour 13 setup executed in (s):  0.0503235
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1220
+┌ Debug: BUCR1model for day: 1, hour 13 optimized executed in (s): 0.3689999580383301
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1245
+┌ Info: Write BUCR1model results for day 1 and hour 13 executed in (s): 0.0264708
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1308
+┌ Info: FUCRtoBUCR1 data handling for day 1 executed in (s): 12.5274382
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1002
+┌ Info: BUCR1model for day: 1, hour 14 setup executed in (s):  0.0347509
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1220
+┌ Debug: BUCR1model for day: 1, hour 14 optimized executed in (s): 0.19099998474121094
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1245
+┌ Info: Write BUCR1model results for day 1 and hour 14 executed in (s): 0.0271302
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1308
+┌ Info: FUCRtoBUCR1 data handling for day 1 executed in (s): 12.7955738
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1002
+┌ Info: BUCR1model for day: 1, hour 15 setup executed in (s):  0.0595439
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1220
+┌ Debug: BUCR1model for day: 1, hour 15 optimized executed in (s): 0.5639998912811279
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1245
+┌ Info: Write BUCR1model results for day 1 and hour 15 executed in (s): 0.0420076
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1308
+┌ Info: FUCRtoBUCR1 data handling for day 1 executed in (s): 13.6234974
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1002
+┌ Info: BUCR1model for day: 1, hour 16 setup executed in (s):  0.0467167
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1220
+┌ Debug: BUCR1model for day: 1, hour 16 optimized executed in (s): 0.5279998779296875
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1245
+┌ Info: Write BUCR1model results for day 1 and hour 16 executed in (s): 0.0274886
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1308
+┌ Info: FUCRtoBUCR1 data handling for day 1 executed in (s): 14.2445566
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1002
+┌ Info: BUCR1model for day: 1, hour 17 setup executed in (s):  0.0494246
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1220
+┌ Debug: BUCR1model for day: 1, hour 17 optimized executed in (s): 0.46899986267089844
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1245
+┌ Info: Write BUCR1model results for day 1 and hour 17 executed in (s): 0.0664704
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1308
+┌ Info: SUCRmodel for day: 1 setup executed in (s): 23.5631789
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1628
+┌ Debug: SUCRmodel for day: 1 optimized executed in (s):  285.33000016212463
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1651
+┌ Info: Write SUCRmodel results for day 1: 5.3797512 executed in (s)
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1721
+┌ Info: BUCR2model for day: 1 and hour 18 setup executed in (s): 8.5075273
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:2020
+┌ Debug: BUCR2model for day: 1 and hour 18 optimized executed in (s): 0.1380000114440918
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:2054
+┌ Info: Write BUCR2model results for day 1 and hour 18 executed in (s): 0.3028678
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:2120
+┌ Info: BUCR2model for day: 1 and hour 19 setup executed in (s): 0.0323989
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:2020
+┌ Debug: BUCR2model for day: 1 and hour 19 optimized executed in (s): 0.09399986267089844
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:2054
+┌ Info: Write BUCR2model results for day 1 and hour 19 executed in (s): 0.0361418
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:2120
+┌ Info: BUCR2model for day: 1 and hour 20 setup executed in (s): 0.0382315
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:2020
+┌ Debug: BUCR2model for day: 1 and hour 20 optimized executed in (s): 0.44300007820129395
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:2054
+┌ Info: Write BUCR2model results for day 1 and hour 20 executed in (s): 0.0334469
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:2120
+┌ Info: BUCR2model for day: 1 and hour 21 setup executed in (s): 0.0364054
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:2020
+┌ Debug: BUCR2model for day: 1 and hour 21 optimized executed in (s): 0.5369999408721924
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:2054
+┌ Info: Write BUCR2model results for day 1 and hour 21 executed in (s): 0.0344528
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:2120
+┌ Info: BUCR2model for day: 1 and hour 22 setup executed in (s): 0.0462785
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:2020
+┌ Debug: BUCR2model for day: 1 and hour 22 optimized executed in (s): 0.09800004959106445
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:2054
+┌ Info: Write BUCR2model results for day 1 and hour 22 executed in (s): 0.0341853
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:2120
+┌ Info: BUCR2model for day: 1 and hour 23 setup executed in (s): 0.0406761
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:2020
+┌ Debug: BUCR2model for day: 1 and hour 23 optimized executed in (s): 0.17199993133544922
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:2054
+┌ Info: Write BUCR2model results for day 1 and hour 23 executed in (s): 0.0324724
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:2120
+┌ Info: BUCR2model for day: 1 and hour 24 setup executed in (s): 0.0375018
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:2020
+┌ Debug: BUCR2model for day: 1 and hour 24 optimized executed in (s): 0.1809999942779541
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:2054
+┌ Info: Write BUCR2model results for day 1 and hour 24 executed in (s): 0.0366227
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:2120
+┌ Info: BUCR2model for day: 1 and hour 25 setup executed in (s): 0.0358421
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:2020
+┌ Debug: BUCR2model for day: 1 and hour 25 optimized executed in (s): 0.4069998264312744
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:2054
+┌ Info: Write BUCR2model results for day 1 and hour 25 executed in (s): 0.0329263
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:2120
+┌ Info: BUCR2model for day: 1 and hour 26 setup executed in (s): 0.0361769
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:2020
+┌ Debug: BUCR2model for day: 1 and hour 26 optimized executed in (s): 0.5839998722076416
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:2054
+┌ Info: Write BUCR2model results for day 1 and hour 26 executed in (s): 0.0335694
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:2120
+┌ Info: BUCR2model for day: 1 and hour 27 setup executed in (s): 0.0406223
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:2020
+┌ Debug: BUCR2model for day: 1 and hour 27 optimized executed in (s): 0.2909998893737793
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:2054
+┌ Info: Write BUCR2model results for day 1 and hour 27 executed in (s): 0.0390664
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:2120
+┌ Info: BUCR2model for day: 1 and hour 28 setup executed in (s): 0.0403892
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:2020
+┌ Debug: BUCR2model for day: 1 and hour 28 optimized executed in (s): 0.37599992752075195
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:2054
+┌ Info: Write BUCR2model results for day 1 and hour 28 executed in (s): 0.0384236
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:2120
+┌ Info: BUCR2model for day: 1 and hour 29 setup executed in (s): 0.0611779
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:2020
+┌ Debug: BUCR2model for day: 1 and hour 29 optimized executed in (s): 0.07700014114379883
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:2054
+┌ Info: Write BUCR2model results for day 1 and hour 29 executed in (s): 0.0367857
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:2120
+┌ Info: BUCR2model for day: 1 and hour 30 setup executed in (s): 0.1410561
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:2020
+┌ Debug: BUCR2model for day: 1 and hour 30 optimized executed in (s): 0.3429999351501465
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:2054
+┌ Info: Write BUCR2model results for day 1 and hour 30 executed in (s): 0.0328271
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:2120
+┌ Info: FUCRmodel for day: 2 setup executed in (s): 7.7669969
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:826
+┌ Debug: FUCRmodel for day: 2 optimized executed in (s):  95.16300010681152
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:851
+┌ Info: Write FUCRmodel results for day 2: 6.2115755 executed in (s)
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:917
+┌ Info: FUCRtoBUCR1 data handling for day 2 executed in (s): 0.1036388
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1002
+┌ Info: BUCR1model for day: 2, hour 7 setup executed in (s):  0.0354226
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1220
+┌ Debug: BUCR1model for day: 2, hour 7 optimized executed in (s): 0.17599987983703613
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1245
+┌ Info: Write BUCR1model results for day 2 and hour 7 executed in (s): 0.0404458
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1308
+┌ Info: FUCRtoBUCR1 data handling for day 2 executed in (s): 0.830732
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1002
+┌ Info: BUCR1model for day: 2, hour 8 setup executed in (s):  0.036703
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1220
+┌ Debug: BUCR1model for day: 2, hour 8 optimized executed in (s): 0.4240000247955322
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1245
+┌ Info: Write BUCR1model results for day 2 and hour 8 executed in (s): 0.0384926
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1308
+┌ Info: FUCRtoBUCR1 data handling for day 2 executed in (s): 1.3493605
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1002
+┌ Info: BUCR1model for day: 2, hour 9 setup executed in (s):  0.0336824
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1220
+┌ Debug: BUCR1model for day: 2, hour 9 optimized executed in (s): 0.4460000991821289
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1245
+┌ Info: Write BUCR1model results for day 2 and hour 9 executed in (s): 0.0349683
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1308
+┌ Info: FUCRtoBUCR1 data handling for day 2 executed in (s): 2.1537374
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1002
+┌ Info: BUCR1model for day: 2, hour 10 setup executed in (s):  0.0344226
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1220
+┌ Debug: BUCR1model for day: 2, hour 10 optimized executed in (s): 0.34999990463256836
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1245
+┌ Info: Write BUCR1model results for day 2 and hour 10 executed in (s): 0.0341648
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1308
+┌ Info: FUCRtoBUCR1 data handling for day 2 executed in (s): 3.1293485
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1002
+┌ Info: BUCR1model for day: 2, hour 11 setup executed in (s):  0.0318158
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1220
+┌ Debug: BUCR1model for day: 2, hour 11 optimized executed in (s): 0.39499998092651367
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1245
+┌ Info: Write BUCR1model results for day 2 and hour 11 executed in (s): 0.0367248
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1308
+┌ Info: FUCRtoBUCR1 data handling for day 2 executed in (s): 3.8120459
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1002
+┌ Info: BUCR1model for day: 2, hour 12 setup executed in (s):  0.0338109
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1220
+┌ Debug: BUCR1model for day: 2, hour 12 optimized executed in (s): 0.4500000476837158
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1245
+┌ Info: Write BUCR1model results for day 2 and hour 12 executed in (s): 0.0328617
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1308
+┌ Info: FUCRtoBUCR1 data handling for day 2 executed in (s): 4.821975
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1002
+┌ Info: BUCR1model for day: 2, hour 13 setup executed in (s):  0.0312749
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1220
+┌ Debug: BUCR1model for day: 2, hour 13 optimized executed in (s): 0.687999963760376
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1245
+┌ Info: Write BUCR1model results for day 2 and hour 13 executed in (s): 0.0338675
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1308
+┌ Info: FUCRtoBUCR1 data handling for day 2 executed in (s): 5.796254
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1002
+┌ Info: BUCR1model for day: 2, hour 14 setup executed in (s):  0.0310497
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1220
+┌ Debug: BUCR1model for day: 2, hour 14 optimized executed in (s): 0.2090001106262207
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1245
+┌ Info: Write BUCR1model results for day 2 and hour 14 executed in (s): 0.0347176
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1308
+┌ Info: FUCRtoBUCR1 data handling for day 2 executed in (s): 6.3949727
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1002
+┌ Info: BUCR1model for day: 2, hour 15 setup executed in (s):  0.031184
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1220
+┌ Debug: BUCR1model for day: 2, hour 15 optimized executed in (s): 0.43400001525878906
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1245
+┌ Info: Write BUCR1model results for day 2 and hour 15 executed in (s): 0.0364522
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1308
+┌ Info: FUCRtoBUCR1 data handling for day 2 executed in (s): 7.1187413
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1002
+┌ Info: BUCR1model for day: 2, hour 16 setup executed in (s):  0.047328
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1220
+┌ Debug: BUCR1model for day: 2, hour 16 optimized executed in (s): 0.36700010299682617
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1245
+┌ Info: Write BUCR1model results for day 2 and hour 16 executed in (s): 0.0354493
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1308
+┌ Info: FUCRtoBUCR1 data handling for day 2 executed in (s): 7.9504123
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1002
+┌ Info: BUCR1model for day: 2, hour 17 setup executed in (s):  0.0355323
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1220
+┌ Debug: BUCR1model for day: 2, hour 17 optimized executed in (s): 0.09900021553039551
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1245
+┌ Info: Write BUCR1model results for day 2 and hour 17 executed in (s): 0.0351724
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1308
+┌ Info: SUCRmodel for day: 2 setup executed in (s): 7.5271053
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1628
+┌ Debug: SUCRmodel for day: 2 optimized executed in (s):  245.0369999408722
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1651
+┌ Info: Write SUCRmodel results for day 2: 6.8925046 executed in (s)
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:1721
+┌ Info: BUCR2model for day: 2 and hour 18 setup executed in (s): 0.0375578
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:2020
+┌ Debug: BUCR2model for day: 2 and hour 18 optimized executed in (s): 0.17400002479553223
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:2054
+┌ Info: Write BUCR2model results for day 2 and hour 18 executed in (s): 0.033794
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:2120
+┌ Info: BUCR2model for day: 2 and hour 19 setup executed in (s): 0.0336933
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:2020
+┌ Debug: BUCR2model for day: 2 and hour 19 optimized executed in (s): 0.630000114440918
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:2054
+┌ Info: Write BUCR2model results for day 2 and hour 19 executed in (s): 0.0344521
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:2120
+┌ Info: BUCR2model for day: 2 and hour 20 setup executed in (s): 0.0358726
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:2020
+┌ Debug: BUCR2model for day: 2 and hour 20 optimized executed in (s): 0.35500001907348633
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:2054
+┌ Info: Write BUCR2model results for day 2 and hour 20 executed in (s): 0.0367079
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:2120
+┌ Info: BUCR2model for day: 2 and hour 21 setup executed in (s): 0.0323429
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:2020
+┌ Debug: BUCR2model for day: 2 and hour 21 optimized executed in (s): 0.755000114440918
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:2054
+┌ Info: Write BUCR2model results for day 2 and hour 21 executed in (s): 0.0346001
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:2120
+┌ Info: BUCR2model for day: 2 and hour 22 setup executed in (s): 0.0362355
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:2020
+┌ Debug: BUCR2model for day: 2 and hour 22 optimized executed in (s): 0.34800004959106445
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:2054
+┌ Info: Write BUCR2model results for day 2 and hour 22 executed in (s): 0.0440355
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:2120
+┌ Info: BUCR2model for day: 2 and hour 23 setup executed in (s): 0.0366589
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:2020
+┌ Debug: BUCR2model for day: 2 and hour 23 optimized executed in (s): 0.09300017356872559
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:2054
+┌ Info: Write BUCR2model results for day 2 and hour 23 executed in (s): 0.0337624
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:2120
+┌ Info: BUCR2model for day: 2 and hour 24 setup executed in (s): 0.0361251
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:2020
+┌ Debug: BUCR2model for day: 2 and hour 24 optimized executed in (s): 0.2779998779296875
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:2054
+┌ Info: Write BUCR2model results for day 2 and hour 24 executed in (s): 0.0387941
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:2120
+┌ Info: BUCR2model for day: 2 and hour 25 setup executed in (s): 0.0346991
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:2020
+┌ Debug: BUCR2model for day: 2 and hour 25 optimized executed in (s): 0.18200016021728516
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:2054
+┌ Info: Write BUCR2model results for day 2 and hour 25 executed in (s): 0.0330513
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:2120
+┌ Info: BUCR2model for day: 2 and hour 26 setup executed in (s): 0.0350361
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:2020
+┌ Debug: BUCR2model for day: 2 and hour 26 optimized executed in (s): 0.11100006103515625
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:2054
+┌ Info: Write BUCR2model results for day 2 and hour 26 executed in (s): 0.0377886
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:2120
+┌ Info: BUCR2model for day: 2 and hour 27 setup executed in (s): 0.037858
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:2020
+┌ Debug: BUCR2model for day: 2 and hour 27 optimized executed in (s): 0.34999990463256836
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:2054
+┌ Info: Write BUCR2model results for day 2 and hour 27 executed in (s): 0.0341031
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:2120
+┌ Info: BUCR2model for day: 2 and hour 28 setup executed in (s): 0.2503644
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:2020
+┌ Debug: BUCR2model for day: 2 and hour 28 optimized executed in (s): 0.0989999771118164
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:2054
+┌ Info: Write BUCR2model results for day 2 and hour 28 executed in (s): 0.0646651
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:2120
+┌ Info: BUCR2model for day: 2 and hour 29 setup executed in (s): 0.0596938
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:2020
+┌ Debug: BUCR2model for day: 2 and hour 29 optimized executed in (s): 0.2929999828338623
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:2054
+┌ Info: Write BUCR2model results for day 2 and hour 29 executed in (s): 0.0347259
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:2120
+┌ Info: BUCR2model for day: 2 and hour 30 setup executed in (s): 0.0377055
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:2020
+┌ Debug: BUCR2model for day: 2 and hour 30 optimized executed in (s): 0.3430001735687256
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:2054
+┌ Info: Write BUCR2model results for day 2 and hour 30 executed in (s): 0.0317893
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:2120
+Whole program time execution (s):	 920.6447865
+┌ Info: Whole Program setup executed in (s):
+│   elapsedTime = 920.6447865
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7.jl:2232

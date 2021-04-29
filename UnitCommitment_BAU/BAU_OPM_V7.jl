@@ -1,3 +1,26 @@
+#  Copyright 2021, Author: Ali Daraeepour (a.daraeepour@duke.edu)
+#                  Contributors: Mauricio Hernandez (mmh54@duke.edu)
+#  This Source Code Form is subject to the terms of the MIT  License. If a copy of the MIT was
+# not distributed with this file, You can obtain one at https://mit-license.org/.
+#############################################################################
+# GRACE BAU UC
+# This program solves the Business as Usual Unit Commitment problem of
+# Duke Energy Power Syetem
+# See https://github.com/power-systems-op/grace-arpae/
+#############################################################################
+
+"""
+File: BAU_OPM.jl
+Version: 7
+...
+# Arguments: None
+# Outputs: dataframe
+# Examples: N/A
+"""
+
+#NOTES: This file was originally labeled as BAU_OPM_V5_Nuc_Cogen_Imp_Exp_MustRun_DCC
+# Changes in this version: Nuclear data was included
+
 #using Queryverse
 using CpuId
 using DataFrames
@@ -9,15 +32,15 @@ using CPLEX
 using CSV
 
 # Parameters
-
-const N_Gens =  62 # number of conventional generators
-const N_Peakers =  70 # number of conventional generators
+const N_Gens =  64 # number of conventional generators
+const N_Peakers =  80 # number of conventional generators
 const N_StorgUs = 8 # number of storage units
 const N_Zones = 2
+
 const M_Zones = 2
 const N_Blocks =7
 const INITIAL_DAY = 1
-const FINAL_DAY = 2
+const FINAL_DAY = 7
 
 #TODO: check if constant INITIAL_HR_BUCR should exist
 const INITIAL_HR_FUCR = 6 # represents the running time for the first WA unit commitment run. INITIAL_HR_FUCR=0 means the FUCR's optimal outcomes are ready at 00:00
@@ -33,12 +56,12 @@ const OverGen_Max = 100; # Over-generation Penalty
 const ViolPenalty = 500;
 const ViolMax = 10;
 
-const Solver_EPGAP =0.01; #Solver's optimality gap that serves as the optimization termination criteria
+const Solver_EPGAP =0.005; #Solver's optimality gap that serves as the optimization termination criteria
 
 const FILE_ACCESS_OVER = "w+"
 const FILE_ACCESS_APPEND = "a+"
 ##
-#Enabling debugging code, use ENV["JULIA_DEBUG"] = "" to desable Debugging code
+#Enabling debugging code, use ENV["JULIA_DEBUG"] = "" to desable ging code
 ENV["JULIA_DEBUG"] = "all"
 
 # Logging file
@@ -51,10 +74,12 @@ io_log = open(
     FILE_ACCESS_APPEND,
 )
 
+
 #log document
 logger = SimpleLogger(io_log)
 flush(io_log)
 global_logger(logger)
+
 
 @info "Hardware Features: " cpuinfo()
 
@@ -62,6 +87,11 @@ write(io_log, "Running model from day $INITIAL_DAY to day $FINAL_DAY with the fo
 write(io_log, "Load-Shedding Penalty: $DemandCurt_C, Over-generation Penalty: $OverGen_C\n")
 write(io_log, "Max Load-Shedding Penalty $DemandCurt_Max, Max Over-generation Penalty: $OverGen_Max\n")
 write(io_log, "MaxGenLimit Viol Penalty: $ViolPenalty, OptimalityGap: $OverGen_C\n")
+
+time_performance_header    = ["Section", "Time", "Note1", "Note2", "Note3", "Note4"]
+open(".//outputs//csv//time_performance.csv", FILE_ACCESS_OVER) do io
+    writedlm(io, permutedims(time_performance_header), ',')
+end; # closes file
 
 t1 = time_ns()
 ##
@@ -100,75 +130,116 @@ FUCR_HydroGs = readdlm(".//inputs//csv//data_hydro.csv", ','; header = true);
 SUCR_HydroGs = readdlm(".//inputs//csv//data_hydro_updated.csv", ','; header = true);
 BUCR_HydroGs = readdlm(".//inputs//csv//data_hydro_actual.csv", ','; header = true);
 
+#nuclear generation timeseries for each location
+FUCR_NuclearGs = readdlm(".//inputs//csv//data_nuclear.csv", ','; header = true);
+SUCR_NuclearGs = readdlm(".//inputs//csv//data_nuclear_updated.csv", ','; header = true);
+BUCR_NuclearGs = readdlm(".//inputs//csv//data_nuclear_actual.csv", ','; header = true);
+
+#Cogenerators' generation timeseries for each location
+FUCR_CogenGs = readdlm(".//inputs//csv//data_cogen.csv", ','; header = true);
+SUCR_CogenGs = readdlm(".//inputs//csv//data_cogen_updated.csv", ','; header = true);
+BUCR_CogenGs = readdlm(".//inputs//csv//data_cogen_actual.csv", ','; header = true);
+
 TranC = readdlm(".//inputs//csv//LineCapacity.csv", ','; header = true);
 TranS = readdlm(".//inputs//csv//LineSusceptance.csv", ','; header = true);
 Reserve_Reqs = readdlm(".//inputs//csv//data_reserve_reqs.csv", ','; header = true);
 
 FuelPrice = readdlm(".//inputs//csv//data_fuel_price.csv", ','; header = true);
+FuelPricePeakers = readdlm(".//inputs//csv//data_fuel_price_peakers.csv", ','; header = true);
+
+t2_read_data = time_ns()
+time_read_data = (t2_read_data -t1)/1.0e9;
+@info "Time to read input data (s): $time_read_data";
+
+open(".//outputs//csv//time_performance.csv", FILE_ACCESS_APPEND) do io
+        writedlm(io, hcat("Read Input Data", time_read_data, "",
+                "", "", "Read CSV files"), ',')
+end;
 
 FuelPrice_head = FuelPrice[2];
 FuelPrice = FuelPrice[1];
 FuelPrice = FuelPrice[2:N_Gens+1, 4:368];
 
-FuelPricePeakers = readdlm(".//inputs//csv//data_fuel_price_peakers.csv", ','; header = true);
-
 FuelPricePeakers_head = FuelPricePeakers[2];
 FuelPricePeakers = FuelPricePeakers[1];
 FuelPricePeakers = FuelPricePeakers[2:N_Peakers+1, 4:368];
 
-#FuelPrice = XLSX.readdata(".\\inputs\\data_generators.XLSX", "data_fuel_price", "D3:ND134")
-
 # Reorganize data
 FUCR_Demands_head = FUCR_Demands[2];
 FUCR_Demands = FUCR_Demands[1];
-FUCR_Demands = FUCR_Demands[1:53999, 4:(4+N_Zones-1)];
+FUCR_Demands = FUCR_Demands[1:60313, 4:(4+N_Zones-1)];
 
 SUCR_Demands_head = SUCR_Demands[2];
 SUCR_Demands = SUCR_Demands[1];
-SUCR_Demands = SUCR_Demands[1:53999, 4:(4+N_Zones-1)];
+SUCR_Demands = SUCR_Demands[1:60313, 4:(4+N_Zones-1)];
 
 BUCR_Demands_head = BUCR_Demands[2];
 BUCR_Demands = BUCR_Demands[1];
-BUCR_Demands = BUCR_Demands[1:7728, 3:(3+N_Zones-1)];
+BUCR_Demands = BUCR_Demands[1:8760, 3:(3+N_Zones-1)];
 
 # Solar
 FUCR_SolarGs_head = FUCR_SolarGs[2];
 FUCR_SolarGs = FUCR_SolarGs[1];
-FUCR_SolarGs = FUCR_SolarGs[1:7728, 3:(3+N_Zones-1)];
+FUCR_SolarGs = FUCR_SolarGs[1:8760, 3:(3+N_Zones-1)];
 
 SUCR_SolarGs_head = SUCR_SolarGs[2];
 SUCR_SolarGs = SUCR_SolarGs[1];
-SUCR_SolarGs = SUCR_SolarGs[1:7728, 3:(3+N_Zones-1)];
+SUCR_SolarGs = SUCR_SolarGs[1:8760, 3:(3+N_Zones-1)];
 
 BUCR_SolarGs_head = BUCR_SolarGs[2];
 BUCR_SolarGs = BUCR_SolarGs[1];
-BUCR_SolarGs = BUCR_SolarGs[1:7728, 3:(3+N_Zones-1)];
+BUCR_SolarGs = BUCR_SolarGs[1:8760, 3:(3+N_Zones-1)];
 
 #Wind
 FUCR_WindGs_head = FUCR_WindGs[2];
 FUCR_WindGs = FUCR_WindGs[1];
-FUCR_WindGs = FUCR_WindGs[1:7728, 3:(3+N_Zones-1)];
+FUCR_WindGs = FUCR_WindGs[1:8760, 3:(3+N_Zones-1)];
 
 SUCR_WindGs_head = SUCR_WindGs[2];
 SUCR_WindGs = SUCR_WindGs[1];
-SUCR_WindGs = SUCR_WindGs[1:7728, 3:(3+N_Zones-1)];
+SUCR_WindGs = SUCR_WindGs[1:8760, 3:(3+N_Zones-1)];
 
 BUCR_WindGs_head = BUCR_WindGs[2];
 BUCR_WindGs = BUCR_WindGs[1];
-BUCR_WindGs = BUCR_WindGs[1:7728, 3:(3+N_Zones-1)];
+BUCR_WindGs = BUCR_WindGs[1:8760, 3:(3+N_Zones-1)];
 
 #Hydro
 FUCR_HydroGs_head = FUCR_HydroGs[2];
 FUCR_HydroGs = FUCR_HydroGs[1];
-FUCR_HydroGs = FUCR_HydroGs[1:7728, 2:(2+N_Zones-1)];
+FUCR_HydroGs = FUCR_HydroGs[1:8760, 2:(2+N_Zones-1)];
 
 SUCR_HydroGs_head = SUCR_HydroGs[2];
 SUCR_HydroGs = SUCR_HydroGs[1];
-SUCR_HydroGs = SUCR_HydroGs[1:7728, 2:(2+N_Zones-1)];
+SUCR_HydroGs = SUCR_HydroGs[1:8760, 2:(2+N_Zones-1)];
 
 BUCR_HydroGs_head = BUCR_HydroGs[2];
 BUCR_HydroGs = BUCR_HydroGs[1];
-BUCR_HydroGs = BUCR_HydroGs[1:7728, 2:(2+N_Zones-1)];
+BUCR_HydroGs = BUCR_HydroGs[1:8760, 2:(2+N_Zones-1)];
+#Nuclear
+FUCR_NuclearGs_head = FUCR_NuclearGs[2];
+FUCR_NuclearGs = FUCR_NuclearGs[1];
+FUCR_NuclearGs = FUCR_NuclearGs[1:8760, 3:(3+N_Zones-1)];
+
+SUCR_NuclearGs_head = SUCR_NuclearGs[2];
+SUCR_NuclearGs = SUCR_NuclearGs[1];
+SUCR_NuclearGs = SUCR_NuclearGs[1:8760, 3:(3+N_Zones-1)];
+
+BUCR_NuclearGs_head = BUCR_NuclearGs[2];
+BUCR_NuclearGs = BUCR_NuclearGs[1];
+BUCR_NuclearGs = BUCR_NuclearGs[1:8760, 3:(3+N_Zones-1)];
+
+#Cogen
+FUCR_CogenGs_head = FUCR_CogenGs[2];
+FUCR_CogenGs = FUCR_CogenGs[1];
+FUCR_CogenGs = FUCR_CogenGs[1:8760, 3:(3+N_Zones-1)];
+
+SUCR_CogenGs_head = SUCR_CogenGs[2];
+SUCR_CogenGs = SUCR_CogenGs[1];
+SUCR_CogenGs = SUCR_CogenGs[1:8760, 3:(3+N_Zones-1)];
+
+BUCR_CogenGs_head = BUCR_CogenGs[2];
+BUCR_CogenGs = BUCR_CogenGs[1];
+BUCR_CogenGs = BUCR_CogenGs[1:8760, 3:(3+N_Zones-1)];
 
 Map_Gens_head = Map_Gens[2];
 Map_Gens = Map_Gens[1];
@@ -181,7 +252,6 @@ Map_Peakers = Map_Peakers[:,3:N_Zones+2]
 Map_Storage_head = Map_Storage[2];
 Map_Storage = Map_Storage[1];
 Map_Storage = Map_Storage[:,2:N_Zones+1]
-#map_storage = convert(Array{Int32,2}, map_storage[:,2:N_Zones+1]);
 
 TranC_head = TranC[2];
 TranC = TranC[1];
@@ -197,21 +267,22 @@ Reserve_Req_Up = Reserve_Reqs
 
 ## Headers of output files
 @time begin
-FUCR_GenOutputs_header      = ["Day", "Hour", "GeneratorID", "VariableCost", "MinPowerOut", "MaxPowerOut", "Output", "On/off", "ShutDown", "Startup", "UpSpinRes", "Non_SpinRes", "DownSpinRes", "TotalGenPosV", "TotalGenNegV", "MaxGenVio", "MinGenVio"]
-FUCR_PeakerOutputs_header   = ["Day", "Hour", "PeakerID", "VariableCost", "MinPowerOut", "MaxPowerOut", "Output", "On/off", "ShutDown", "Startup", "UpSpinRes", "Non_SpinRes", "DownSpinRes", "TotalGenPosV", "TotalGenNegV", "MaxGenVio", "MinGenVio"]
+FUCR_GenOutputs_header      = ["Day", "Hour", "GeneratorID", "UNIT_NAME", "MinPowerOut", "MaxPowerOut", "Output", "On/off", "ShutDown", "Startup", "UpSpinRes", "Non_SpinRes", "DownSpinRes", "TotalGenPosV", "TotalGenNegV", "MaxGenVio", "MinGenVio"]
+FUCR_PeakerOutputs_header   = ["Day", "Hour", "PeakerID", "UNIT_NAME", "MinPowerOut", "MaxPowerOut", "Output", "On/off", "ShutDown", "Startup", "UpSpinRes", "Non_SpinRes", "DownSpinRes", "TotalGenPosV", "TotalGenNegV", "MaxGenVio", "MinGenVio"]
 FUCR_StorageOutputs_header  = ["Day", "Hour", "StorageUniID", "Power", "EnergyLimit", "Charge_St", "Discharge_St", "Idle_St", "storgChrgPwr", "storgDiscPwr", "storgSOC", "storgResUp", "storgResDn"]
 FUCR_TranFlowOutputs_header = ["Day", "Time period", "Source", "Sink", "Flow", "TransCap"]
 FUCR_Curtail_header         = ["Day", "Hour", "Zone", "OverGeneration", "DemandCurtailment", "WindCrtailment", "SolarCurtailment", "HydroSpillage"]
-SUCR_GenOutputs_header      = ["Day", "Hour", "GeneratorID", "VariableCost", "MinPowerOut", "MaxPowerOut", "Output", "On/off", "ShutDown", "Startup", "UpSpinRes", "Non_SpinRes", "DownSpinRes", "TotalGenPosV", "TotalGenNegV", "MaxGenVio", "MinGenVio"]
-SUCR_PeakerOutputs_header   = ["Day", "Hour", "GeneratorID", "VariableCost", "MinPowerOut", "MaxPowerOut", "Output", "On/off", "ShutDown", "Startup", "UpSpinRes", "Non_SpinRes", "DownSpinRes", "TotalGenPosV", "TotalGenNegV", "MaxGenVio", "MinGenVio"]
+SUCR_GenOutputs_header      = ["Day", "Hour", "GeneratorID", "UNIT_NAME", "MinPowerOut", "MaxPowerOut", "Output", "On/off", "ShutDown", "Startup", "UpSpinRes", "Non_SpinRes", "DownSpinRes", "TotalGenPosV", "TotalGenNegV", "MaxGenVio", "MinGenVio"]
+SUCR_PeakerOutputs_header   = ["Day", "Hour", "GeneratorID", "UNIT_NAME", "MinPowerOut", "MaxPowerOut", "Output", "On/off", "ShutDown", "Startup", "UpSpinRes", "Non_SpinRes", "DownSpinRes", "TotalGenPosV", "TotalGenNegV", "MaxGenVio", "MinGenVio"]
 SUCR_StorageOutputs_header  = ["Day", "Hour", "StorageUniID", "Power", "EnergyLimit", "Charge_St", "Discharge_St", "Idle_St", "storgChrgPwr", "storgDiscPwr", "storgSOC", "storgResUp", "storgResDn"]
 SUCR_TranFlowOutputs_header = ["Day", "Time period", "Source", "Sink", "Flow", "TransCap"]
 SUCR_Curtail_header         = ["Day", "Hour", "Zone", "OverGeneration", "DemandCurtailment", "WindCrtailment", "SolarCurtailment", "HydroSpillage"]
-BUCR_GenOutputs_header      = ["Day", "Hour", "GeneratorID", "VariableCost", "MinPowerOut", "MaxPowerOut", "Output", "On/off", "ShutDown", "Startup", "TotalGenPosV", "TotalGenNegV", "MaxGenVio", "MinGenVio"]
-BUCR_PeakerOutputs_header   = ["Day", "Hour", "GeneratorID", "VariableCost", "MinPowerOut", "MaxPowerOut", "Output", "On/off", "ShutDown", "Startup", "TotalGenPosV", "TotalGenNegV", "MaxGenVio", "MinGenVio"]
+BUCR_GenOutputs_header      = ["Day", "Hour", "GeneratorID", "UNIT_NAME", "MinPowerOut", "MaxPowerOut", "Output", "On/off", "ShutDown", "Startup", "TotalGenPosV", "TotalGenNegV", "MaxGenVio", "MinGenVio"]
+BUCR_PeakerOutputs_header   = ["Day", "Hour", "GeneratorID", "UNIT_NAME", "MinPowerOut", "MaxPowerOut", "Output", "On/off", "ShutDown", "Startup", "TotalGenPosV", "TotalGenNegV", "MaxGenVio", "MinGenVio"]
 BUCR_StorageOutputs_header  = ["Day", "Hour", "StorageUniID", "Power", "EnergyLimit", "Charge_St", "Discharge_St", "Idle_St", "storgChrgPwr", "storgDiscPwr", "storgSOC", "storgResUp", "storgResDn"]
 BUCR_TranFlowOutputs_header = ["Day", "Time period", "Source", "Sink", "Flow", "TransCap"]
 BUCR_Curtail_header         = ["Day", "Hour", "Zone", "OverGeneration", "DemandCurtailment", "WindCrtailment", "SolarCurtailment", "HydroSpillage"]
+
 end #timer
 
 ##
@@ -284,11 +355,14 @@ open(".//outputs//csv//BUCR_Curtail.csv", FILE_ACCESS_OVER) do io
     writedlm(io, permutedims(BUCR_Curtail_header), ',')
 end; # closes file
 
+## Creating the output spreadsheet that save the optimal outcomes as reported by WA and RT UC Models
+######## Spreadsheets for the first unit commitment run
+# Creating Conventional generating units' schedules in the first unit commitment run
 
 ## Creating variables that transfer optimal schedules between the Models
 
-# TODO: Some of the below variables may be unnecessary and can be deletetd. Check at the end
-FUCRtoBUCR1_genOnOff = zeros(Int8, N_Gens,INITIAL_HR_SUCR-INITIAL_HR_FUCR)
+#### Some of the below variables may be unneccsary and can be deletetd. Check at the end
+FUCRtoBUCR1_genOnOff = zeros(N_Gens,INITIAL_HR_SUCR-INITIAL_HR_FUCR)
 FUCRtoBUCR1_genOut = zeros(N_Gens,INITIAL_HR_SUCR-INITIAL_HR_FUCR)
 FUCRtoBUCR1_genOut_Block = zeros(N_Gens,N_Blocks,INITIAL_HR_SUCR-INITIAL_HR_FUCR)
 FUCRtoBUCR1_genStartUp = zeros(N_Gens,INITIAL_HR_SUCR-INITIAL_HR_FUCR)
@@ -325,29 +399,6 @@ SUCRtoBUCR2_storgIdle = zeros(N_StorgUs, 24-INITIAL_HR_SUCR+INITIAL_HR_FUCR)
 SUCRtoBUCR2_storgChrgPwr = zeros(N_StorgUs, 24-INITIAL_HR_SUCR+INITIAL_HR_FUCR)
 SUCRtoBUCR2_storgDiscPwr = zeros(N_StorgUs, 24-INITIAL_HR_SUCR+INITIAL_HR_FUCR)
 SUCRtoBUCR2_storgSOC = zeros(N_StorgUs, 24-INITIAL_HR_SUCR+INITIAL_HR_FUCR)
-
-#=
-BUCR1toSUCR_genOnOff = zeros(N_Gens,24-INITIAL_HR_SUCR+INITIAL_HR_FUCR)
-BUCR1toSUCR_genOut = zeros(N_Gens,24-INITIAL_HR_SUCR+INITIAL_HR_FUCR)
-FUCR1toSUCR_genStartUp = zeros(N_Gens,24-INITIAL_HR_SUCR-INITIAL_HR_FUCR)
-BUCR1toSUCR_genShutDown= zeros(N_Gens,INITIAL_HR_SUCR-INITIAL_HR_FUCR)
-BUCR1toSUCR_storgChrg = zeros(N_StorgUs,24-INITIAL_HR_SUCR+INITIAL_HR_FUCR)
-BUCR1toSUCR_storgDisc = zeros(N_StorgUs,24-INITIAL_HR_SUCR+INITIAL_HR_FUCR)
-BUCR1toSUCR_storgIdle = zeros(N_StorgUs,24-INITIAL_HR_SUCR+INITIAL_HR_FUCR)
-BUCR1toSUCR_storgChrgPwr = zeros(N_StorgUs,24-INITIAL_HR_SUCR+INITIAL_HR_FUCR)
-BUCR1toSUCR_storgDiscPwr = zeros(N_StorgUs,24-INITIAL_HR_SUCR+INITIAL_HR_FUCR)
-BUCR1toSUCR_storgSOC = zeros(N_StorgUs,24-INITIAL_HR_SUCR+INITIAL_HR_FUCR)
-BUCR1toBUCR2_genOnOff = zeros(N_Gens,??)
-BUCR1toBUCR2_genOut = zeros(N_Gens,??)
-FUCR1toBUCR2_genStartUp = zeros(N_Gens,??)
-BUCR1toBUCR2_genShutDown= zeros(N_Gens,??)
-BUCR1toBUCR2_storgChrg = zeros(N_StorgUs,??)
-BUCR1toBUCR2_storgDisc = zeros(N_StorgUs,??)
-BUCR1toBUCR2_storgIdle = zeros(N_StorgUs,???)
-BUCR1toBUCR2_storgChrgPwr = zeros(N_StorgUs,??)
-BUCR1toBUCR2_storgDiscPwr = zeros(N_StorgUs,????)
-BUCR1toBUCR2_storgSOC = zeros(N_StorgUs,???)
-=#
 
 ## Auxiliary variables for enforcing commitment of slow and fast-start units in BUCRs
 BUCR1_Commit_LB = zeros(N_Gens)
@@ -473,15 +524,12 @@ end
 
 lb_MDT_Peaker = round.(Int, lbd_Peaker)
 
-##
-#**********
-#**********
-#**********
-# We need two more loops for calculating the lb_MUT abd lb_MDT for the second UC runs
-#************************************************************************************
+## TODO: We need two more loops for calculating the lb_MUT abd lb_MDT for the second UC runs
 #************************************************************************************
 ## The foor loop runs two WAUC models and the RTUC models every day
 for day = INITIAL_DAY:FINAL_DAY
+    t1_day_execution = time_ns()
+
     # Setting initial values
     #TODO: Change these assignments, to avoid replacing the objects
     #  only copy their values
@@ -517,6 +565,8 @@ for day = INITIAL_DAY:FINAL_DAY
     FUCR_WA_SolarG = FUCR_SolarGs[R_Rng_Dn_FUCR:R_Rng_Up_FUCR, :] # week-ahead SolarG data for the first UC run at 6 am
     FUCR_WA_WindG = FUCR_WindGs[R_Rng_Dn_FUCR:R_Rng_Up_FUCR, :] # week-ahead WindG data for the first UC run at 6 am
     FUCR_WA_HydroG = FUCR_HydroGs[R_Rng_Dn_FUCR:R_Rng_Up_FUCR, :] # week-ahead HydroG data for the first UC run at 6 am
+    FUCR_WA_NuclearG = FUCR_NuclearGs[R_Rng_Dn_FUCR:R_Rng_Up_FUCR, :] # week-ahead WindG data for the first UC run at 6 am
+    FUCR_WA_CogenG = FUCR_CogenGs[R_Rng_Dn_FUCR:R_Rng_Up_FUCR, :] # week-ahead HydroG data for the first UC run at 6 am
 
 
     D_Rng_Dn_SUCR = ((day-1)*(INITIAL_HR_FUCR+N_Hrs_FUCR))+INITIAL_HR_SUCR+1 # Bottom cell of the demand data needed for running the second WAUC run at 5 pm with 7-day look-ahead horizon
@@ -527,13 +577,14 @@ for day = INITIAL_DAY:FINAL_DAY
     SUCR_WA_SolarG = SUCR_SolarGs[R_Rng_Dn_SUCR:R_Rng_Up_SUCR, :] # week-ahead SolarG data for the first UC run at 5 pm
     SUCR_WA_WindG = SUCR_WindGs[R_Rng_Dn_SUCR:R_Rng_Up_SUCR, :] # week-ahead WindG data for the first UC run at 5 pm
     SUCR_WA_HydroG = SUCR_HydroGs[R_Rng_Dn_SUCR:R_Rng_Up_SUCR, :] # week-ahead HydroG data for the first UC run at 5 pm
+    SUCR_WA_NuclearG = SUCR_NuclearGs[R_Rng_Dn_SUCR:R_Rng_Up_SUCR, :] # week-ahead WindG data for the first UC run at 5 pm
+    SUCR_WA_CogenG = SUCR_CogenGs[R_Rng_Dn_SUCR:R_Rng_Up_SUCR, :] # week-ahead HydroG data for the first UC run at 5 pm
 
 
 ## This block models the first UC optimization that is run in the morning
-    #FUCRmodel=Model(with_optimizer(CPLEX.Optimizer))
+    t1_FUCRmodel = time_ns()
     FUCRmodel = direct_model(CPLEX.Optimizer())
     #set_optimizer_attribute(FUCRmodel, "CPX_PARAM_EPINT", 1e-5)
-    #set_optimizer_attribute(FUCRmodel, "CPX_PARAM_EPINT", 0.2)
     set_optimizer_attribute(FUCRmodel, "CPX_PARAM_EPGAP", Solver_EPGAP)
 
 # Declaring the decision variables for conventional generators
@@ -624,6 +675,12 @@ for day = INITIAL_DAY:FINAL_DAY
 
 #Base-Load Operation of nuclear Generators
     @constraint(FUCRmodel, conNuckBaseLoad[t=1:N_Hrs_FUCR, g=1:N_Gens], FUCR_genOnOff[g,t]>=DF_Generators.Nuclear[g]) #
+    @constraint(FUCRmodel, conNuclearTotGenZone[t=1:N_Hrs_FUCR, n=1:N_Zones], sum((FUCR_genOut[g,t]*Map_Gens[g,n]*DF_Generators.Nuclear[g]) for g=1:N_Gens) -FUCR_WA_NuclearG[t,n] ==0)
+
+#Limits on generation of cogen units
+    @constraint(FUCRmodel, conCoGenBaseLoad[t=1:N_Hrs_FUCR, g=1:N_Gens], FUCR_genOnOff[g,t]>=DF_Generators.Cogen[g]) #
+    @constraint(FUCRmodel, conCoGenTotGenZone[t=1:N_Hrs_FUCR, n=1:N_Zones], sum((FUCR_genOut[g,t]*Map_Gens[g,n]*DF_Generators.Cogen[g]) for g=1:N_Gens) -FUCR_WA_CogenG[t,n] ==0)
+
 # Constraints representing technical limits of conventional generators
 #Status transition trajectory of
     @constraint(FUCRmodel, conStartUpAndDn[t=1:N_Hrs_FUCR, g=1:N_Gens], (FUCR_genOnOff[g,t] - FUCR_genOnOff[g,t-1] - FUCR_genStartUp[g,t] + FUCR_genShutDown[g,t])==0)
@@ -651,7 +708,7 @@ for day = INITIAL_DAY:FINAL_DAY
     @constraint(FUCRmodel, conMaxResUp[t=1:N_Hrs_FUCR, g=1:N_Gens], FUCR_genResUp[g,t] <= DF_Generators.SpinningRes_Limit[g]*FUCR_genOnOff[g,t] )
 # Non-Spinning Reserve Limit
 #    @constraint(FUCRmodel, conMaxNonSpinResUp[t=1:N_Hrs_SUCR, g=1:N_Gens], FUCR_genResNonSpin[g,t] <= (DF_Generators.NonSpinningRes_Limit[g]*(1-FUCR_genOnOff[g,t])*DF_Generators.FastStart[g]))
-@constraint(FUCRmodel, conMaxNonSpinResUp[t=1:N_Hrs_SUCR, g=1:N_Gens], FUCR_genResNonSpin[g,t] <= 0)
+    @constraint(FUCRmodel, conMaxNonSpinResUp[t=1:N_Hrs_SUCR, g=1:N_Gens], FUCR_genResNonSpin[g,t] <= 0)
 #Down reserve provision limit
     @constraint(FUCRmodel, conMaxResDown[t=1:N_Hrs_FUCR, g=1:N_Gens],  FUCR_genResDn[g,t] <= DF_Generators.SpinningRes_Limit[g]*FUCR_genOnOff[g,t] )
 #Up ramp rate limit
@@ -766,6 +823,15 @@ for day = INITIAL_DAY:FINAL_DAY
 # Minimum down reserve requirement
 #    @constraint(FUCRmodel, conMinDnReserveReq[t=1:N_Hrs_FUCR], sum(genResDn[g,t] for g=1:N_Gens) + sum(storgResDn[p,t] for p=1:N_StorgUs) >= Reserve_Req_Dn[t] )
 
+    t2_FUCRmodel = time_ns()
+    time_FUCRmodel = (t2_FUCRmodel -t1_FUCRmodel)/1.0e9;
+    @info "FUCRmodel for day: $day setup executed in (s): $time_FUCRmodel";
+
+    open(".//outputs//csv//time_performance.csv", FILE_ACCESS_APPEND) do io
+            writedlm(io, hcat("FUCRmodel", time_FUCRmodel, "day: $day",
+                    "", "", "Model Setup"), ',')
+    end; # closes file
+
 # solve the First WAUC model (FUCR)
     JuMP.optimize!(FUCRmodel)
 
@@ -784,7 +850,15 @@ for day = INITIAL_DAY:FINAL_DAY
     println("Day: ", day, " solved")
     println("---------------------------")
 
+    @debug "FUCRmodel for day: $day optimized executed in (s):  $(solve_time(FUCRmodel))";
+
+    open(".//outputs//csv//time_performance.csv", FILE_ACCESS_APPEND) do io
+            writedlm(io, hcat("FUCRmodel", solve_time(FUCRmodel), "day: $day",
+                    "", "", "Model Optimization"), ',')
+    end; # closes file
+
 # Write the conventional generators' schedules in CSV file
+    t1_write_FUCRmodel_results = time_ns()
     open(".//outputs//csv//FUCR_GenOutputs.csv", FILE_ACCESS_APPEND) do io
         for t in 1:N_Hrs_FUCR, g=1:N_Gens
             writedlm(io, hcat(day, t+INITIAL_HR_FUCR, g, DF_Generators.UNIT_NAME[g],
@@ -839,89 +913,18 @@ for day = INITIAL_DAY:FINAL_DAY
         end # ends the loop
     end; # closes file
 
+    t2_write_FUCRmodel_results = time_ns()
 
-#=
-    #XLSX.openxlsx(".\\outputs\\GenOutputs.xlsx", mode="w") do xf
-    XLSX.openxlsx(".\\outputs\\FUCR_GenOutputs.xlsx", mode="rw") do xf
-        sheet = xf[1]
-        #XLSX.rename!(sheet, "new_sheet")
-        #sheet["A1:I1"] = ["Hour" "GeneratorID" "VariableCost" "MinPowerOut" "MaxPowerOut" "Output" "On/off" "ShutDown" "Startup"]
-        for t in 1:N_Hrs_FUCR, g=1:N_Gens
-            cell_n = ((day-1)*(N_Hrs_FUCR*N_Gens))+((t-1)*N_Gens)+g+1
-        # In the above line, we should also make  usre +1 is only applied to the first day so the results are not printed on labels
-        sheet[XLSX.CellRef(cell_n,1)] = day
-        sheet[XLSX.CellRef(cell_n,2)] = t+INITIAL_HR_FUCR
-        sheet[XLSX.CellRef(cell_n,3)] = g
-        sheet[XLSX.CellRef(cell_n,4)] = DF_Generators.UNIT_NAME[g]
-        sheet[XLSX.CellRef(cell_n,5)] = DF_Generators.MinPowerOut[g]
-        sheet[XLSX.CellRef(cell_n,6)] = DF_Generators.MaxPowerOut[g]
-        sheet[XLSX.CellRef(cell_n,7)] = JuMP.value.(FUCR_genOut[g,t])
-        sheet[XLSX.CellRef(cell_n,8)] = JuMP.value.(FUCR_genOnOff[g,t])
-        sheet[XLSX.CellRef(cell_n,9)] = JuMP.value.(FUCR_genShutDown[g,t])
-        sheet[XLSX.CellRef(cell_n,10)] = JuMP.value.(FUCR_genStartUp[g,t])
-        sheet[XLSX.CellRef(cell_n,11)] = JuMP.value.(FUCR_genResUp[g,t])
-        sheet[XLSX.CellRef(cell_n,12)] = JuMP.value.(FUCR_genResNonSpin[g,t])
-        sheet[XLSX.CellRef(cell_n,13)] = JuMP.value.(FUCR_genResDn[g,t])
-        end # ends the loop
-    end # ends "do"
-# Writing storage units' optimal schedules into spreadsheets
-    #XLSX.openxlsx(".\\outputs\\StorageOutputs.xlsx", mode="w") do xf
-    XLSX.openxlsx(".\\outputs\\FUCR_StorageOutputs.xlsx", mode="rw") do xf
-        sheet = xf[1]
-        #XLSX.rename!(sheet, "new_sheet")
-        for t in 1:N_Hrs_FUCR, p=1:N_StorgUs
-            cell_n = ((day-1)*(N_Hrs_FUCR*N_StorgUs))+((t-1)*N_StorgUs)+p+1
-            # In the above line, we should also make  usre +1 is only applied to the first day so the results are not printed on labels
-            sheet[XLSX.CellRef(cell_n,1)] = day
-            sheet[XLSX.CellRef(cell_n,2)] =  t+INITIAL_HR_FUCR
-            sheet[XLSX.CellRef(cell_n,3)] = p
-            sheet[XLSX.CellRef(cell_n,4)] = DF_Storage.Name[p]
-            sheet[XLSX.CellRef(cell_n,5)] = DF_Storage.Power[p]
-            sheet[XLSX.CellRef(cell_n,6)] = DF_Storage.Power[p]/DF_Storage.PowerToEnergRatio[p]
-            sheet[XLSX.CellRef(cell_n,7)] = JuMP.value.(FUCR_storgChrg[p,t])
-            sheet[XLSX.CellRef(cell_n,8)] = JuMP.value.(FUCR_storgDisc[p,t])
-            sheet[XLSX.CellRef(cell_n,9)] = JuMP.value.(FUCR_storgIdle[p,t])
-            sheet[XLSX.CellRef(cell_n,10)] = JuMP.value.(FUCR_storgChrgPwr[p,t])
-            sheet[XLSX.CellRef(cell_n,11)] = JuMP.value.(FUCR_storgDiscPwr[p,t])
-            sheet[XLSX.CellRef(cell_n,12)] = JuMP.value.(FUCR_storgSOC[p,t])
-            sheet[XLSX.CellRef(cell_n,13)] = JuMP.value.(FUCR_storgResUp[p,t])
-            sheet[XLSX.CellRef(cell_n,14)] = JuMP.value.(FUCR_storgResDn[p,t])
-        end # ends the loop
-    end # ends "do"
-# Writeing the transmission flow schedules into spreadsheets
-    #XLSX.openxlsx(".\\outputs\\TranFlowOutputs.xlsx", mode="w") do tf
-    XLSX.openxlsx(".\\outputs\\FUCR_TranFlowOutputs.xlsx", mode="rw") do xf
-        sheet = xf[1]
-            #XLSX.rename!(sheet, "new_sheet")
-        for t in 1:N_Hrs_FUCR, n=1:N_Zones, m=1:M_Zones
-            cell_n = ((day-1)*(N_Hrs_FUCR*N_Zones*M_Zones))+((t-1)*N_Zones*M_Zones)+((n-1)*N_Zones)+m+1
-            # In the above line, we should also make  usre +1 is only applied to the first day so the results are not printed on labels
-            sheet[XLSX.CellRef(cell_n,1)] = day
-            sheet[XLSX.CellRef(cell_n,2)] =  t+INITIAL_HR_FUCR
-            sheet[XLSX.CellRef(cell_n,3)] = n
-            sheet[XLSX.CellRef(cell_n,4)] = m
-            sheet[XLSX.CellRef(cell_n,5)] = JuMP.value.(FUCR_powerFlow[n,m,t])
-            sheet[XLSX.CellRef(cell_n,6)] = TranC[n,m]
-        end # ends the loop
-    end # ends "do"
-=#
+    time_write_FUCRmodel_results = (t2_write_FUCRmodel_results -t1_write_FUCRmodel_results)/1.0e9;
+    @info "Write FUCRmodel results for day $day: $time_write_FUCRmodel_results executed in (s)";
 
-###########################################################################
-# Initilization of the next UC Run
+    open(".//outputs//csv//time_performance.csv", FILE_ACCESS_APPEND) do io
+            writedlm(io, hcat("FUCRmodel", time_write_FUCRmodel_results, "day: $day",
+                    "", "", "Write CSV files"), ',')
+    end; #closes file
 
-##### When the BAUC is included,we don't need to update the initial commitment values at the end of FUCR
-#### We can do this at the end of second BUCR that runs after SUCR
-#### In fact, the first BUCR is initialized by the final outcomes of the second BUCR
-# This must be updated later when we run two WAUCs every day and then RTUCs
-#=        for g=1:N_Gens
-            DF_Generators.StatusInit[g]=JuMP.value.(FUCR_genOnOff[g,INITIAL_HR_SUCR-INITIAL_HR_FUCR]);
-            DF_Generators.PowerInit[g]=JuMP.value.(FUCR_genOut[g,INITIAL_HR_SUCR-INITIAL_HR_FUCR]);
-        end
-        for p=1:N_StorgUs
-            DF_Storage.SOCInit[p]=JuMP.value.(FUCR_storgSOC[p,INITIAL_HR_SUCR-INITIAL_HR_FUCR]);
-        end
-=#
 ## Create and save the following parameters to be passed to BUCR1
+    t1_FUCRtoBUCR1_data_hand = time_ns()
     for h=1:INITIAL_HR_SUCR-INITIAL_HR_FUCR
         for g=1:N_Gens
             global FUCRtoBUCR1_genOnOff[g,h]= round(JuMP.value.(FUCR_genOnOff[g,h]));
@@ -950,16 +953,18 @@ for day = INITIAL_DAY:FINAL_DAY
             global FUCRtoBUCR1_storgSOC[p,h]=JuMP.value.(FUCR_storgSOC[p,h]);
         end
     end
+
 ## This block models the Balancing Unit Commitment Runs between the morning and evening UC Runs
     for h=1:INITIAL_HR_SUCR-INITIAL_HR_FUCR # number of BUCR periods in between FUCR and SUCR
         # Pre-processing demand variables
-        #print("This period is hour: ", h)
 
         D_Rng_BUCR1 = ((day-1)*24)+INITIAL_HR_FUCR+h  # Bottom cell of the demand data needed for running the first WAUC run at 6 am with 7-day look-ahead horizon
         BUCR1_Hr_Demand = BUCR_Demands[D_Rng_BUCR1, :]
         BUCR1_Hr_SolarG = BUCR_SolarGs[D_Rng_BUCR1, :]
         BUCR1_Hr_WindG = BUCR_WindGs[D_Rng_BUCR1, :]
         BUCR1_Hr_HydroG = BUCR_HydroGs[D_Rng_BUCR1, :]
+        BUCR1_Hr_NuclearG = BUCR_NuclearGs[D_Rng_BUCR1, :]
+        BUCR1_Hr_CogenG = BUCR_CogenGs[D_Rng_BUCR1, :]
 
         # Preprocessing module that fixes the commitment of slow-start units to their FUCR's outcome and determines the binary commitment bounds for fast-start units dependent to their initial up/down time and minimum up/down time limits
         #if the units are slow their BAUC's commitment is fixed to their FUCR's schedule
@@ -973,7 +978,8 @@ for day = INITIAL_DAY:FINAL_DAY
                 global BUCR1_Commit_UB[g] = 1;
             end
         end
-        # if the units are fast their BAUC's commitment could be fixed to 0 or 1 or vary between 0 or 1 dependent to their initial up/down time and minimum up/down time
+        # if the units are fast their BAUC's commitment could be fixed to 0 or 1
+        # or vary between 0 or 1 dependent to their initial up/down time and min up/down time
         for k=1:N_Peakers
             if BUCR1_Init_DownTime_Peaker[k]==0
                 if BUCR1_Init_UpTime_Peaker[k]<DF_Peakers.MinUpTime[k]
@@ -992,8 +998,18 @@ for day = INITIAL_DAY:FINAL_DAY
             end
         end
 
+        t2_FUCRtoBUCR1_data_hand = time_ns();
+
+        time_FUCRtoBUCR1_data_hand = (t2_FUCRtoBUCR1_data_hand -t1_FUCRtoBUCR1_data_hand)/1.0e9;
+        @info "FUCRtoBUCR1 data handling for day $day executed in (s): $time_FUCRtoBUCR1_data_hand";
+
+        open(".//outputs//csv//time_performance.csv", FILE_ACCESS_APPEND) do io
+                writedlm(io, hcat("BUCR1model", time_FUCRtoBUCR1_data_hand, "day: $day",
+                        "hour $(h+INITIAL_HR_FUCR)", "Pre-processing variables", "Data Manipulation"), ',')
+        end; #closes file
+
+        t1_BUCR1model = time_ns()
         BUCR1model = direct_model(CPLEX.Optimizer())
-        #set_optimizer_attribute(BUCR1model, "CPX_PARAM_EPINT", 1e-5)
         set_optimizer_attribute(BUCR1model, "CPX_PARAM_EPGAP", Solver_EPGAP)
 
         # Declaring the decision variables for conventional generators
@@ -1069,7 +1085,17 @@ for day = INITIAL_DAY:FINAL_DAY
                                            +DF_Peakers.ShutdownCost[k]*(BUCR1_peakerShutDown[k]) for k in 1:N_Peakers)
                                            +sum((BUCR1_Demand_Curt[n]*DemandCurt_C)+(BUCR1_OverGen[n]*OverGen_C) for n=1:N_Zones) )
 
-        # Constraints representing technical limits of conventional generators
+
+
+     # Baseload Operation of nuclear units
+        @constraint(BUCR1model, conNuckBaseLoad[g=1:N_Gens], BUCR1_genOnOff[g]>=DF_Generators.Nuclear[g]) #
+        @constraint(BUCR1model, conNuclearTotGenZone[n=1:N_Zones], sum((BUCR1_genOut[g]*Map_Gens[g,n]*DF_Generators.Nuclear[g]) for g=1:N_Gens) -BUCR1_Hr_NuclearG[n] ==0)
+
+     #Limits on generation of cogen units
+        @constraint(BUCR1model, conCoGenBaseLoad[g=1:N_Gens], BUCR1_genOnOff[g]>=DF_Generators.Cogen[g]) #
+        @constraint(BUCR1model, conCoGenTotGenZone[n=1:N_Zones], sum((BUCR1_genOut[g]*Map_Gens[g,n]*DF_Generators.Cogen[g]) for g=1:N_Gens) -BUCR1_Hr_CogenG[n] ==0)
+
+    # Constraints representing technical limits of conventional generators
         #Status transition trajectory of
         @constraint(BUCR1model, conStartUpAndDn[g=1:N_Gens], (BUCR1_genOnOff[g] - BUCR1_Init_genOnOff[g] - BUCR1_genStartUp[g] + BUCR1_genShutDown[g])==0)
         # Max Power generation limit in Block 1
@@ -1191,6 +1217,15 @@ for day = INITIAL_DAY:FINAL_DAY
         # Minimum down reserve requirement
         #    @constraint(BUCR1model, conMinDnReserveReq[t=1:N_Hrs_BUCR], sum(genResDn[g,t] for g=1:N_Gens) + sum(storgResDn[p,t] for p=1:N_StorgUs) >= Reserve_Req_Dn[t] )
 
+        t2_BUCR1model = time_ns()
+        time_BUCR1model = (t2_BUCR1model -t1_BUCR1model)/1.0e9;
+        @info "BUCR1model for day: $day, hour $(h+INITIAL_HR_FUCR) setup executed in (s):  $time_BUCR1model";
+
+        open(".//outputs//csv//time_performance.csv", FILE_ACCESS_APPEND) do io
+                writedlm(io, hcat("BUCR1model", time_BUCR1model, "day: $day",
+                        "hour $(h+INITIAL_HR_FUCR)", "", "Model Setup"), ',')
+        end; # closes file
+
         # solve the First WAUC model (BUCR)
         JuMP.optimize!(BUCR1model)
 
@@ -1209,8 +1244,15 @@ for day = INITIAL_DAY:FINAL_DAY
         println("Day: ", day, " and hour ", h+INITIAL_HR_FUCR, ": solved")
         println("---------------------------")
 
-##
-# Write the optimal outcomes into spreadsheets
+        @debug "BUCR1model for day: $day, hour $(h+INITIAL_HR_FUCR) optimized executed in (s): $(solve_time(BUCR1model))";
+
+        t1_write_BUCR1model_results = time_ns()
+        open(".//outputs//csv//time_performance.csv", FILE_ACCESS_APPEND) do io
+                writedlm(io, hcat("BUCR1model", solve_time(BUCR1model), "day: $day",
+                        "hour $(h+INITIAL_HR_FUCR)", "", "Model Optimization"), ',')
+        end; # closes file
+
+## Write the optimal outcomes into spreadsheets
 # Later we need to include a variable for day so the cell number in which the results are printed is updated accordingly
 
 # Write the conventional generators' schedules
@@ -1263,73 +1305,19 @@ for day = INITIAL_DAY:FINAL_DAY
             end # ends the loop
         end; # closes file
 
-#TODO: Delete this block
-#=
-        # Write the conventional generators' schedules
-        #XLSX.openxlsx(".\\outputs\\GenOutputs.xlsx", mode="w") do xf
-        XLSX.openxlsx(".\\outputs\\BUCR_GenOutputs.xlsx", mode="rw") do xf
-            sheet = xf[1]
-            #XLSX.rename!(sheet, "new_sheet")
-            #sheet["A1:I1"] = ["Hour" "GeneratorID" "VariableCost" "MinPowerOut" "MaxPowerOut" "Output" "On/off" "ShutDown" "Startup"]
-            for g=1:N_Gens
-                cell_n = ((((day-1)*24)+INITIAL_HR_FUCR)*N_Gens)+((h-1)*N_Gens)+g+1
-                # In the above line, we should also make  usre +1 is only applied to the first day so the results are not printed on labels
-                sheet[XLSX.CellRef(cell_n,1)] = day
-                sheet[XLSX.CellRef(cell_n,2)] = h+INITIAL_HR_FUCR
-                sheet[XLSX.CellRef(cell_n,3)] = g
-                sheet[XLSX.CellRef(cell_n,4)] = DF_Generators.UNIT_ID[g]
-                sheet[XLSX.CellRef(cell_n,5)] = DF_Generators.MinPowerOut[g]
-                sheet[XLSX.CellRef(cell_n,6)] = DF_Generators.MaxPowerOut[g]
-                sheet[XLSX.CellRef(cell_n,7)] = JuMP.value.(BUCR1_genOut[g])
-                sheet[XLSX.CellRef(cell_n,8)] = JuMP.value.(BUCR1_genOnOff[g])
-                sheet[XLSX.CellRef(cell_n,9)] = JuMP.value.(BUCR1_genShutDown[g])
-                sheet[XLSX.CellRef(cell_n,10)] = JuMP.value.(BUCR1_genStartUp[g])
-            end # ends the loop
-        end # ends "do"
-        # Writing storage units' optimal schedules into spreadsheets
-        #XLSX.openxlsx(".\\outputs\\StorageOutputs.xlsx", mode="w") do xf
-        XLSX.openxlsx(".\\outputs\\BUCR_StorageOutputs.xlsx", mode="rw") do xf
-            sheet = xf[1]
-            #XLSX.rename!(sheet, "new_sheet")
-            for p=1:N_StorgUs
-                cell_n = ((((day-1)*24)+INITIAL_HR_FUCR)*N_StorgUs)+((h-1)*N_StorgUs)+p+1
-                # In the above line, we should also make  usre +1 is only applied to the first day so the results are not printed on labels
-                sheet[XLSX.CellRef(cell_n,1)] = day
-                sheet[XLSX.CellRef(cell_n,2)] = h+INITIAL_HR_FUCR
-                sheet[XLSX.CellRef(cell_n,3)] = p
-                sheet[XLSX.CellRef(cell_n,4)] = DF_Storage.Name[p]
-                sheet[XLSX.CellRef(cell_n,5)] = DF_Storage.Power[p]
-                sheet[XLSX.CellRef(cell_n,6)] = DF_Storage.Power[p]/DF_Storage.PowerToEnergRatio[p]
-                sheet[XLSX.CellRef(cell_n,7)] = JuMP.value.(BUCR1_storgChrg[p])
-                sheet[XLSX.CellRef(cell_n,8)] = JuMP.value.(BUCR1_storgDisc[p])
-                sheet[XLSX.CellRef(cell_n,9)] = JuMP.value.(BUCR1_storgIdle[p])
-                sheet[XLSX.CellRef(cell_n,10)] = JuMP.value.(BUCR1_storgChrgPwr[p])
-                sheet[XLSX.CellRef(cell_n,11)] = JuMP.value.(BUCR1_storgDiscPwr[p])
-                sheet[XLSX.CellRef(cell_n,12)] = JuMP.value.(BUCR1_storgSOC[p])
-                #sheet[XLSX.CellRef(cell_n,12)] = JuMP.value.(BUCR1_storgResUp[p])
-                #sheet[XLSX.CellRef(cell_n,13)] = JuMP.value.(BUCR1_storgResDn[p])
-            end # ends the loop
-        end # ends "do"
-        # Writeing the transmission flow schedules into spreadsheets
-        #XLSX.openxlsx(".\\outputs\\TranFlowOutputs.xlsx", mode="w") do tf
-        XLSX.openxlsx(".\\outputs\\BUCR_TranFlowOutputs.xlsx", mode="rw") do xf
-            sheet = xf[1]
-                #XLSX.rename!(sheet, "new_sheet")
-                for n=1:N_Zones, m=1:M_Zones
-                    cell_n = ((((day-1)*24)+INITIAL_HR_FUCR)*N_Zones*M_Zones)+((h-1)*N_Zones*M_Zones)+m+1
-                    # In the above line, we should also make  usre +1 is only applied to the first day so the results are not printed on labels
-                    sheet[XLSX.CellRef(cell_n,1)] = day
-                    sheet[XLSX.CellRef(cell_n,2)] =  h+INITIAL_HR_FUCR
-                    sheet[XLSX.CellRef(cell_n,3)] = n
-                    sheet[XLSX.CellRef(cell_n,4)] = m
-                    sheet[XLSX.CellRef(cell_n,5)] = JuMP.value.(BUCR1_powerFlow[n,m])
-                sheet[XLSX.CellRef(cell_n,6)] = TranC[n,m]
-            end # ends the loop
-        end # ends "do"
-        =#
+        t2_write_BUCR1model_results = time_ns()
+        time_write_BUCR1model_results = (t2_write_BUCR1model_results -t1_write_BUCR1model_results)/1.0e9;
+        @info "Write BUCR1model results for day $day and hour $(h+INITIAL_HR_FUCR) executed in (s): $time_write_BUCR1model_results";
+
+        open(".//outputs//csv//time_performance.csv", FILE_ACCESS_APPEND) do io
+                writedlm(io, hcat("BUCR1model", time_write_BUCR1model_results, "day: $day",
+                        "hour $(h+INITIAL_HR_FUCR)", "", "Write CSV files"), ',')
+        end; #closes file
 ## Initilization of the next UC Run
     # This must be updated later when we run two WAUCs every day and then RTUCs
     # Setting initial values for BUCR1 (next hour), SUCR1, and BUCR2
+        t1_BUCR1_init_next_UC = time_ns();
+
         for g=1:N_Gens
             #println("Gen: $g", ", BUCR1_genOnOff: ", JuMP.value.(BUCR1_genOnOff[g]), ", BUCR1_genOut: ", JuMP.value.(BUCR1_genOut[g]))
             global BUCR1_Init_genOnOff[g] = round(JuMP.value.(BUCR1_genOnOff[g]));
@@ -1384,7 +1372,8 @@ for day = INITIAL_DAY:FINAL_DAY
                 global SUCR_Init_DownTime[g]= BUCR1_Init_DownTime[g];
             end
         end
-#TODO:No need to use the round function.  Since 0<= BUCR1_peakerStartUp<=1, BUCR1_genStartUp>0 in the If Statement is enough
+        #TODO:No need to use the round function.  Since 0<= BUCR1_peakerStartUp<=1,
+        # BUCR1_genStartUp>0 in the If Statement is enough
         for k=1:N_Peakers
             if (JuMP.value.(BUCR1_peakerStartUp[k]))>0
                 global BUCR1_Init_UpTime_Peaker[k]= 1;
@@ -1409,12 +1398,22 @@ for day = INITIAL_DAY:FINAL_DAY
             end
         end
 
+        t2_BUCR1_init_next_UC = time_ns();
+
+        time_BUCR1_init_next_UC = (t2_BUCR1_init_next_UC -t1_BUCR1_init_next_UC)/1.0e9;
+        @info "BUCR1_init_next_UC data handling for day $day and hour hour $(h+INITIAL_HR_FUCR) executed in (s): $time_BUCR1_init_next_UC";
+
+        open(".//outputs//csv//time_performance.csv", FILE_ACCESS_APPEND) do io
+                writedlm(io, hcat("BUCR1model", time_BUCR1_init_next_UC, "day: $day",
+                        "hour $(h+INITIAL_HR_FUCR)", "BUCR1_init_next_UC", "Data Manipulation"), ',')
+        end; #closes file
+
     end # ends the loop that runs hourly BUCR1 between [INITIAL_HR_FUCR and INITIAL_HR_SUCR)
 
 ## This block models the second UC optimization that is run in the evening
-    #SUCRmodel=Model(with_optimizer(CPLEX.Optimizer))
+
+    t1_SUCRmodel = time_ns()
     SUCRmodel = direct_model(CPLEX.Optimizer())
-    #set_optimizer_attribute(SUCRmodel, "CPX_PARAM_EPINT", 1e-5)
     set_optimizer_attribute(SUCRmodel, "CPX_PARAM_EPGAP", Solver_EPGAP)
 
 # Declaring the decision variables for conventional generators
@@ -1503,6 +1502,11 @@ for day = INITIAL_DAY:FINAL_DAY
     @constraint(SUCRmodel, conInitSOC[p=1:N_StorgUs], SUCR_storgSOC[p,0]==SUCR_Init_storgSOC[p]) # SOC for storage unit p at t=0
 # Baseload Operation of nuclear units
     @constraint(SUCRmodel, conNuckBaseLoad[t=1:N_Hrs_SUCR, g=1:N_Gens], SUCR_genOnOff[g,t]>=DF_Generators.Nuclear[g]) #
+    @constraint(SUCRmodel, conNuclearTotGenZone[t=1:N_Hrs_SUCR, n=1:N_Zones], sum((SUCR_genOut[g,t]*Map_Gens[g,n]*DF_Generators.Nuclear[g]) for g=1:N_Gens) -SUCR_WA_NuclearG[t,n] ==0)
+
+#Limits on generation of cogen units
+    @constraint(SUCRmodel, conCoGenBaseLoad[t=1:N_Hrs_SUCR, g=1:N_Gens], SUCR_genOnOff[g,t]>=DF_Generators.Cogen[g]) #
+    @constraint(SUCRmodel, conCoGenTotGenZone[t=1:N_Hrs_SUCR, n=1:N_Zones], sum((SUCR_genOut[g,t]*Map_Gens[g,n]*DF_Generators.Cogen[g]) for g=1:N_Gens) -SUCR_WA_CogenG[t,n] ==0)
 
 # Constraints representing technical limits of conventional generators
 #Status transition trajectory of
@@ -1623,7 +1627,6 @@ for day = INITIAL_DAY:FINAL_DAY
     @constraint(SUCRmodel, conDemandCurtLimit[t=1:N_Hrs_SUCR, n=1:N_Zones], SUCR_Demand_Curt[n,t] <= DemandCurt_Max);
     @constraint(SUCRmodel, conOverGenLimit[t=1:N_Hrs_SUCR, n=1:N_Zones], SUCR_OverGen[n,t] <= OverGen_Max);
 
-
     # System-wide Constraints
     #nodal balance constraint
     @constraint(SUCRmodel, conNodBalanc[t=1:N_Hrs_SUCR, n=1:N_Zones], sum((SUCR_genOut[g,t]*Map_Gens[g,n]) for g=1:N_Gens) + sum((SUCR_storgDiscPwr[p,t]*Map_Storage[p,n]) for p=1:N_StorgUs) - sum((SUCR_storgChrgPwr[p,t]*Map_Storage[p,n]) for p=1:N_StorgUs) +SUCR_solarG[n, t] +SUCR_windG[n, t] +SUCR_hydroG[n, t] - SUCR_OverGen[n,t] - SUCR_Demand[n,t] == sum(SUCR_powerFlow[n,m,t] for m=1:M_Zones))
@@ -1634,6 +1637,15 @@ for day = INITIAL_DAY:FINAL_DAY
 
 # Minimum down reserve requirement
 #    @constraint(SUCRmodel, conMinDnReserveReq[t=1:N_Hrs_SUCR], sum(genResDn[g,t] for g=1:N_Gens) + sum(storgResDn[p,t] for p=1:N_StorgUs) >= Reserve_Req_Dn[t] )
+
+    t2_SUCRmodel = time_ns()
+    time_SUCRmodel = (t2_SUCRmodel -t1_SUCRmodel)/1.0e9;
+    @info "SUCRmodel for day: $day setup executed in (s): $time_SUCRmodel";
+
+    open(".//outputs//csv//time_performance.csv", FILE_ACCESS_APPEND) do io
+            writedlm(io, hcat("SUCRmodel", time_SUCRmodel, "day: $day",
+                    "", "", "Model Setup"), ',')
+    end; # closes file
 
 # solve the First WAUC model (SUCR)
     JuMP.optimize!(SUCRmodel)
@@ -1651,12 +1663,20 @@ for day = INITIAL_DAY:FINAL_DAY
     println("Day: ", day, " solved")
     println("---------------------------")
 
-##
-# Write the optimal outcomes into spreadsheets
+    @debug "SUCRmodel for day: $day optimized executed in (s):  $(solve_time(SUCRmodel))";
+
+    open(".//outputs//csv//time_performance.csv", FILE_ACCESS_APPEND) do io
+            writedlm(io, hcat("SUCRmodel", solve_time(SUCRmodel), "day: $day",
+                    "", "", "Model Optimization"), ',')
+    end; # closes file
+
+
+## Write the optimal outcomes into spreadsheets
 #TODO: Later we need to include a variable for day so the cell
 # number in which the results are printed is updated accordingly
 
-# Write the conventional generators' schedules
+    # Write the conventional generators' schedules
+    t1_write_SUCRmodel_results = time_ns()
     open(".//outputs//csv//SUCR_GenOutputs.csv", FILE_ACCESS_APPEND) do io
         for t in 1:N_Hrs_SUCR, g=1:N_Gens
             writedlm(io, hcat(day, t+INITIAL_HR_SUCR, g, DF_Generators.UNIT_ID[g],
@@ -1711,74 +1731,16 @@ for day = INITIAL_DAY:FINAL_DAY
         end # ends the loop
     end; # closes file
 
-#TODO: Delete this section
-#=
-# Write the conventional generators' schedules
-    #XLSX.openxlsx(".\\outputs\\GenOutputs.xlsx", mode="w") do xf
-    XLSX.openxlsx(".\\outputs\\SUCR_GenOutputs.xlsx", mode="rw") do xf
-        sheet = xf[1]
-        #XLSX.rename!(sheet, "new_sheet")
-        #sheet["A1:I1"] = ["Hour" "GeneratorID" "VariableCost" "MinPowerOut" "MaxPowerOut" "Output" "On/off" "ShutDown" "Startup"]
-        for t in 1:N_Hrs_SUCR, g=1:N_Gens
-            cell_n = ((day-1)*(N_Hrs_SUCR*N_Gens))+((t-1)*N_Gens)+g+1
-        # In the above line, we should also make  usre +1 is only applied to the first day so the results are not printed on labels
-        sheet[XLSX.CellRef(cell_n,1)] = day
-        sheet[XLSX.CellRef(cell_n,2)] = t+INITIAL_HR_SUCR
-        sheet[XLSX.CellRef(cell_n,3)] = g
-        sheet[XLSX.CellRef(cell_n,4)] = DF_Generators.UNIT_ID[g]
-        sheet[XLSX.CellRef(cell_n,5)] = DF_Generators.MinPowerOut[g]
-        sheet[XLSX.CellRef(cell_n,6)] = DF_Generators.MaxPowerOut[g]
-        sheet[XLSX.CellRef(cell_n,7)] = JuMP.value.(SUCR_genOut[g,t])
-        sheet[XLSX.CellRef(cell_n,8)] = JuMP.value.(SUCR_genOnOff[g,t])
-        sheet[XLSX.CellRef(cell_n,9)] = JuMP.value.(SUCR_genShutDown[g,t])
-        sheet[XLSX.CellRef(cell_n,10)] = JuMP.value.(SUCR_genStartUp[g,t])
-        sheet[XLSX.CellRef(cell_n,11)] = JuMP.value.(SUCR_genResUp[g,t])
-        sheet[XLSX.CellRef(cell_n,12)] = JuMP.value.(SUCR_genResNonSpin[g,t])
-        sheet[XLSX.CellRef(cell_n,13)] = JuMP.value.(SUCR_genResDn[g,t])
-        end # ends the loop
-    end # ends "do"
-# Writing storage units' optimal schedules into spreadsheets
-    #XLSX.openxlsx(".\\outputs\\StorageOutputs.xlsx", mode="w") do xf
-    XLSX.openxlsx(".\\outputs\\SUCR_StorageOutputs.xlsx", mode="rw") do xf
-        sheet = xf[1]
-        #XLSX.rename!(sheet, "new_sheet")
-        for t in 1:N_Hrs_SUCR, p=1:N_StorgUs
-            cell_n = ((day-1)*(N_Hrs_SUCR*N_StorgUs))+((t-1)*N_StorgUs)+p+1
-            # In the above line, we should also make  usre +1 is only applied to the first day so the results are not printed on labels
-            sheet[XLSX.CellRef(cell_n,1)] = day
-            sheet[XLSX.CellRef(cell_n,2)] =  t+INITIAL_HR_SUCR
-            sheet[XLSX.CellRef(cell_n,3)] = p
-            sheet[XLSX.CellRef(cell_n,4)] = DF_Storage.Name[p]
-            sheet[XLSX.CellRef(cell_n,5)] = DF_Storage.Power[p]
-            sheet[XLSX.CellRef(cell_n,6)] = DF_Storage.Power[p]/DF_Storage.PowerToEnergRatio[p]
-            sheet[XLSX.CellRef(cell_n,7)] = JuMP.value.(SUCR_storgChrg[p,t])
-            sheet[XLSX.CellRef(cell_n,8)] = JuMP.value.(SUCR_storgDisc[p,t])
-            sheet[XLSX.CellRef(cell_n,9)] = JuMP.value.(SUCR_storgIdle[p,t])
-            sheet[XLSX.CellRef(cell_n,10)] = JuMP.value.(SUCR_storgChrgPwr[p,t])
-            sheet[XLSX.CellRef(cell_n,11)] = JuMP.value.(SUCR_storgDiscPwr[p,t])
-            sheet[XLSX.CellRef(cell_n,12)] = JuMP.value.(SUCR_storgSOC[p,t])
-            sheet[XLSX.CellRef(cell_n,13)] = JuMP.value.(SUCR_storgResUp[p,t])
-            sheet[XLSX.CellRef(cell_n,14)] = JuMP.value.(SUCR_storgResDn[p,t])
-        end # ends the loop
-    end # ends "do"
-# Writeing the transmission flow schedules into spreadsheets
-    #XLSX.openxlsx(".\\outputs\\TranFlowOutputs.xlsx", mode="w") do tf
-    XLSX.openxlsx(".\\outputs\\SUCR_TranFlowOutputs.xlsx", mode="rw") do xf
-        sheet = xf[1]
-            #XLSX.rename!(sheet, "new_sheet")
-        for t in 1:N_Hrs_SUCR, n=1:N_Zones, m=1:M_Zones
-            cell_n = ((day-1)*(N_Hrs_SUCR*N_Zones*M_Zones))+((t-1)*N_Zones*M_Zones)+((n-1)*N_Zones)+m+1
-            # In the above line, we should also make  usre +1 is only applied to the first day so the results are not printed on labels
-            sheet[XLSX.CellRef(cell_n,1)] = day
-            sheet[XLSX.CellRef(cell_n,2)] =  t+INITIAL_HR_SUCR
-            sheet[XLSX.CellRef(cell_n,3)] = n
-            sheet[XLSX.CellRef(cell_n,4)] = m
-            sheet[XLSX.CellRef(cell_n,5)] = JuMP.value.(SUCR_powerFlow[n,m,t])
-            sheet[XLSX.CellRef(cell_n,6)] = TranC[n,m]
-        end # ends the loop
-    end # ends "do"
-=#
-    # Create and save the following parameters, which are transeferred to BAUC2
+    t2_write_SUCRmodel_results = time_ns()
+    time_write_SUCRmodel_results = (t2_write_SUCRmodel_results -t1_write_SUCRmodel_results)/1.0e9;
+    @info "Write SUCRmodel results for day $day: $time_write_SUCRmodel_results executed in (s)";
+
+    open(".//outputs//csv//time_performance.csv", FILE_ACCESS_APPEND) do io
+            writedlm(io, hcat("SUCRmodel", time_write_SUCRmodel_results, "day: $day",
+                    "", "", "Write CSV files"), ',')
+    end; #closes file
+
+    # Create and save the following parameters, which are transefered to BAUC2
         for h=1:24-INITIAL_HR_SUCR+INITIAL_HR_FUCR
             for g=1:N_Gens
                 global SUCRtoBUCR2_genOnOff[g,h]=round(JuMP.value.(SUCR_genOnOff[g,h]));
@@ -1808,9 +1770,7 @@ for day = INITIAL_DAY:FINAL_DAY
             end
         end
 
-
-###########################################################################
-# Initilization of the next UC Run
+## Initilization of the next UC Run
 #=
     # This must be updated later when we run two WAUCs every day and then RTUCs
         for g=1:N_Gens
@@ -1834,6 +1794,8 @@ for day = INITIAL_DAY:FINAL_DAY
         BUCR2_Hr_SolarG = BUCR_SolarGs[D_Rng_BUCR2, :]
         BUCR2_Hr_WindG = BUCR_WindGs[D_Rng_BUCR2, :]
         BUCR2_Hr_HydroG = BUCR_HydroGs[D_Rng_BUCR2, :]
+        BUCR2_Hr_NuclearG = BUCR_NuclearGs[D_Rng_BUCR2, :]
+        BUCR2_Hr_CogenG = BUCR_CogenGs[D_Rng_BUCR2, :]
 
         # Preprocessing module that fixes the commitment of slow-start units to their FUCR's outcome and determines the binary commitment bounds for fast-start units dependent to their initial up/down time and minimum up/down time limits
         #if the units are slow their BAUC's commitment is fixed to their FUCR's schedule
@@ -1866,8 +1828,9 @@ for day = INITIAL_DAY:FINAL_DAY
             end
         end
 
+        t1_BUCR2model = time_ns()
+
         BUCR2model = direct_model(CPLEX.Optimizer())
-        #set_optimizer_attribute(BUCR2model, "CPX_PARAM_EPINT", 1e-5)
         set_optimizer_attribute(BUCR2model, "CPX_PARAM_EPGAP", Solver_EPGAP)
 
         # Declaring the decision variables for conventional generators
@@ -1915,7 +1878,6 @@ for day = INITIAL_DAY:FINAL_DAY
         @variable(BUCR2model, BUCR2_Demand_Curt[1:N_Zones]>=0) # Hourly schedule demand
         @variable(BUCR2model, BUCR2_OverGen[1:N_Zones]>=0)
 
-
         # declaring variables for transmission system
         @variable(BUCR2model, BUCR2_voltAngle[1:N_Zones]) #voltage angle at zone/bus n in t//
         @variable(BUCR2model, BUCR2_powerFlow[1:N_Zones, 1:M_Zones]) #transmission Flow from zone n to zone m//
@@ -1942,6 +1904,14 @@ for day = INITIAL_DAY:FINAL_DAY
                                            +DF_Peakers.ShutdownCost[k]*(BUCR2_peakerShutDown[k]) for k in 1:N_Peakers)
                                            +sum((BUCR2_Demand_Curt[n]*DemandCurt_C)+(BUCR2_OverGen[n]*OverGen_C) for n=1:N_Zones) )
 
+
+        # Baseload Operation of nuclear units
+        @constraint(BUCR2model, conNuckBaseLoad[g=1:N_Gens], BUCR2_genOnOff[g]>=DF_Generators.Nuclear[g]) #
+        @constraint(BUCR2model, conNuclearTotGenZone[n=1:N_Zones], sum((BUCR2_genOut[g]*Map_Gens[g,n]*DF_Generators.Nuclear[g]) for g=1:N_Gens) -BUCR2_Hr_NuclearG[n] ==0)
+
+        #Limits on generation of cogen units
+        @constraint(BUCR2model, conCoGenBaseLoad[g=1:N_Gens], BUCR2_genOnOff[g]>=DF_Generators.Cogen[g]) #
+        @constraint(BUCR2model, conCoGenTotGenZone[n=1:N_Zones], sum((BUCR2_genOut[g]*Map_Gens[g,n]*DF_Generators.Cogen[g]) for g=1:N_Gens) -BUCR2_Hr_CogenG[n] ==0)
         # Constraints representing technical limits of conventional generators
         #Status transition trajectory of
         @constraint(BUCR2model, conStartUpAndDn[g=1:N_Gens], (BUCR2_genOnOff[g] - BUCR2_Init_genOnOff[g] - BUCR2_genStartUp[g] + BUCR2_genShutDown[g])==0)
@@ -2060,6 +2030,15 @@ for day = INITIAL_DAY:FINAL_DAY
         # Minimum down reserve requirement
         #    @constraint(BUCR2model, conMinDnReserveReq[t=1:N_Hrs_BUCR], sum(genResDn[g,t] for g=1:N_Gens) + sum(storgResDn[p,t] for p=1:N_StorgUs) >= Reserve_Req_Dn[t] )
 
+        t2_BUCR2model = time_ns()
+        time_BUCR2model = (t2_BUCR2model -t1_BUCR2model)/1.0e9;
+        @info "BUCR2model for day: $day and hour $(h+INITIAL_HR_SUCR) setup executed in (s): $time_BUCR2model";
+
+        open(".//outputs//csv//time_performance.csv", FILE_ACCESS_APPEND) do io
+                writedlm(io, hcat("BUCR2model", time_BUCR2model, "day: $day",
+                        "hour $(h+INITIAL_HR_SUCR)", "", "Model Setup"), ',')
+        end; # closes file
+
         # solve the First WAUC model (BUCR)
         JuMP.optimize!(BUCR2model)
 
@@ -2087,11 +2066,18 @@ for day = INITIAL_DAY:FINAL_DAY
         println("Day: ", day, " and hour ", h+INITIAL_HR_SUCR, " solved")
         println("---------------------------")
 
-#########################################################
-# Write the optimal outcomes into spreadsheets###########
-############# Later we need to include a variable for day so the cell number in which the results are printed is updated accordingly
+        @debug "BUCR2model for day: $day and hour $(h+INITIAL_HR_SUCR) optimized executed in (s): $(solve_time(BUCR2model))";
 
-# Write the conventional generators' schedules
+        open(".//outputs//csv//time_performance.csv", FILE_ACCESS_APPEND) do io
+                writedlm(io, hcat("BUCR2model", solve_time(BUCR2model), "day: $day",
+                        "hour $(h+INITIAL_HR_SUCR)", "", "Model Optimization"), ',')
+        end; # closes file
+
+        ## Write the optimal outcomes into spreadsheets
+        # TODO: Later we need to include a variable for day so the cell number in which the results are printed is updated accordingly
+
+        # Write the conventional generators' schedules
+        t1_write_BUCR2model_results = time_ns()
         open(".//outputs//csv//BUCR_GenOutputs.csv", FILE_ACCESS_APPEND) do io
             for g=1:N_Gens
                 writedlm(io, hcat(day, h+INITIAL_HR_SUCR, g, DF_Generators.UNIT_ID[g],
@@ -2103,7 +2089,6 @@ for day = INITIAL_DAY:FINAL_DAY
         end; # closes file
 
 # Write the peakers' schedules
-
         open(".//outputs//csv//BUCR_PeakerOutputs.csv", FILE_ACCESS_APPEND) do io
             for k=1:N_Peakers
                 writedlm(io, hcat(day, h+INITIAL_HR_SUCR, k, DF_Peakers.UNIT_ID[k],
@@ -2126,7 +2111,7 @@ for day = INITIAL_DAY:FINAL_DAY
         end; # closes file
 
 
-# Writing the transmission flow schedules in CSV file
+        # Writing the transmission flow schedules in CSV file
         open(".//outputs//csv//BUCR_TranFlowOutputs.csv", FILE_ACCESS_APPEND) do io
             for n=1:N_Zones, m=1:M_Zones
                 writedlm(io, hcat(day, h+INITIAL_HR_SUCR, n, m,
@@ -2135,7 +2120,7 @@ for day = INITIAL_DAY:FINAL_DAY
         end; # closes file
 
 
-# Writing the curtilment, overgeneration, and spillage outcomes in CSV file
+        # Writing the curtilment, overgeneration, and spillage outcomes in CSV file
         open(".//outputs//csv//BUCR_Curtail.csv", FILE_ACCESS_APPEND) do io
             for n=1:N_Zones
                writedlm(io, hcat(day, h+INITIAL_HR_SUCR, n,
@@ -2144,74 +2129,17 @@ for day = INITIAL_DAY:FINAL_DAY
                    JuMP.value.(BUCR2_hydroGSpil[n])), ',')
             end # ends the loop
         end; # closes file
+        t2_write_BUCR2model_results = time_ns()
 
-#TODO: Delete this section
-#=
-        # Write the conventional generators' schedules
-        #XLSX.openxlsx(".\\outputs\\GenOutputs.xlsx", mode="w") do xf
-        XLSX.openxlsx(".\\outputs\\BUCR_GenOutputs.xlsx", mode="rw") do xf
-            sheet = xf[1]
-            #XLSX.rename!(sheet, "new_sheet")
-            #sheet["A1:I1"] = ["Hour" "GeneratorID" "VariableCost" "MinPowerOut" "MaxPowerOut" "Output" "On/off" "ShutDown" "Startup"]
-            for g=1:N_Gens
-                cell_n = ((((day-1)*24)+INITIAL_HR_SUCR)*N_Gens)+((h-1)*N_Gens)+g+1
-                # In the above line, we should also make  usre +1 is only applied to the first day so the results are not printed on labels
-                sheet[XLSX.CellRef(cell_n,1)] = day
-                sheet[XLSX.CellRef(cell_n,2)] = h+INITIAL_HR_SUCR
-                sheet[XLSX.CellRef(cell_n,3)] = g
-                sheet[XLSX.CellRef(cell_n,4)] = DF_Generators.UNIT_ID[g]
-                sheet[XLSX.CellRef(cell_n,5)] = DF_Generators.MinPowerOut[g]
-                sheet[XLSX.CellRef(cell_n,6)] = DF_Generators.MaxPowerOut[g]
-                sheet[XLSX.CellRef(cell_n,7)] = JuMP.value.(BUCR2_genOut[g])
-                sheet[XLSX.CellRef(cell_n,8)] = JuMP.value.(BUCR2_genOnOff[g])
-                sheet[XLSX.CellRef(cell_n,9)] = JuMP.value.(BUCR2_genShutDown[g])
-                sheet[XLSX.CellRef(cell_n,10)] = JuMP.value.(BUCR2_genStartUp[g])
-            end # ends the loop
-        end # ends "do"
-        # Writing storage units' optimal schedules into spreadsheets
-        #XLSX.openxlsx(".\\outputs\\StorageOutputs.xlsx", mode="w") do xf
-        XLSX.openxlsx(".\\outputs\\BUCR_StorageOutputs.xlsx", mode="rw") do xf
-            sheet = xf[1]
-            #XLSX.rename!(sheet, "new_sheet")
-            for p=1:N_StorgUs
-                cell_n = ((((day-1)*24)+INITIAL_HR_SUCR)*N_StorgUs)+((h-1)*N_StorgUs)+p+1
-                # In the above line, we should also make  usre +1 is only applied to the first day so the results are not printed on labels
-                sheet[XLSX.CellRef(cell_n,1)] = day
-                sheet[XLSX.CellRef(cell_n,2)] = h+INITIAL_HR_SUCR
-                sheet[XLSX.CellRef(cell_n,3)] = p
-                sheet[XLSX.CellRef(cell_n,4)] = DF_Storage.Name[p]
-                sheet[XLSX.CellRef(cell_n,5)] = DF_Storage.Power[p]
-                sheet[XLSX.CellRef(cell_n,6)] = DF_Storage.Power[p]/DF_Storage.PowerToEnergRatio[p]
-                sheet[XLSX.CellRef(cell_n,7)] = JuMP.value.(BUCR2_storgChrg[p])
-                sheet[XLSX.CellRef(cell_n,8)] = JuMP.value.(BUCR2_storgDisc[p])
-                sheet[XLSX.CellRef(cell_n,9)] = JuMP.value.(BUCR2_storgIdle[p])
-                sheet[XLSX.CellRef(cell_n,10)] = JuMP.value.(BUCR2_storgChrgPwr[p])
-                sheet[XLSX.CellRef(cell_n,11)] = JuMP.value.(BUCR2_storgDiscPwr[p])
-                sheet[XLSX.CellRef(cell_n,12)] = JuMP.value.(BUCR2_storgSOC[p])
-                #sheet[XLSX.CellRef(cell_n,12)] = JuMP.value.(BUCR2_storgResUp[p])
-                #sheet[XLSX.CellRef(cell_n,13)] = JuMP.value.(BUCR2_storgResDn[p])
-            end # ends the loop
-        end # ends "do"
-        # Writeing the transmission flow schedules into spreadsheets
-        #XLSX.openxlsx(".\\outputs\\TranFlowOutputs.xlsx", mode="w") do tf
-        XLSX.openxlsx(".\\outputs\\BUCR_TranFlowOutputs.xlsx", mode="rw") do xf
-            sheet = xf[1]
-                #XLSX.rename!(sheet, "new_sheet")
-                for n=1:N_Zones, m=1:M_Zones
-                    cell_n = ((((day-1)*24)+INITIAL_HR_SUCR)*N_Zones*M_Zones)+((h-1)*N_Zones*M_Zones)+m+1
-                    # In the above line, we should also make  usre +1 is only applied to the first day so the results are not printed on labels
-                    sheet[XLSX.CellRef(cell_n,1)] = day
-                    sheet[XLSX.CellRef(cell_n,2)] = h+INITIAL_HR_SUCR
-                    sheet[XLSX.CellRef(cell_n,3)] = n
-                    sheet[XLSX.CellRef(cell_n,4)] = m
-                    sheet[XLSX.CellRef(cell_n,5)] = JuMP.value.(BUCR2_powerFlow[n,m])
-                sheet[XLSX.CellRef(cell_n,6)] = TranC[n,m]
-            end # ends the loop
-        end # ends "do"
-=#
+        time_write_BUCR2model_results = (t2_write_BUCR2model_results -t1_write_BUCR2model_results)/1.0e9;
+        @info "Write BUCR2model results for day $day and hour $(h+INITIAL_HR_SUCR) executed in (s): $time_write_BUCR2model_results";
 
-###########################################################################
-# Initilization of the next UC Run
+        open(".//outputs//csv//time_performance.csv", FILE_ACCESS_APPEND) do io
+                writedlm(io, hcat("BUCR2model", time_write_BUCR2model_results, "day: $day",
+                        "hour $(h+INITIAL_HR_SUCR)", "", "Write CSV files"), ',')
+        end; #closes file
+    ##
+    # Initilization of the next UC Run
 
     # Setting initial values for conventional generators in BUCR2 (next hour), FUCR, and BUCR1
         for g=1:N_Gens
@@ -2243,7 +2171,6 @@ for day = INITIAL_DAY:FINAL_DAY
             end
         end
 
-    #    println("Hour: ", h)
         for p=1:N_StorgUs
             # Set the initial values to be fed to the next hour BUCR2
             global BUCR2_Init_storgSOC[p]=JuMP.value.(BUCR2_storgSOC[p]);
@@ -2307,8 +2234,15 @@ for day = INITIAL_DAY:FINAL_DAY
             end
         end
 
-
     end # ends the loop that runs hourly BUCR between [INITIAL_HR_FUCR and INITIAL_HR_SUCR)
+
+    t2_day_execution = time_ns()
+    time_day_execution = (t2_day_execution - t1_day_execution)/1.0e9;
+
+    open(".//outputs//csv//time_performance.csv", FILE_ACCESS_APPEND) do io
+            writedlm(io, hcat("Whole Day", time_day_execution,
+                    "day: $day", " ", "Whole Day Execution"), ',')
+    end; #closes file
 
 end # ends the foor loop that runs the UC model on  a daily basis
 
@@ -2317,19 +2251,11 @@ t2 = time_ns()
 elapsedTime = (t2 -t1)/1.0e9;
 
 write(io_log, "Whole program time execution (s):\t $elapsedTime\n")
-@info "Whole Program solved in (s):" elapsedTime;
+@info "Whole Program setup executed in (s):" elapsedTime;
+
+open(".//outputs//csv//time_performance.csv", FILE_ACCESS_APPEND) do io
+        writedlm(io, hcat("Whole Program", elapsedTime,
+                "", "", "Whole Execution"), ',')
+end; #closes file
+
 close(io_log);
-
-
-## TODO:
-# 1. Fix type instability. Eliminate use of global variables"
-#  A global variable might have its value, and therefore its type, change at any point.
-# This makes it difficult for the compiler to optimize code using global variables.
-
-# To read data, I suggest using defined data type, convert the data after read it,
-# or use functions to avoid instability data type conditions
-#readdlm("page-blocks.data",(Int64, Int64,Int64,Float64,Float64,Float64,Float64,Int64,Int64,Int64, Int64))
-
-# 2. Replace variables for structures
-# 3. Create functions to encapsulate different "tasks" in the code
-# 4. Add error(s) handling
