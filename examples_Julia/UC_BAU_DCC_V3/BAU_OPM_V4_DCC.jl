@@ -7,7 +7,7 @@ using DelimitedFiles
 using JuMP
 using CPLEX
 using CSV
-using XLSX
+#using XLSX
 # Parameters
 
 const N_Gens =  132 # number of conventional generators
