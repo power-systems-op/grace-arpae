@@ -38,6 +38,7 @@ using Dates
 using DelimitedFiles
 using JuMP
 using Logging
+using Parameters
 
 t1 = time_ns()
 include("constants.jl")
@@ -46,36 +47,13 @@ t1_read_data = time_ns()
 include("import_data.jl")
 t2_read_data = time_ns()
 time_read_data = (t2_read_data -t1_read_data)/1.0e9;
-#=
-const M_ZONES = 2
-const BLOCKS = 7
-const INITIAL_DAY = 1
-const FINAL_DAY = 1
 
-const INIT_HR_FUCR = 6 # represents the running time for the first WA unit commitment run. INIT_HR_FUCR=0 means the FUCR's optimal outcomes are ready at 00:00
-const INIT_HR_SUCR = 17 #  represents the running time for the second WA unit commitment run. INIT_HR_SUCR=17 means the SUCR's optimal outcomes are ready at 17:00
-const HRS_FUCR = 162 # HRS_FUCR = 168-INIT_HR_FUCR, and INIT_HR_FUCR runs from 0 to 23; INIT_HR_FUCR=6 ==> HRS_FUCR =162
-const HRS_SUCR = 151  # HRS_SUCR = 168-INIT_HR_SUCR, and INIT_HR_SUCR runs from 17 to 23; INIT_HR_SUCR=17 ==> HRS_FUCR =168
-
-const LOAD_SHED_PENALTY = 3000; # Load-Shedding Penalty
-const OVERGEN_PENALTY = 4000; # Over-generation Penalty
-const LOAD_SHED_MAX = 100; # Load-Shedding Penalty
-const OVERGEN_MAX = 100; # Over-generation Penalty
-
-const VIOLATION_PENALTY = 500;
-const VIOLATION_MAX = 10;
-
-const SOLVER_EPGAP =0.005; #Solver's optimality gap that serves as the optimization termination criteria
-
-const FILE_ACCESS_OVER = "w+"
-const FILE_ACCESS_APPEND = "a+" =#
-##
-#Enabling debugging code, use ENV["JULIA_DEBUG"] = "" to desable ging code
+## Enabling debugging code, use ENV["JULIA_DEBUG"] = "" to desable ging code
 ENV["JULIA_DEBUG"] = "all"
 
 # Log file
 io_log = open( string(".//outputs//logs//UC_BAU_",
-        Dates.format(now(), "yyyy-mm-dd_HH-MM-SS"), ".txt",), FILE_ACCESS_APPEND)
+        Dates.format(now(), "yyyy-mm-dd_HH-MM-SS"), ".txt"), FILE_ACCESS_APPEND)
 
 logger = SimpleLogger(io_log)
 flush(io_log)
@@ -137,53 +115,94 @@ end;
 =#
 
 # Setting initial values
-fucr_gens = UnitsResults(
-	copy(DF_Generators.StatusInit),
-	copy(DF_Generators.PowerInit),
-	copy(DF_Generators.UpTimeInit),
-	copy(DF_Generators.DownTimeInit))
+fucr_gens = GensResults(
+	onoff_init = copy(DF_Generators.StatusInit),
+	power_out_init = copy(DF_Generators.PowerInit),
+	uptime_init = copy(DF_Generators.UpTimeInit),
+	dntime_init = copy(DF_Generators.DownTimeInit))
 
-fucr_peakers = UnitsResults(
-	copy(DF_Peakers.StatusInit),
-	copy(DF_Peakers.PowerInit),
-	copy(DF_Peakers.UpTimeInit),
-	copy(DF_Peakers.DownTimeInit))
+#=	onoff_init::Array{Int64,1} = zeros(Int64, GENS)
+	power_out_init::Array{Float64,1}
+	uptime_init::Array{Float64,1}
+	dntime_init::Array{Float64,1}
+	onoff::Array{Int64,2}
+	power_out::Array{Float64,2}
+	startup::Array{Int64,2}
+	shutdown::Array{Int64,2}
+	genout_block::Array{Float64,2}
+=#
+fucr_peakers = PeakersResults(
+	onoff_init = copy(DF_Peakers.StatusInit),
+	power_out_init = copy(DF_Peakers.PowerInit),
+	uptime_init = copy(DF_Peakers.UpTimeInit),
+	dntime_init = copy(DF_Peakers.DownTimeInit))
 
-FUCR = UC_Results(fucr_gens, fucr_peakers, copy(DF_Storage.SOCInit))
+fucr_storg = StorageResults(
+	soc_init =copy(DF_Storage.SOCInit))
 
-sucr_gens = UnitsResults(
-	copy(DF_Generators.StatusInit),
-	copy(DF_Generators.PowerInit),
-	copy(DF_Generators.UpTimeInit),
-	copy(DF_Generators.DownTimeInit))
+#=	mutable struct StorageResults
+		soc_init::Array{Float64,1}
+		chrg::Array{Int64,2}
+		disc::Array{Int64,2}
+		idle::Array{Int64,2}
+		chrgpwr::Array{Float64,2}
+		discpwr::Array{Float64,2}
+		soc::Array{Float64,2}
+	end
+=#
 
-sucr_peakers = UnitsResults(
-	copy(DF_Peakers.StatusInit),
-	copy(DF_Peakers.PowerInit),
-	copy(DF_Peakers.UpTimeInit),
-	copy(DF_Peakers.DownTimeInit))
+FUCR = UC_Results(fucr_gens, fucr_peakers, fucr_storg)
 
-SUCR = UC_Results(sucr_gens, sucr_peakers, copy(DF_Storage.SOCInit))
+sucr_gens = GensResults(
+	onoff_init = copy(DF_Generators.StatusInit),
+	power_out_init = copy(DF_Generators.PowerInit),
+	uptime_init = copy(DF_Generators.UpTimeInit),
+	dntime_init = copy(DF_Generators.DownTimeInit))
 
-bucr1_gens = UnitsResults(copy(DF_Generators.StatusInit),
-	copy(DF_Generators.PowerInit),
-	copy(DF_Generators.UpTimeInit),
-	copy(DF_Generators.DownTimeInit))
+sucr_peakers = PeakersResults(
+	onoff_init = copy(DF_Peakers.StatusInit),
+	power_out_init = copy(DF_Peakers.PowerInit),
+	uptime_init = copy(DF_Peakers.UpTimeInit),
+	dntime_init = copy(DF_Peakers.DownTimeInit))
 
-bucr1_peakers = UnitsResults(copy(DF_Peakers.StatusInit),
-	copy(DF_Peakers.PowerInit),
-	copy(DF_Peakers.UpTimeInit),
-	copy(DF_Peakers.DownTimeInit))
+sucr_storg = StorageResults(
+	soc_init =copy(DF_Storage.SOCInit))
 
-BUCR1 = UC_Results(bucr1_gens, bucr1_peakers, copy(DF_Storage.SOCInit))
+SUCR = UC_Results(sucr_gens, sucr_peakers, sucr_storg)
 
-bucr2_gens = UnitsResults(zeros(Int64, GENS), zeros(Float64, GENS),
-	zeros(Int64, GENS), zeros(Int64, GENS))
+bucr1_gens = GensResults(
+	onoff_init = copy(DF_Generators.StatusInit),
+	power_out_init = copy(DF_Generators.PowerInit),
+	uptime_init = copy(DF_Generators.UpTimeInit),
+	dntime_init = copy(DF_Generators.DownTimeInit))
 
-bucr2_peakers = UnitsResults(zeros(Int64, PEAKERS), zeros(Float64, PEAKERS),
-	zeros(Int64, PEAKERS), zeros(Int64, PEAKERS))
+bucr1_peakers = PeakersResults(
+	onoff_init = copy(DF_Peakers.StatusInit),
+	power_out_init = copy(DF_Peakers.PowerInit),
+	uptime_init = copy(DF_Peakers.UpTimeInit),
+	dntime_init = copy(DF_Peakers.DownTimeInit))
 
-BUCR2 = UC_Results(bucr2_gens, bucr2_peakers, zeros(Float64, STORG_UNITS))
+bucr1_storg = StorageResults(
+	soc_init =copy(DF_Storage.SOCInit))
+
+BUCR1 = UC_Results(bucr1_gens, bucr1_peakers, bucr1_storg)
+
+bucr2_gens = GensResults(
+	onoff_init = zeros(Int64, GENS),
+	power_out_init = zeros(Int64, GENS),
+	uptime_init = zeros(Int64, GENS),
+	dntime_init = zeros(Int64, GENS))
+
+bucr2_peakers = PeakersResults(
+	onoff_init = zeros(Int64, PEAKERS),
+	power_out_init = zeros(Int64, PEAKERS),
+	uptime_init = zeros(Int64, PEAKERS),
+	dntime_init = zeros(Int64, PEAKERS))
+
+bucr2_storg = StorageResults(
+	soc_init = zeros(STORG_UNITS))
+
+BUCR2 = UC_Results(bucr2_gens, bucr2_peakers, bucr2_storg)
 
 ## Headers of output files
 @time begin
@@ -281,6 +300,8 @@ end; # closes file
 ## Creating variables that transfer optimal schedules between the Models
 
 #### Some of the below variables may be unneccsary and can be deletetd. Check at the end
+FUCRtoBUCR1
+
 FUCRtoBUCR1_genOnOff = zeros(Int64, GENS,INIT_HR_SUCR-INIT_HR_FUCR)
 FUCRtoBUCR1_genOut = zeros(Float64, GENS,INIT_HR_SUCR-INIT_HR_FUCR)
 FUCRtoBUCR1_genOut_Block = zeros(Float64, GENS,BLOCKS,INIT_HR_SUCR-INIT_HR_FUCR)
@@ -484,12 +505,12 @@ for day = INITIAL_DAY:FINAL_DAY
 
 #Initialization of commitment and dispatch variables for convnentioal generatoes at t=0 (representing the last hour of previous scheduling horizon day=day-1 and t=24)
     @constraint(FUCRmodel, conInitGenOnOff[g=1:GENS], FUCR_genOnOff[g,0]==FUCR.gens.onoff_init[g]) # initial generation level for generator g at t=0
-    @constraint(FUCRmodel, conInitGenOut[g=1:GENS], FUCR_genOut[g,0]==FUCR.gens.power_out[g]) # initial on/off status for generators g at t=0
+    @constraint(FUCRmodel, conInitGenOut[g=1:GENS], FUCR_genOut[g,0]==FUCR.gens.power_out_init[g]) # initial on/off status for generators g at t=0
 #Initialization of commitment and dispatch variables for peakers  at t=0 (representing the last hour of previous scheduling horizon day=day-1 and t=24)
     @constraint(FUCRmodel, conInitGenOnOff_Peakers[k=1:PEAKERS], FUCR_peakerOnOff[k,0]==FUCR.peakers.onoff_init[k]) # initial generation level for peaker k at t=0
-    @constraint(FUCRmodel, conInitGenOut_Peakers[k=1:PEAKERS], FUCR_peakerOut[k,0]==FUCR.peakers.power_out[k]) # initial on/off status for peaker k at t=0
+    @constraint(FUCRmodel, conInitGenOut_Peakers[k=1:PEAKERS], FUCR_peakerOut[k,0]==FUCR.peakers.power_out_init[k]) # initial on/off status for peaker k at t=0
 #Initialization of SOC variables for storage units at t=0 (representing the last hour of previous scheduling horizon day=day-1 and t=24)
-    @constraint(FUCRmodel, conInitSOC[p=1:STORG_UNITS], FUCR_storgSOC[p,0]==FUCR.soc_init[p]) # SOC for storage unit p at t=0
+    @constraint(FUCRmodel, conInitSOC[p=1:STORG_UNITS], FUCR_storgSOC[p,0]==FUCR.storg.soc_init[p]) # SOC for storage unit p at t=0
 
 #Base-Load Operation of nuclear Generators
     @constraint(FUCRmodel, conNuckBaseLoad[t=1:HRS_FUCR, g=1:GENS], FUCR_genOnOff[g,t]>=DF_Generators.Nuclear[g]) #
@@ -952,9 +973,9 @@ for day = INITIAL_DAY:FINAL_DAY
         # Min power generation limit
         @constraint(BUCR1model, conMinPow[g=1:GENS],  BUCR1_genOut[g] + BUCR1_MinGenVioP[g] >= DF_Generators.MinPowerOut[g]*BUCR1_genOnOff[g])
         #Up ramp rate limit
-        @constraint(BUCR1model, conRampRateUp[g=1:GENS], (BUCR1_genOut[g] - BUCR1.gens.power_out[g] <=(DF_Generators.RampUpLimit[g]*BUCR1.gens.onoff_init[g]) + (DF_Generators.RampStartUpLimit[g]*BUCR1_genStartUp[g])))
+        @constraint(BUCR1model, conRampRateUp[g=1:GENS], (BUCR1_genOut[g] - BUCR1.gens.power_out_init[g] <=(DF_Generators.RampUpLimit[g]*BUCR1.gens.onoff_init[g]) + (DF_Generators.RampStartUpLimit[g]*BUCR1_genStartUp[g])))
         # Down ramp rate limit
-        @constraint(BUCR1model, conRampRateDown[g=1:GENS], (BUCR1.gens.power_out[g] - BUCR1_genOut[g] <=(DF_Generators.RampDownLimit[g]*BUCR1_genOnOff[g]) + (DF_Generators.RampShutDownLimit[g]*BUCR1_genShutDown[g])))
+        @constraint(BUCR1model, conRampRateDown[g=1:GENS], (BUCR1.gens.power_out_init[g] - BUCR1_genOut[g] <=(DF_Generators.RampDownLimit[g]*BUCR1_genOnOff[g]) + (DF_Generators.RampShutDownLimit[g]*BUCR1_genShutDown[g])))
         # Min Up Time limit with alternative formulation
         #The next two constraints enforce limits on binary commitment variables of slow and fast generators
         # scheduled slow units are forced to remain on, offline slow units remain off, and fast start units
@@ -988,9 +1009,9 @@ for day = INITIAL_DAY:FINAL_DAY
         # Min power generation limit
         @constraint(BUCR1model, conMinPow_Peaker[k=1:PEAKERS],  BUCR1_peakerOut[k] >= DF_Peakers.MinPowerOut[k]*BUCR1_peakerOnOff[k])
         #Up ramp rate limit
-        @constraint(BUCR1model, conRampRateUp_Peaker[k=1:PEAKERS], (BUCR1_peakerOut[k] - BUCR1.peakers.power_out[k] <=(DF_Peakers.RampUpLimit[k]*BUCR1.peakers.onoff_init[k]) + (DF_Peakers.RampStartUpLimit[k]*BUCR1_peakerStartUp[k])))
+        @constraint(BUCR1model, conRampRateUp_Peaker[k=1:PEAKERS], (BUCR1_peakerOut[k] - BUCR1.peakers.power_out_init[k] <=(DF_Peakers.RampUpLimit[k]*BUCR1.peakers.onoff_init[k]) + (DF_Peakers.RampStartUpLimit[k]*BUCR1_peakerStartUp[k])))
         # Down ramp rate limit
-        @constraint(BUCR1model, conRampRateDown_Peaker[k=1:PEAKERS], (BUCR1.peakers.power_out[k] - BUCR1_peakerOut[k] <=(DF_Peakers.RampDownLimit[k]*BUCR1_peakerOnOff[k]) + (DF_Peakers.RampShutDownLimit[k]*BUCR1_peakerShutDown[k])))
+        @constraint(BUCR1model, conRampRateDown_Peaker[k=1:PEAKERS], (BUCR1.peakers.power_out_init[k] - BUCR1_peakerOut[k] <=(DF_Peakers.RampDownLimit[k]*BUCR1_peakerOnOff[k]) + (DF_Peakers.RampShutDownLimit[k]*BUCR1_peakerShutDown[k])))
         # Min Up Time limit with alternative formulation
         #The next two constraints enforce limits on binary commitment variables of slow and fast generators
         # scheduled slow units are forced to remain on, offline slow units remain off, and fast start units
@@ -1016,7 +1037,7 @@ for day = INITIAL_DAY:FINAL_DAY
         # Discharging power limit
         @constraint(BUCR1model, conStrgDisChgPowerLimit[p=1:STORG_UNITS], (BUCR1_storgDiscPwr[p])<=DF_Storage.Power[p]*BUCR1_storgDisc[p])
         # State of charge at t
-        @constraint(BUCR1model, conStorgSOC[p=1:STORG_UNITS], BUCR1_storgSOC[p]==BUCR1.soc_init[p]-(BUCR1_storgDiscPwr[p]/DF_Storage.TripEfficDown[p])+(BUCR1_storgChrgPwr[p]*DF_Storage.TripEfficUp[p])-(BUCR1_storgSOC[p]*DF_Storage.SelfDischarge[p]))
+        @constraint(BUCR1model, conStorgSOC[p=1:STORG_UNITS], BUCR1_storgSOC[p]==BUCR1.storg.soc_init[p]-(BUCR1_storgDiscPwr[p]/DF_Storage.TripEfficDown[p])+(BUCR1_storgChrgPwr[p]*DF_Storage.TripEfficUp[p])-(BUCR1_storgSOC[p]*DF_Storage.SelfDischarge[p]))
         # minimum energy limit
         @constraint(BUCR1model, conMinEnrgStorgLimi[p=1:STORG_UNITS], BUCR1_storgSOC[p]>=0)
         # Maximum energy limit
@@ -1159,31 +1180,31 @@ for day = INITIAL_DAY:FINAL_DAY
 
         for g=1:GENS
             global BUCR1.gens.onoff_init[g] = JuMP.value.(BUCR1_genOnOff[g]);
-            global BUCR1.gens.power_out[g] = JuMP.value.(BUCR1_genOut[g]);
+            global BUCR1.gens.power_out_init[g] = JuMP.value.(BUCR1_genOut[g]);
             if h==(INIT_HR_SUCR-INIT_HR_FUCR)
                 global BUCR2.gens.onoff_init[g] = JuMP.value.(BUCR1_genOnOff[g]);
-                global BUCR2.gens.power_out[g] = JuMP.value.(BUCR1_genOut[g]);
+                global BUCR2.gens.power_out_init[g] = JuMP.value.(BUCR1_genOut[g]);
                 global SUCR.gens.onoff_init[g] = JuMP.value.(BUCR1_genOnOff[g]);
-                global SUCR.gens.power_out[g] = JuMP.value.(BUCR1_genOut[g]);
+                global SUCR.gens.power_out_init[g] = JuMP.value.(BUCR1_genOut[g]);
             end
         end
 
         for k=1:PEAKERS
             global BUCR1.peakers.onoff_init[k] = round(JuMP.value.(BUCR1_peakerOnOff[k]));
-            global BUCR1.peakers.power_out[k] = JuMP.value.(BUCR1_peakerOut[k]);
+            global BUCR1.peakers.power_out_init[k] = JuMP.value.(BUCR1_peakerOut[k]);
             if h==(INIT_HR_SUCR-INIT_HR_FUCR)
                 global BUCR2.peakers.onoff_init[k] = round(JuMP.value.(BUCR1_peakerOnOff[k]));
-                global BUCR2.peakers.power_out[k] = JuMP.value.(BUCR1_peakerOut[k]);
+                global BUCR2.peakers.power_out_init[k] = JuMP.value.(BUCR1_peakerOut[k]);
                 global SUCR.peakers.onoff_init[k] = round(JuMP.value.(BUCR1_peakerOnOff[k]));
-                global SUCR.peakers.power_out[k] = JuMP.value.(BUCR1_peakerOut[k]);
+                global SUCR.peakers.power_out_init[k] = JuMP.value.(BUCR1_peakerOut[k]);
             end
         end
 
         for p=1:STORG_UNITS
-            BUCR1.soc_init[p]=JuMP.value.(BUCR1_storgSOC[p]);
+            BUCR1.storg.soc_init[p]=JuMP.value.(BUCR1_storgSOC[p]);
             if h==(INIT_HR_SUCR-INIT_HR_FUCR)
-                global BUCR2.soc_init[p] = JuMP.value.(BUCR1_storgSOC[p]);
-                global SUCR.soc_init[p] = JuMP.value.(BUCR1_storgSOC[p]);
+                global BUCR2.storg.soc_init[p] = JuMP.value.(BUCR1_storgSOC[p]);
+                global SUCR.storg.soc_init[p] = JuMP.value.(BUCR1_storgSOC[p]);
             end
         end
 
@@ -1332,12 +1353,12 @@ for day = INITIAL_DAY:FINAL_DAY
 
 #Initialization of commitment and dispatch variables for slow-start generators at t=0 (representing the last hour of previous scheduling horizon day=day-1 and t=24)
     @constraint(SUCRmodel, conInitGenOnOff[g=1:GENS], SUCR_genOnOff[g,0]==SUCR.gens.onoff_init[g]) # initial generation level for generator g at t=0
-    @constraint(SUCRmodel, conInitGenOut[g=1:GENS], SUCR_genOut[g,0]==SUCR.gens.power_out[g]) # initial on/off status for generators g at t=0
+    @constraint(SUCRmodel, conInitGenOut[g=1:GENS], SUCR_genOut[g,0]==SUCR.gens.power_out_init[g]) # initial on/off status for generators g at t=0
 #Initialization of commitment and dispatch variables for peakers at t=0 (representing the last hour of previous scheduling horizon day=day-1 and t=24)
     @constraint(SUCRmodel, conInitGenOnOff_Peaker[k=1:PEAKERS], SUCR_peakerOnOff[k,0]==SUCR.peakers.onoff_init[k]) # initial generation level for peaker k at t=0
-    @constraint(SUCRmodel, conInitGenOut_Peaker[k=1:PEAKERS], SUCR_peakerOut[k,0]==SUCR.peakers.power_out[k]) # initial on/off status for peaker k at t=0
+    @constraint(SUCRmodel, conInitGenOut_Peaker[k=1:PEAKERS], SUCR_peakerOut[k,0]==SUCR.peakers.power_out_init[k]) # initial on/off status for peaker k at t=0
 #Initialization of commitment and dispatch variables for storage units at t=0 (representing the last hour of previous scheduling horizon day=day-1 and t=24)
-    @constraint(SUCRmodel, conInitSOC[p=1:STORG_UNITS], SUCR_storgSOC[p,0]==SUCR.soc_init[p]) # SOC for storage unit p at t=0
+    @constraint(SUCRmodel, conInitSOC[p=1:STORG_UNITS], SUCR_storgSOC[p,0]==SUCR.storg.soc_init[p]) # SOC for storage unit p at t=0
 # Baseload Operation of nuclear units
     @constraint(SUCRmodel, conNuckBaseLoad[t=1:HRS_SUCR, g=1:GENS], SUCR_genOnOff[g,t]>=DF_Generators.Nuclear[g]) #
     @constraint(SUCRmodel, conNuclearTotGenZone[t=1:HRS_SUCR, n=1:N_ZONES], sum((SUCR_genOut[g,t]*Map_Gens[g,n]*DF_Generators.Nuclear[g]) for g=1:GENS) -sucr_prep_demand.nuclear_wa[t,n] ==0)
@@ -1781,9 +1802,9 @@ for day = INITIAL_DAY:FINAL_DAY
         # Min power generation limit
         @constraint(BUCR2model, conMinPow[g=1:GENS],  BUCR2_genOut[g] + BUCR2_MinGenVioP[g]>= DF_Generators.MinPowerOut[g]*BUCR2_genOnOff[g])
         #Up ramp rate limit
-        @constraint(BUCR2model, conRampRateUp[g=1:GENS], (BUCR2_genOut[g] - BUCR2.gens.power_out[g] <=(DF_Generators.RampUpLimit[g]*BUCR2.gens.onoff_init[g]) + (DF_Generators.RampStartUpLimit[g]*BUCR2_genStartUp[g])))
+        @constraint(BUCR2model, conRampRateUp[g=1:GENS], (BUCR2_genOut[g] - BUCR2.gens.power_out_init[g] <=(DF_Generators.RampUpLimit[g]*BUCR2.gens.onoff_init[g]) + (DF_Generators.RampStartUpLimit[g]*BUCR2_genStartUp[g])))
         # Down ramp rate limit
-        @constraint(BUCR2model, conRampRateDown[g=1:GENS], (BUCR2.gens.power_out[g] - BUCR2_genOut[g] <=(DF_Generators.RampDownLimit[g]*BUCR2_genOnOff[g]) + (DF_Generators.RampShutDownLimit[g]*BUCR2_genShutDown[g])))
+        @constraint(BUCR2model, conRampRateDown[g=1:GENS], (BUCR2.gens.power_out_init[g] - BUCR2_genOut[g] <=(DF_Generators.RampDownLimit[g]*BUCR2_genOnOff[g]) + (DF_Generators.RampShutDownLimit[g]*BUCR2_genShutDown[g])))
         # Min Up Time limit with alternative formulation
         #The next twyo constraints enforce limits on binary commitment variables of slow and fast generators
         # scheduled slow units are forced to remain on, offline slow units remain off, and fast start units could change their commitment dependent on their MUT and MDT
@@ -1815,9 +1836,9 @@ for day = INITIAL_DAY:FINAL_DAY
         # Min power generation limit
         @constraint(BUCR2model, conMinPow_Peaker[k=1:PEAKERS],  BUCR2_peakerOut[k] >= DF_Peakers.MinPowerOut[k]*BUCR2_peakerOnOff[k])
         #Up ramp rate limit
-        @constraint(BUCR2model, conRampRateUp_Peaker[k=1:PEAKERS], (BUCR2_peakerOut[k] - BUCR2.peakers.power_out[k] <=(DF_Peakers.RampUpLimit[k]*BUCR2.peakers.onoff_init[k]) + (DF_Peakers.RampStartUpLimit[k]*BUCR2_peakerStartUp[k])))
+        @constraint(BUCR2model, conRampRateUp_Peaker[k=1:PEAKERS], (BUCR2_peakerOut[k] - BUCR2.peakers.power_out_init[k] <=(DF_Peakers.RampUpLimit[k]*BUCR2.peakers.onoff_init[k]) + (DF_Peakers.RampStartUpLimit[k]*BUCR2_peakerStartUp[k])))
         # Down ramp rate limit
-        @constraint(BUCR2model, conRampRateDown_Peaker[k=1:PEAKERS], (BUCR2.peakers.power_out[k] - BUCR2_peakerOut[k] <=(DF_Peakers.RampDownLimit[k]*BUCR2_peakerOnOff[k]) + (DF_Peakers.RampShutDownLimit[k]*BUCR2_peakerShutDown[k])))
+        @constraint(BUCR2model, conRampRateDown_Peaker[k=1:PEAKERS], (BUCR2.peakers.power_out_init[k] - BUCR2_peakerOut[k] <=(DF_Peakers.RampDownLimit[k]*BUCR2_peakerOnOff[k]) + (DF_Peakers.RampShutDownLimit[k]*BUCR2_peakerShutDown[k])))
         # Min Up Time limit with alternative formulation
         #The next twyo constraints enforce limits on binary commitment variables of slow and fast generators
         # scheduled slow units are forced to remain on, offline slow units remain off, and fast start units could change their commitment dependent on their MUT and MDT
@@ -1841,7 +1862,7 @@ for day = INITIAL_DAY:FINAL_DAY
         # Discharging power limit
         @constraint(BUCR2model, conStrgDisChgPowerLimit[p=1:STORG_UNITS], (BUCR2_storgDiscPwr[p])<=DF_Storage.Power[p]*BUCR2_storgDisc[p])
         # State of charge at t
-        @constraint(BUCR2model, conStorgSOC[p=1:STORG_UNITS], BUCR2_storgSOC[p]==BUCR2.soc_init[p]-(BUCR2_storgDiscPwr[p]/DF_Storage.TripEfficDown[p])+(BUCR2_storgChrgPwr[p]*DF_Storage.TripEfficUp[p])-(BUCR2_storgSOC[p]*DF_Storage.SelfDischarge[p]))
+        @constraint(BUCR2model, conStorgSOC[p=1:STORG_UNITS], BUCR2_storgSOC[p]==BUCR2.storg.soc_init[p]-(BUCR2_storgDiscPwr[p]/DF_Storage.TripEfficDown[p])+(BUCR2_storgChrgPwr[p]*DF_Storage.TripEfficUp[p])-(BUCR2_storgSOC[p]*DF_Storage.SelfDischarge[p]))
         # minimum energy limit
         @constraint(BUCR2model, conMinEnrgStorgLimi[p=1:STORG_UNITS], BUCR2_storgSOC[p]>=0)
         # Maximum energy limit
@@ -1996,14 +2017,14 @@ for day = INITIAL_DAY:FINAL_DAY
         for g=1:GENS
             # set the initiali values to be fed to the next hour BUCR2
             global BUCR2.gens.onoff_init[g] = JuMP.value.(BUCR2_genOnOff[g]); #
-            global BUCR2.gens.power_out[g] = JuMP.value.(BUCR2_genOut[g]);
+            global BUCR2.gens.power_out_init[g] = JuMP.value.(BUCR2_genOut[g]);
             # Set the initial values fed to the next FUCR and BUCR1
 
             if h==(24-INIT_HR_SUCR+INIT_HR_FUCR)
                 global BUCR1.gens.onoff_init[g] = JuMP.value.(BUCR2_genOnOff[g]);
-                global BUCR1.gens.power_out[g] = JuMP.value.(BUCR2_genOut[g]);
+                global BUCR1.gens.power_out_init[g] = JuMP.value.(BUCR2_genOut[g]);
                 global FUCR.gens.onoff_init[g] = JuMP.value.(BUCR2_genOnOff[g]);
-                global FUCR.gens.power_out[g] = JuMP.value.(BUCR2_genOut[g]);
+                global FUCR.gens.power_out_init[g] = JuMP.value.(BUCR2_genOut[g]);
             end
         end
 
@@ -2011,24 +2032,24 @@ for day = INITIAL_DAY:FINAL_DAY
         for g=1:PEAKERS
             # set the initiali values to be fed to the next hour BUCR2
             global BUCR2.peakers.onoff_init[g] = round(JuMP.value.(BUCR2_peakerOnOff[g])); #
-            global BUCR2.peakers.power_out[g] = JuMP.value.(BUCR2_peakerOut[g]);
+            global BUCR2.peakers.power_out_init[g] = JuMP.value.(BUCR2_peakerOut[g]);
             # Set the initial values fed to the next FUCR and BUCR1
 
             if h==(24-INIT_HR_SUCR+INIT_HR_FUCR)
                 global BUCR1.peakers.onoff_init[g] = round(JuMP.value.(BUCR2_peakerOnOff[g]));
-                global BUCR1.peakers.power_out[g] = JuMP.value.(BUCR2_peakerOut[g]);
+                global BUCR1.peakers.power_out_init[g] = JuMP.value.(BUCR2_peakerOut[g]);
                 global FUCR.peakers.onoff_init[g] = round(JuMP.value.(BUCR2_peakerOnOff[g]));
-                global FUCR.peakers.power_out[g] = JuMP.value.(BUCR2_peakerOut[g]);
+                global FUCR.peakers.power_out_init[g] = JuMP.value.(BUCR2_peakerOut[g]);
             end
         end
 
         for p=1:STORG_UNITS
             # Set the initial values to be fed to the next hour BUCR2
-            global BUCR2.soc_init[p]=JuMP.value.(BUCR2_storgSOC[p]);
+            global BUCR2.storg.soc_init[p]=JuMP.value.(BUCR2_storgSOC[p]);
             # set the initiali values to be fed to the next hour BUCR2
             if h==(24-INIT_HR_SUCR+INIT_HR_FUCR)
-                global BUCR1.soc_init[p] = JuMP.value.(BUCR2_storgSOC[p]);
-                global FUCR.soc_init[p] = JuMP.value.(BUCR2_storgSOC[p]);
+                global BUCR1.storg.soc_init[p] = JuMP.value.(BUCR2_storgSOC[p]);
+                global FUCR.storg.soc_init[p] = JuMP.value.(BUCR2_storgSOC[p]);
             end
         end
 

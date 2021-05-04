@@ -1,7 +1,13 @@
+using DataFrames
+using Dates
+using DelimitedFiles
+using JuMP
+
 include("constants.jl")
 
-function fucr_model(DF_Generators, DF_Peakers, FuelPrice, FuelPricePeakers, DF_Storage)
- FUCRmodel = direct_model(CPLEX.Optimizer())
+function fucr_model(df_gens, df_peakers, fuelprice, fuelprice_peakers, df_storage)
+   t1_FUCRmodel = time_ns()
+   FUCRmodel = direct_model(CPLEX.Optimizer())
     #set_optimizer_attribute(FUCRmodel, "CPX_PARAM_EPINT", 1e-5)
     # Enable Benders strategy
     #MOI.set(FUCRmodel, MOI.RawParameter("CPXPARAM_Benders_Strategy"), 3)
@@ -61,32 +67,32 @@ function fucr_model(DF_Generators, DF_Peakers, FuelPrice, FuelPricePeakers, DF_S
     @variable(FUCRmodel, fucrm_overgen[1:N_ZONES, 1:HRS_FUCR]>=0) #overgeneration at zone n and time t//
 
     # Defining the objective function that minimizes the overal cost of supplying electricity (=total variable, no-load, startup, and shutdown costs)
-    @objective(FUCRmodel, Min, sum(sum(DF_Generators.IHRC_B1_HR[g]*FuelPrice[g,day]*fucrm_genOut_Block[g,1,t]
-                                       +DF_Generators.IHRC_B2_HR[g]*FuelPrice[g,day]*fucrm_genOut_Block[g,2,t]
-                                       +DF_Generators.IHRC_B3_HR[g]*FuelPrice[g,day]*fucrm_genOut_Block[g,3,t]
-                                       +DF_Generators.IHRC_B4_HR[g]*FuelPrice[g,day]*fucrm_genOut_Block[g,4,t]
-                                       +DF_Generators.IHRC_B5_HR[g]*FuelPrice[g,day]*fucrm_genOut_Block[g,5,t]
-                                       +DF_Generators.IHRC_B6_HR[g]*FuelPrice[g,day]*fucrm_genOut_Block[g,6,t]
-                                       +DF_Generators.IHRC_B7_HR[g]*FuelPrice[g,day]*fucrm_genOut_Block[g,7,t]
-                                       +DF_Generators.NoLoadHR[g]*FuelPrice[g,day]*fucrm_genOnOff[g,t]
-                                       +((DF_Generators.HotStartU_FixedCost[g]
-                                       +(DF_Generators.HotStartU_HeatRate[g]*FuelPrice[g,day]))*fucrm_genStartUp[g,t])
-                                       +DF_Generators.ShutdownCost[g]*fucrm_genShutDown[g, t]
+    @objective(FUCRmodel, Min, sum(sum(df_gens.IHRC_B1_HR[g]*fuelprice[g,day]*fucrm_genOut_Block[g,1,t]
+                                       +df_gens.IHRC_B2_HR[g]*fuelprice[g,day]*fucrm_genOut_Block[g,2,t]
+                                       +df_gens.IHRC_B3_HR[g]*fuelprice[g,day]*fucrm_genOut_Block[g,3,t]
+                                       +df_gens.IHRC_B4_HR[g]*fuelprice[g,day]*fucrm_genOut_Block[g,4,t]
+                                       +df_gens.IHRC_B5_HR[g]*fuelprice[g,day]*fucrm_genOut_Block[g,5,t]
+                                       +df_gens.IHRC_B6_HR[g]*fuelprice[g,day]*fucrm_genOut_Block[g,6,t]
+                                       +df_gens.IHRC_B7_HR[g]*fuelprice[g,day]*fucrm_genOut_Block[g,7,t]
+                                       +df_gens.NoLoadHR[g]*fuelprice[g,day]*fucrm_genOnOff[g,t]
+                                       +((df_gens.HotStartU_FixedCost[g]
+                                       +(df_gens.HotStartU_HeatRate[g]*fuelprice[g,day]))*fucrm_genStartUp[g,t])
+                                       +df_gens.ShutdownCost[g]*fucrm_genShutDown[g, t]
                                        +(fucrm_totGenVioP[g,t]*VIOLATION_PENALTY)
                                        +(fucrm_totGenVioN[g,t]*VIOLATION_PENALTY)
                                        +(fucrm_maxGenVioP[g,t]*VIOLATION_PENALTY)
                                        +(fucrm_minGenVioP[g,t]*VIOLATION_PENALTY) for g in 1:GENS)
-                                       +sum(DF_Peakers.IHRC_B1_HR[k]*FuelPricePeakers[k,day]*fucrm_peakerOut_Block[k,1,t]
-                                       +DF_Peakers.IHRC_B2_HR[k]*FuelPricePeakers[k,day]*fucrm_peakerOut_Block[k,2,t]
-                                       +DF_Peakers.IHRC_B3_HR[k]*FuelPricePeakers[k,day]*fucrm_peakerOut_Block[k,3,t]
-                                       +DF_Peakers.IHRC_B4_HR[k]*FuelPricePeakers[k,day]*fucrm_peakerOut_Block[k,4,t]
-                                       +DF_Peakers.IHRC_B5_HR[k]*FuelPricePeakers[k,day]*fucrm_peakerOut_Block[k,5,t]
-                                       +DF_Peakers.IHRC_B6_HR[k]*FuelPricePeakers[k,day]*fucrm_peakerOut_Block[k,6,t]
-                                       +DF_Peakers.IHRC_B7_HR[k]*FuelPricePeakers[k,day]*fucrm_peakerOut_Block[k,7,t]
-                                       +DF_Peakers.NoLoadHR[k]*FuelPricePeakers[k,day]*fucrm_peakerOnOff[k,t]
-                                       +((DF_Peakers.HotStartU_FixedCost[k]
-                                       +(DF_Peakers.HotStartU_HeatRate[k]*FuelPricePeakers[k,day]))*fucrm_peakerStartUp[k,t])
-                                       +DF_Peakers.ShutdownCost[k]*fucrm_peakerShutDown[k, t] for k in 1:PEAKERS) for t in 1:HRS_FUCR)
+                                       +sum(df_peakers.IHRC_B1_HR[k]*fuelprice_peakers[k,day]*fucrm_peakerOut_Block[k,1,t]
+                                       +df_peakers.IHRC_B2_HR[k]*fuelprice_peakers[k,day]*fucrm_peakerOut_Block[k,2,t]
+                                       +df_peakers.IHRC_B3_HR[k]*fuelprice_peakers[k,day]*fucrm_peakerOut_Block[k,3,t]
+                                       +df_peakers.IHRC_B4_HR[k]*fuelprice_peakers[k,day]*fucrm_peakerOut_Block[k,4,t]
+                                       +df_peakers.IHRC_B5_HR[k]*fuelprice_peakers[k,day]*fucrm_peakerOut_Block[k,5,t]
+                                       +df_peakers.IHRC_B6_HR[k]*fuelprice_peakers[k,day]*fucrm_peakerOut_Block[k,6,t]
+                                       +df_peakers.IHRC_B7_HR[k]*fuelprice_peakers[k,day]*fucrm_peakerOut_Block[k,7,t]
+                                       +df_peakers.NoLoadHR[k]*fuelprice_peakers[k,day]*fucrm_peakerOnOff[k,t]
+                                       +((df_peakers.HotStartU_FixedCost[k]
+                                       +(df_peakers.HotStartU_HeatRate[k]*fuelprice_peakers[k,day]))*fucrm_peakerStartUp[k,t])
+                                       +df_peakers.ShutdownCost[k]*fucrm_peakerShutDown[k, t] for k in 1:PEAKERS) for t in 1:HRS_FUCR)
                                        +sum(sum((fucrm_demand_curt[n,t]*LOAD_SHED_PENALTY)
                                        +(fucrm_overgen[n,t]*OVERGEN_PENALTY) for n=1:N_ZONES) for t=1:HRS_FUCR))
 
@@ -100,47 +106,47 @@ function fucr_model(DF_Generators, DF_Peakers, FuelPrice, FuelPricePeakers, DF_S
     @constraint(FUCRmodel, conInitSOC[p=1:STORG_UNITS], fucrm_storgSOC[p,0]==FUCR.soc_init[p]) # SOC for storage unit p at t=0
 
     #Base-Load Operation of nuclear Generators
-    @constraint(FUCRmodel, conNuckBaseLoad[t=1:HRS_FUCR, g=1:GENS], fucrm_genOnOff[g,t]>=DF_Generators.Nuclear[g]) #
-    @constraint(FUCRmodel, conNuclearTotGenZone[t=1:HRS_FUCR, n=1:N_ZONES], sum((fucrm_genOut[g,t]*Map_Gens[g,n]*DF_Generators.Nuclear[g]) for g=1:GENS) -fucr_prep_demand.nuclear_wa[t,n] ==0)
+    @constraint(FUCRmodel, conNuckBaseLoad[t=1:HRS_FUCR, g=1:GENS], fucrm_genOnOff[g,t]>=df_gens.Nuclear[g]) #
+    @constraint(FUCRmodel, conNuclearTotGenZone[t=1:HRS_FUCR, n=1:N_ZONES], sum((fucrm_genOut[g,t]*Map_Gens[g,n]*df_gens.Nuclear[g]) for g=1:GENS) -fucr_prep_demand.nuclear_wa[t,n] ==0)
 
     #Limits on generation of cogen units
-    @constraint(FUCRmodel, conCoGenBaseLoad[t=1:HRS_FUCR, g=1:GENS], fucrm_genOnOff[g,t]>=DF_Generators.Cogen[g]) #
-    @constraint(FUCRmodel, conCoGenTotGenZone[t=1:HRS_FUCR, n=1:N_ZONES], sum((fucrm_genOut[g,t]*Map_Gens[g,n]*DF_Generators.Cogen[g]) for g=1:GENS) -fucr_prep_demand.cogen_wa[t,n] ==0)
+    @constraint(FUCRmodel, conCoGenBaseLoad[t=1:HRS_FUCR, g=1:GENS], fucrm_genOnOff[g,t]>=df_gens.Cogen[g]) #
+    @constraint(FUCRmodel, conCoGenTotGenZone[t=1:HRS_FUCR, n=1:N_ZONES], sum((fucrm_genOut[g,t]*Map_Gens[g,n]*df_gens.Cogen[g]) for g=1:GENS) -fucr_prep_demand.cogen_wa[t,n] ==0)
 
     # Constraints representing technical limits of conventional generators
     #Status transition trajectory of
     @constraint(FUCRmodel, conStartUpAndDn[t=1:HRS_FUCR, g=1:GENS], (fucrm_genOnOff[g,t] - fucrm_genOnOff[g,t-1] - fucrm_genStartUp[g,t] + fucrm_genShutDown[g,t])==0)
     # Max Power generation limit in Block 1
-    @constraint(FUCRmodel, conMaxPowBlock1[t=1:HRS_FUCR, g=1:GENS],  fucrm_genOut_Block[g,1,t] <= DF_Generators.IHRC_B1_Q[g]*fucrm_genOnOff[g,t] )
+    @constraint(FUCRmodel, conMaxPowBlock1[t=1:HRS_FUCR, g=1:GENS],  fucrm_genOut_Block[g,1,t] <= df_gens.IHRC_B1_Q[g]*fucrm_genOnOff[g,t] )
     # Max Power generation limit in Block 2
-    @constraint(FUCRmodel, conMaxPowBlock2[t=1:HRS_FUCR, g=1:GENS],  fucrm_genOut_Block[g,2,t] <= DF_Generators.IHRC_B2_Q[g]*fucrm_genOnOff[g,t] )
+    @constraint(FUCRmodel, conMaxPowBlock2[t=1:HRS_FUCR, g=1:GENS],  fucrm_genOut_Block[g,2,t] <= df_gens.IHRC_B2_Q[g]*fucrm_genOnOff[g,t] )
     # Max Power generation limit in Block 3
-    @constraint(FUCRmodel, conMaxPowBlock3[t=1:HRS_FUCR, g=1:GENS],  fucrm_genOut_Block[g,3,t] <= DF_Generators.IHRC_B3_Q[g]*fucrm_genOnOff[g,t] )
+    @constraint(FUCRmodel, conMaxPowBlock3[t=1:HRS_FUCR, g=1:GENS],  fucrm_genOut_Block[g,3,t] <= df_gens.IHRC_B3_Q[g]*fucrm_genOnOff[g,t] )
     # Max Power generation limit in Block 4
-    @constraint(FUCRmodel, conMaxPowBlock4[t=1:HRS_FUCR, g=1:GENS],  fucrm_genOut_Block[g,4,t] <= DF_Generators.IHRC_B4_Q[g]*fucrm_genOnOff[g,t] )
+    @constraint(FUCRmodel, conMaxPowBlock4[t=1:HRS_FUCR, g=1:GENS],  fucrm_genOut_Block[g,4,t] <= df_gens.IHRC_B4_Q[g]*fucrm_genOnOff[g,t] )
     # Max Power generation limit in Block 5
-    @constraint(FUCRmodel, conMaxPowBlock5[t=1:HRS_FUCR, g=1:GENS],  fucrm_genOut_Block[g,5,t] <= DF_Generators.IHRC_B5_Q[g]*fucrm_genOnOff[g,t] )
+    @constraint(FUCRmodel, conMaxPowBlock5[t=1:HRS_FUCR, g=1:GENS],  fucrm_genOut_Block[g,5,t] <= df_gens.IHRC_B5_Q[g]*fucrm_genOnOff[g,t] )
     # Max Power generation limit in Block 6
-    @constraint(FUCRmodel, conMaxPowBlock6[t=1:HRS_FUCR, g=1:GENS],  fucrm_genOut_Block[g,6,t] <= DF_Generators.IHRC_B6_Q[g]*fucrm_genOnOff[g,t] )
+    @constraint(FUCRmodel, conMaxPowBlock6[t=1:HRS_FUCR, g=1:GENS],  fucrm_genOut_Block[g,6,t] <= df_gens.IHRC_B6_Q[g]*fucrm_genOnOff[g,t] )
     # Max Power generation limit in Block 7
-    @constraint(FUCRmodel, conMaxPowBlock7[t=1:HRS_FUCR, g=1:GENS],  fucrm_genOut_Block[g,7,t] <= DF_Generators.IHRC_B7_Q[g]*fucrm_genOnOff[g,t] )
+    @constraint(FUCRmodel, conMaxPowBlock7[t=1:HRS_FUCR, g=1:GENS],  fucrm_genOut_Block[g,7,t] <= df_gens.IHRC_B7_Q[g]*fucrm_genOnOff[g,t] )
     # Total Production of each generation equals the sum of generation from its all blocks
     @constraint(FUCRmodel, conTotalGen[t=1:HRS_FUCR, g=1:GENS],  sum(fucrm_genOut_Block[g,b,t] for b=1:BLOCKS) + fucrm_totGenVioP[g,t] - fucrm_totGenVioN[g,t] ==fucrm_genOut[g,t])
     #Max power generation limit
-    @constraint(FUCRmodel, conMaxPow[t=1:HRS_FUCR, g=1:GENS],  fucrm_genOut[g,t]+fucrm_genResUp[g,t] - fucrm_maxGenVioP[g,t] <= DF_Generators.MaxPowerOut[g]*fucrm_genOnOff[g,t] )
+    @constraint(FUCRmodel, conMaxPow[t=1:HRS_FUCR, g=1:GENS],  fucrm_genOut[g,t]+fucrm_genResUp[g,t] - fucrm_maxGenVioP[g,t] <= df_gens.MaxPowerOut[g]*fucrm_genOnOff[g,t] )
     # Min power generation limit
-    @constraint(FUCRmodel, conMinPow[t=1:HRS_FUCR, g=1:GENS],  fucrm_genOut[g,t]-fucrm_genResDn[g,t] + fucrm_minGenVioP[g,t] >= DF_Generators.MinPowerOut[g]*fucrm_genOnOff[g,t] )
+    @constraint(FUCRmodel, conMinPow[t=1:HRS_FUCR, g=1:GENS],  fucrm_genOut[g,t]-fucrm_genResDn[g,t] + fucrm_minGenVioP[g,t] >= df_gens.MinPowerOut[g]*fucrm_genOnOff[g,t] )
     # Up reserve provision limit
-    @constraint(FUCRmodel, conMaxResUp[t=1:HRS_FUCR, g=1:GENS], fucrm_genResUp[g,t] <= DF_Generators.SpinningRes_Limit[g]*fucrm_genOnOff[g,t] )
+    @constraint(FUCRmodel, conMaxResUp[t=1:HRS_FUCR, g=1:GENS], fucrm_genResUp[g,t] <= df_gens.SpinningRes_Limit[g]*fucrm_genOnOff[g,t] )
     # Non-Spinning Reserve Limit
-    #    @constraint(FUCRmodel, conMaxNonSpinResUp[t=1:HRS_SUCR, g=1:GENS], fucrm_genResNonSpin[g,t] <= (DF_Generators.NonSpinningRes_Limit[g]*(1-fucrm_genOnOff[g,t])*DF_Generators.FastStart[g]))
+    #    @constraint(FUCRmodel, conMaxNonSpinResUp[t=1:HRS_SUCR, g=1:GENS], fucrm_genResNonSpin[g,t] <= (df_gens.NonSpinningRes_Limit[g]*(1-fucrm_genOnOff[g,t])*df_gens.FastStart[g]))
     @constraint(FUCRmodel, conMaxNonSpinResUp[t=1:HRS_SUCR, g=1:GENS], fucrm_genResNonSpin[g,t] <= 0)
     #Down reserve provision limit
-    @constraint(FUCRmodel, conMaxResDown[t=1:HRS_FUCR, g=1:GENS],  fucrm_genResDn[g,t] <= DF_Generators.SpinningRes_Limit[g]*fucrm_genOnOff[g,t] )
+    @constraint(FUCRmodel, conMaxResDown[t=1:HRS_FUCR, g=1:GENS],  fucrm_genResDn[g,t] <= df_gens.SpinningRes_Limit[g]*fucrm_genOnOff[g,t] )
     #Up ramp rate limit
-    @constraint(FUCRmodel, conRampRateUp[t=1:HRS_FUCR, g=1:GENS], (fucrm_genOut[g,t] - fucrm_genOut[g,t-1] <=(DF_Generators.RampUpLimit[g]*fucrm_genOnOff[g, t-1]) + (DF_Generators.RampStartUpLimit[g]*fucrm_genStartUp[g,t])))
+    @constraint(FUCRmodel, conRampRateUp[t=1:HRS_FUCR, g=1:GENS], (fucrm_genOut[g,t] - fucrm_genOut[g,t-1] <=(df_gens.RampUpLimit[g]*fucrm_genOnOff[g, t-1]) + (df_gens.RampStartUpLimit[g]*fucrm_genStartUp[g,t])))
     # Down ramp rate limit
-    @constraint(FUCRmodel, conRampRateDown[t=1:HRS_FUCR, g=1:GENS], (fucrm_genOut[g,t-1] - fucrm_genOut[g,t] <=(DF_Generators.RampDownLimit[g]*fucrm_genOnOff[g,t]) + (DF_Generators.RampShutDownLimit[g]*fucrm_genShutDown[g,t])))
+    @constraint(FUCRmodel, conRampRateDown[t=1:HRS_FUCR, g=1:GENS], (fucrm_genOut[g,t-1] - fucrm_genOut[g,t] <=(df_gens.RampDownLimit[g]*fucrm_genOnOff[g,t]) + (df_gens.RampShutDownLimit[g]*fucrm_genShutDown[g,t])))
     # Min Up Time limit with alternative formulation
     @constraint(FUCRmodel, conUpTime[t=1:HRS_FUCR, g=1:GENS], (sum(fucrm_genStartUp[g,r] for r=lb_MUT[g,t]:t)<=fucrm_genOnOff[g,t]))
     # Min down Time limit with alternative formulation
@@ -150,35 +156,35 @@ function fucr_model(DF_Generators, DF_Peakers, FuelPrice, FuelPricePeakers, DF_S
     #Status transition trajectory of
     @constraint(FUCRmodel, conStartUpAndDn_Peaker[t=1:HRS_FUCR, k=1:PEAKERS], (fucrm_peakerOnOff[k,t] - fucrm_peakerOnOff[k,t-1] - fucrm_peakerStartUp[k,t] + fucrm_peakerShutDown[k,t])==0)
     # Max Power generation limit in Block 1
-    @constraint(FUCRmodel, conMaxPowBlock1_Peaker[t=1:HRS_FUCR, k=1:PEAKERS],  fucrm_peakerOut_Block[k,1,t] <= DF_Peakers.IHRC_B1_Q[k]*fucrm_peakerOnOff[k,t] )
+    @constraint(FUCRmodel, conMaxPowBlock1_Peaker[t=1:HRS_FUCR, k=1:PEAKERS],  fucrm_peakerOut_Block[k,1,t] <= df_peakers.IHRC_B1_Q[k]*fucrm_peakerOnOff[k,t] )
     # Max Power generation limit in Block 2
-    @constraint(FUCRmodel, conMaxPowBlock2_Peaker[t=1:HRS_FUCR, k=1:PEAKERS],  fucrm_peakerOut_Block[k,2,t] <= DF_Peakers.IHRC_B2_Q[k]*fucrm_peakerOnOff[k,t] )
+    @constraint(FUCRmodel, conMaxPowBlock2_Peaker[t=1:HRS_FUCR, k=1:PEAKERS],  fucrm_peakerOut_Block[k,2,t] <= df_peakers.IHRC_B2_Q[k]*fucrm_peakerOnOff[k,t] )
     # Max Power generation limit in Block 3
-    @constraint(FUCRmodel, conMaxPowBlock3_Peaker[t=1:HRS_FUCR, k=1:PEAKERS],  fucrm_peakerOut_Block[k,3,t] <= DF_Peakers.IHRC_B3_Q[k]*fucrm_peakerOnOff[k,t] )
+    @constraint(FUCRmodel, conMaxPowBlock3_Peaker[t=1:HRS_FUCR, k=1:PEAKERS],  fucrm_peakerOut_Block[k,3,t] <= df_peakers.IHRC_B3_Q[k]*fucrm_peakerOnOff[k,t] )
     # Max Power generation limit in Block 4
-    @constraint(FUCRmodel, conMaxPowBlock4_Peaker[t=1:HRS_FUCR, k=1:PEAKERS],  fucrm_peakerOut_Block[k,4,t] <= DF_Peakers.IHRC_B4_Q[k]*fucrm_peakerOnOff[k,t] )
+    @constraint(FUCRmodel, conMaxPowBlock4_Peaker[t=1:HRS_FUCR, k=1:PEAKERS],  fucrm_peakerOut_Block[k,4,t] <= df_peakers.IHRC_B4_Q[k]*fucrm_peakerOnOff[k,t] )
     # Max Power generation limit in Block 5
-    @constraint(FUCRmodel, conMaxPowBlock5_Peaker[t=1:HRS_FUCR, k=1:PEAKERS],  fucrm_peakerOut_Block[k,5,t] <= DF_Peakers.IHRC_B5_Q[k]*fucrm_peakerOnOff[k,t] )
+    @constraint(FUCRmodel, conMaxPowBlock5_Peaker[t=1:HRS_FUCR, k=1:PEAKERS],  fucrm_peakerOut_Block[k,5,t] <= df_peakers.IHRC_B5_Q[k]*fucrm_peakerOnOff[k,t] )
     # Max Power generation limit in Block 6
-    @constraint(FUCRmodel, conMaxPowBlock6_Peaker[t=1:HRS_FUCR, k=1:PEAKERS],  fucrm_peakerOut_Block[k,6,t] <= DF_Peakers.IHRC_B6_Q[k]*fucrm_peakerOnOff[k,t] )
+    @constraint(FUCRmodel, conMaxPowBlock6_Peaker[t=1:HRS_FUCR, k=1:PEAKERS],  fucrm_peakerOut_Block[k,6,t] <= df_peakers.IHRC_B6_Q[k]*fucrm_peakerOnOff[k,t] )
     # Max Power generation limit in Block 7
-    @constraint(FUCRmodel, conMaxPowBlock7_Peaker[t=1:HRS_FUCR, k=1:PEAKERS],  fucrm_peakerOut_Block[k,7,t] <= DF_Peakers.IHRC_B7_Q[k]*fucrm_peakerOnOff[k,t] )
+    @constraint(FUCRmodel, conMaxPowBlock7_Peaker[t=1:HRS_FUCR, k=1:PEAKERS],  fucrm_peakerOut_Block[k,7,t] <= df_peakers.IHRC_B7_Q[k]*fucrm_peakerOnOff[k,t] )
     # Total Production of each generation equals the sum of generation from its all blocks
     @constraint(FUCRmodel, conTotalGen_Peaker[t=1:HRS_FUCR, k=1:PEAKERS],  sum(fucrm_peakerOut_Block[k,b,t] for b=1:BLOCKS)>=fucrm_peakerOut[k,t])
     #Max power generation limit
-    @constraint(FUCRmodel, conMaxPow_Peaker[t=1:HRS_FUCR, k=1:PEAKERS],  fucrm_peakerOut[k,t]+fucrm_peakerResUp[k,t] <= DF_Peakers.MaxPowerOut[k]*fucrm_peakerOnOff[k,t] )
+    @constraint(FUCRmodel, conMaxPow_Peaker[t=1:HRS_FUCR, k=1:PEAKERS],  fucrm_peakerOut[k,t]+fucrm_peakerResUp[k,t] <= df_peakers.MaxPowerOut[k]*fucrm_peakerOnOff[k,t] )
     # Min power generation limit
-    @constraint(FUCRmodel, conMinPow_Peaker[t=1:HRS_FUCR, k=1:PEAKERS],  fucrm_peakerOut[k,t]-fucrm_peakerResDn[k,t] >= DF_Peakers.MinPowerOut[k]*fucrm_peakerOnOff[k,t] )
+    @constraint(FUCRmodel, conMinPow_Peaker[t=1:HRS_FUCR, k=1:PEAKERS],  fucrm_peakerOut[k,t]-fucrm_peakerResDn[k,t] >= df_peakers.MinPowerOut[k]*fucrm_peakerOnOff[k,t] )
     # Up reserve provision limit
-    @constraint(FUCRmodel, conMaxResUp_Peaker[t=1:HRS_FUCR, k=1:PEAKERS], fucrm_peakerResUp[k,t] <= DF_Peakers.SpinningRes_Limit[k]*fucrm_peakerOnOff[k,t] )
+    @constraint(FUCRmodel, conMaxResUp_Peaker[t=1:HRS_FUCR, k=1:PEAKERS], fucrm_peakerResUp[k,t] <= df_peakers.SpinningRes_Limit[k]*fucrm_peakerOnOff[k,t] )
     # Non-Spinning Reserve Limit
-    @constraint(FUCRmodel, conMaxNonSpinResUp_Peaker[t=1:HRS_SUCR, k=1:PEAKERS], fucrm_peakerResNonSpin[k,t] <= (DF_Peakers.NonSpinningRes_Limit[k]*(1-fucrm_peakerOnOff[k,t])))
+    @constraint(FUCRmodel, conMaxNonSpinResUp_Peaker[t=1:HRS_SUCR, k=1:PEAKERS], fucrm_peakerResNonSpin[k,t] <= (df_peakers.NonSpinningRes_Limit[k]*(1-fucrm_peakerOnOff[k,t])))
     #Down reserve provision limit
-    @constraint(FUCRmodel, conMaxResDown_Peaker[t=1:HRS_FUCR, k=1:PEAKERS],  fucrm_peakerResDn[k,t] <= DF_Peakers.SpinningRes_Limit[k]*fucrm_peakerOnOff[k,t] )
+    @constraint(FUCRmodel, conMaxResDown_Peaker[t=1:HRS_FUCR, k=1:PEAKERS],  fucrm_peakerResDn[k,t] <= df_peakers.SpinningRes_Limit[k]*fucrm_peakerOnOff[k,t] )
     #Up ramp rate limit
-    @constraint(FUCRmodel, conRampRateUp_Peaker[t=1:HRS_FUCR, k=1:PEAKERS], (fucrm_peakerOut[k,t] - fucrm_peakerOut[k,t-1] <=(DF_Peakers.RampUpLimit[k]*fucrm_peakerOnOff[k, t-1]) + (DF_Peakers.RampStartUpLimit[k]*fucrm_peakerStartUp[k,t])))
+    @constraint(FUCRmodel, conRampRateUp_Peaker[t=1:HRS_FUCR, k=1:PEAKERS], (fucrm_peakerOut[k,t] - fucrm_peakerOut[k,t-1] <=(df_peakers.RampUpLimit[k]*fucrm_peakerOnOff[k, t-1]) + (df_peakers.RampStartUpLimit[k]*fucrm_peakerStartUp[k,t])))
     # Down ramp rate limit
-    @constraint(FUCRmodel, conRampRateDown_Peaker[t=1:HRS_FUCR, k=1:PEAKERS], (fucrm_peakerOut[k,t-1] - fucrm_peakerOut[k,t] <=(DF_Peakers.RampDownLimit[k]*fucrm_peakerOnOff[k,t]) + (DF_Peakers.RampShutDownLimit[k]*fucrm_peakerShutDown[k,t])))
+    @constraint(FUCRmodel, conRampRateDown_Peaker[t=1:HRS_FUCR, k=1:PEAKERS], (fucrm_peakerOut[k,t-1] - fucrm_peakerOut[k,t] <=(df_peakers.RampDownLimit[k]*fucrm_peakerOnOff[k,t]) + (df_peakers.RampShutDownLimit[k]*fucrm_peakerShutDown[k,t])))
     # Min Up Time limit with alternative formulation
     @constraint(FUCRmodel, conUpTime_Peaker[t=1:HRS_FUCR, k=1:PEAKERS], (sum(fucrm_peakerStartUp[k,r] for r=lb_MUT_Peaker[k,t]:t)<=fucrm_peakerOnOff[k,t]))
     # Min down Time limit with alternative formulation
@@ -199,19 +205,19 @@ function fucr_model(DF_Generators, DF_Peakers, FuelPrice, FuelPricePeakers, DF_S
     # status transition of storage units between charging, discharging, and idle modes
     @constraint(FUCRmodel, conStorgStatusTransition[t=1:HRS_FUCR, p=1:STORG_UNITS], (fucrm_storgChrg[p,t]+fucrm_storgDisc[p,t]+fucrm_storgIdle[p,t])==1)
     # charging power limit
-    @constraint(FUCRmodel, conStrgChargPowerLimit[t=1:HRS_FUCR, p=1:STORG_UNITS], (fucrm_storgChrgPwr[p,t] - fucrm_storgResDn[p,t])<=DF_Storage.Power[p]*fucrm_storgChrg[p,t])
+    @constraint(FUCRmodel, conStrgChargPowerLimit[t=1:HRS_FUCR, p=1:STORG_UNITS], (fucrm_storgChrgPwr[p,t] - fucrm_storgResDn[p,t])<=df_storage.Power[p]*fucrm_storgChrg[p,t])
     # Discharging power limit
-    @constraint(FUCRmodel, conStrgDisChgPowerLimit[t=1:HRS_FUCR, p=1:STORG_UNITS], (fucrm_storgDiscPwr[p,t] + fucrm_storgResUp[p,t])<=DF_Storage.Power[p]*fucrm_storgDisc[p,t])
+    @constraint(FUCRmodel, conStrgDisChgPowerLimit[t=1:HRS_FUCR, p=1:STORG_UNITS], (fucrm_storgDiscPwr[p,t] + fucrm_storgResUp[p,t])<=df_storage.Power[p]*fucrm_storgDisc[p,t])
     # Down reserve provision limit
-    @constraint(FUCRmodel, conStrgDownResrvMax[t=1:HRS_FUCR, p=1:STORG_UNITS], fucrm_storgResDn[p,t]<=DF_Storage.Power[p]*fucrm_storgChrg[p,t])
+    @constraint(FUCRmodel, conStrgDownResrvMax[t=1:HRS_FUCR, p=1:STORG_UNITS], fucrm_storgResDn[p,t]<=df_storage.Power[p]*fucrm_storgChrg[p,t])
     # Up reserve provision limit`
-    @constraint(FUCRmodel, conStrgUpResrvMax[t=1:HRS_FUCR, p=1:STORG_UNITS], fucrm_storgResUp[p,t]<=DF_Storage.Power[p]*fucrm_storgDisc[p,t])
+    @constraint(FUCRmodel, conStrgUpResrvMax[t=1:HRS_FUCR, p=1:STORG_UNITS], fucrm_storgResUp[p,t]<=df_storage.Power[p]*fucrm_storgDisc[p,t])
     # State of charge at t
-    @constraint(FUCRmodel, conStorgSOC[t=1:HRS_FUCR, p=1:STORG_UNITS], fucrm_storgSOC[p,t]==fucrm_storgSOC[p,t-1]-(fucrm_storgDiscPwr[p,t]/DF_Storage.TripEfficDown[p])+(fucrm_storgChrgPwr[p,t]*DF_Storage.TripEfficUp[p])-(fucrm_storgSOC[p,t]*DF_Storage.SelfDischarge[p]))
+    @constraint(FUCRmodel, conStorgSOC[t=1:HRS_FUCR, p=1:STORG_UNITS], fucrm_storgSOC[p,t]==fucrm_storgSOC[p,t-1]-(fucrm_storgDiscPwr[p,t]/df_storage.TripEfficDown[p])+(fucrm_storgChrgPwr[p,t]*df_storage.TripEfficUp[p])-(fucrm_storgSOC[p,t]*df_storage.SelfDischarge[p]))
     # minimum energy limit
-    @constraint(FUCRmodel, conMinEnrgStorgLimi[t=1:HRS_FUCR, p=1:STORG_UNITS], fucrm_storgSOC[p,t]-(fucrm_storgResUp[p,t]/DF_Storage.TripEfficDown[p])+(fucrm_storgResDn[p,t]/DF_Storage.TripEfficUp[p])>=0)
+    @constraint(FUCRmodel, conMinEnrgStorgLimi[t=1:HRS_FUCR, p=1:STORG_UNITS], fucrm_storgSOC[p,t]-(fucrm_storgResUp[p,t]/df_storage.TripEfficDown[p])+(fucrm_storgResDn[p,t]/df_storage.TripEfficUp[p])>=0)
     # Maximum energy limit
-    @constraint(FUCRmodel, conMaxEnrgStorgLimi[t=1:HRS_FUCR, p=1:STORG_UNITS], fucrm_storgSOC[p,t]-(fucrm_storgResUp[p,t]/DF_Storage.TripEfficDown[p])+(fucrm_storgResDn[p,t]/DF_Storage.TripEfficUp[p])<=(DF_Storage.Power[p]/DF_Storage.PowerToEnergRatio[p]))
+    @constraint(FUCRmodel, conMaxEnrgStorgLimi[t=1:HRS_FUCR, p=1:STORG_UNITS], fucrm_storgSOC[p,t]-(fucrm_storgResUp[p,t]/df_storage.TripEfficDown[p])+(fucrm_storgResDn[p,t]/df_storage.TripEfficUp[p])<=(df_storage.Power[p]/df_storage.PowerToEnergRatio[p]))
     # Constraints representing transmission grid capacity constraints
     # DC Power Flow Calculation
     #@constraint(FUCRmodel, conDCPowerFlowPos[t=1:HRS_FUCR, n=1:N_ZONES, m=1:N_ZONES], fucrm_powerflow[n,m,t]-(TranS[n,m]*(fucrm_voltangle[n,t]-fucrm_voltangle[m,t])) ==0)
@@ -249,7 +255,7 @@ function fucr_model(DF_Generators, DF_Peakers, FuelPrice, FuelPricePeakers, DF_S
 
     t2_FUCRmodel = time_ns()
     time_FUCRmodel = (t2_FUCRmodel -t1_FUCRmodel)/1.0e9;
-    @info "FUCRmodel for day: $day setup executed in (s): $time_FUCRmodel";
+    #@info "FUCRmodel for day: $day setup executed in (s): $time_FUCRmodel";
 
     open(".//outputs//csv//time_performance.csv", FILE_ACCESS_APPEND) do io
             writedlm(io, hcat("FUCRmodel", time_FUCRmodel, "day: $day",
@@ -274,14 +280,15 @@ function fucr_model(DF_Generators, DF_Peakers, FuelPrice, FuelPricePeakers, DF_S
     println("Day: ", day, " solved")
     println("---------------------------")
     println("FUCRmodel Number of variables: ", JuMP.num_variables(FUCRmodel))
-    @info "FUCRmodel Number of variables: " JuMP.num_variables(FUCRmodel)
+
+    #@info "FUCRmodel Number of variables: " JuMP.num_variables(FUCRmodel)
 
     open(".//outputs//csv//time_performance.csv", FILE_ACCESS_APPEND) do io
             writedlm(io, hcat("FUCRmodel", JuMP.num_variables(FUCRmodel), "day: $day",
                     "", "", "Variables"), ',')
     end;
 
-    @debug "FUCRmodel for day: $day optimized executed in (s):  $(solve_time(FUCRmodel))";
+    #@debug "FUCRmodel for day: $day optimized executed in (s):  $(solve_time(FUCRmodel))";
 
     open(".//outputs//csv//time_performance.csv", FILE_ACCESS_APPEND) do io
             writedlm(io, hcat("FUCRmodel", solve_time(FUCRmodel), "day: $day",
@@ -292,8 +299,8 @@ function fucr_model(DF_Generators, DF_Peakers, FuelPrice, FuelPricePeakers, DF_S
     t1_write_FUCRmodel_results = time_ns()
     open(".//outputs//csv//FUCR_GenOutputs.csv", FILE_ACCESS_APPEND) do io
         for t in 1:HRS_FUCR, g=1:GENS
-            writedlm(io, hcat(day, t+INIT_HR_FUCR, g, DF_Generators.UNIT_NAME[g],
-                DF_Generators.MinPowerOut[g], DF_Generators.MaxPowerOut[g],
+            writedlm(io, hcat(day, t+INIT_HR_FUCR, g, df_gens.UNIT_NAME[g],
+                df_gens.MinPowerOut[g], df_gens.MaxPowerOut[g],
                 JuMP.value.(fucrm_genOut[g,t]), JuMP.value.(fucrm_genOnOff[g,t]),
                 JuMP.value.(fucrm_genShutDown[g,t]), JuMP.value.(fucrm_genStartUp[g,t]),
                 JuMP.value.(fucrm_genResUp[g,t]), JuMP.value.(fucrm_genResNonSpin[g,t]),
@@ -305,8 +312,8 @@ function fucr_model(DF_Generators, DF_Peakers, FuelPrice, FuelPricePeakers, DF_S
     # Write the peakers' schedules in CSV file
     open(".//outputs//csv//FUCR_PeakerOutputs.csv", FILE_ACCESS_APPEND) do io
         for t in 1:HRS_FUCR, k=1:PEAKERS
-            writedlm(io, hcat(day, t+INIT_HR_FUCR, k, DF_Peakers.UNIT_NAME[k],
-               DF_Peakers.MinPowerOut[k], DF_Peakers.MaxPowerOut[k],
+            writedlm(io, hcat(day, t+INIT_HR_FUCR, k, df_peakers.UNIT_NAME[k],
+               df_peakers.MinPowerOut[k], df_peakers.MaxPowerOut[k],
                JuMP.value.(fucrm_peakerOut[k,t]), JuMP.value.(fucrm_peakerOnOff[k,t]),
                JuMP.value.(fucrm_peakerShutDown[k,t]), JuMP.value.(fucrm_peakerStartUp[k,t]),
                JuMP.value.(fucrm_peakerResUp[k,t]), JuMP.value.(fucrm_peakerResNonSpin[k,t]),
@@ -317,8 +324,8 @@ function fucr_model(DF_Generators, DF_Peakers, FuelPrice, FuelPricePeakers, DF_S
     # Writing storage units' optimal schedules in CSV file
     open(".//outputs//csv//FUCR_StorageOutputs.csv", FILE_ACCESS_APPEND) do io
          for t in 1:HRS_FUCR, p=1:STORG_UNITS
-            writedlm(io, hcat(day, t+INIT_HR_FUCR, p, DF_Storage.Name[p],
-                DF_Storage.Power[p], DF_Storage.Power[p]/DF_Storage.PowerToEnergRatio[p],
+            writedlm(io, hcat(day, t+INIT_HR_FUCR, p, df_storage.Name[p],
+                df_storage.Power[p], df_storage.Power[p]/df_storage.PowerToEnergRatio[p],
                 JuMP.value.(fucrm_storgChrg[p,t]), JuMP.value.(fucrm_storgDisc[p,t]),
                 JuMP.value.(fucrm_storgIdle[p,t]), JuMP.value.(fucrm_storgChrgPwr[p,t]),
                 JuMP.value.(fucrm_storgDiscPwr[p,t]), JuMP.value.(fucrm_storgSOC[p,t]),
@@ -354,5 +361,22 @@ function fucr_model(DF_Generators, DF_Peakers, FuelPrice, FuelPricePeakers, DF_S
                     "", "", "Write CSV files"), ',')
     end; #closes file
 
-    return values
+    BUCR1.
+    return JuMP.value(FUCR_genOnOff)
+
+    global FUCRtoBUCR1_genOnOff[g,h]= JuMP.value.(FUCR_genOnOff[g,h]);
+   global FUCRtoBUCR1_genOut[g,h]= JuMP.value.(FUCR_genOut[g,h]);
+   global FUCRtoBUCR1_genStartUp[g,h]= JuMP.value.(FUCR_genStartUp[g,h]);
+   global FUCRtoBUCR1_genShutDown[g,h]=JuMP.value.(FUCR_genShutDown[g,h]);
+   for b=1:BLOCKS
+        FUCRtoBUCR1_genOut_Block[g,b,h]=JuMP.value.(FUCR_genOut_Block[g,b,h]);
+
+    global FUCRtoBUCR1_genOnOff[g,h]= JuMP.value.(FUCR_genOnOff[g,h]);
+   global FUCRtoBUCR1_genOut[g,h]= JuMP.value.(FUCR_genOut[g,h]);
+   global FUCRtoBUCR1_genStartUp[g,h]= JuMP.value.(FUCR_genStartUp[g,h]);
+   global FUCRtoBUCR1_genShutDown[g,h]=JuMP.value.(FUCR_genShutDown[g,h]);
+   for b=1:BLOCKS
+        FUCRtoBUCR1_genOut_Block[g,b,h]=JuMP.value.(FUCR_genOut_Block[g,b,h]);
+   end
+
 end

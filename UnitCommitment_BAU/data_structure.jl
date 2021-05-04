@@ -3,6 +3,10 @@ Generators struct
 
 """
 
+using Parameters
+
+include("constants.jl")
+
 mutable struct SysGenerator
 	unit_id::Array{String}
 	status_init::Array{Int64,1}
@@ -50,18 +54,100 @@ mutable struct Storage
 	soc_init::Array{Float64,1}
 end
 
+
+#=
+@with_kw struct A
+           a::Int = 6
+           b::Float64 = -1.1
+           c::UInt8
+       end
+=#
+"""
+
+"""
+@with_kw mutable struct GensResults
+	onoff_init::Array{Int64,1} = zeros(GENS)
+	power_out_init::Array{Float64,1} = zeros(GENS)
+	uptime_init::Array{Float64,1} = zeros(GENS)
+	dntime_init::Array{Float64,1} = zeros(GENS)
+	onoff::Array{Int64,2} = zeros(GENS, INIT_HR_SUCR+INIT_HR_FUCR)
+	power_out::Array{Float64,2} = zeros(GENS, INIT_HR_SUCR+INIT_HR_FUCR)
+	startup::Array{Int64,2} = zeros(GENS, INIT_HR_SUCR+INIT_HR_FUCR)
+	shutdown::Array{Int64,2} = zeros(GENS, INIT_HR_SUCR+INIT_HR_FUCR)
+	genout_block::Array{Float64,2} = zeros(GENS, INIT_HR_SUCR+INIT_HR_FUCR)
+end
+
+@with_kw mutable struct PeakersResults
+	onoff_init::Array{Int64,1} = zeros(PEAKERS)
+	power_out_init::Array{Float64,1} = zeros(PEAKERS)
+	uptime_init::Array{Float64,1} = zeros(PEAKERS)
+	dntime_init::Array{Float64,1} = zeros(PEAKERS)
+	onoff::Array{Int64,2} = zeros(GENS, INIT_HR_SUCR+INIT_HR_FUCR)
+	power_out::Array{Float64,2} = zeros(GENS, INIT_HR_SUCR+INIT_HR_FUCR)
+	startup::Array{Int64,2} = zeros(GENS, INIT_HR_SUCR+INIT_HR_FUCR)
+	shutdown::Array{Int64,2} = zeros(GENS, INIT_HR_SUCR+INIT_HR_FUCR)
+	genout_block::Array{Float64,2} = zeros(GENS, INIT_HR_SUCR+INIT_HR_FUCR)
+end
+
+@with_kw mutable struct StorageResults
+	soc_init::Array{Float64,1} = zeros(STORG_UNITS)
+	chrg::Array{Int64,2} = zeros(STORG_UNITS, 24-INIT_HR_SUCR+INIT_HR_FUCR)
+	disc::Array{Int64,2} = zeros(STORG_UNITS, 24-INIT_HR_SUCR+INIT_HR_FUCR)
+	idle::Array{Int64,2} = zeros(STORG_UNITS, 24-INIT_HR_SUCR+INIT_HR_FUCR)
+	chrgpwr::Array{Float64,2} = zeros(STORG_UNITS, 24-INIT_HR_SUCR+INIT_HR_FUCR)
+	discpwr::Array{Float64,2} = zeros(STORG_UNITS, 24-INIT_HR_SUCR+INIT_HR_FUCR)
+	soc::Array{Float64,2} = zeros(STORG_UNITS, 24-INIT_HR_SUCR+INIT_HR_FUCR)
+end
+
+#=
 mutable struct UnitsResults
 	onoff_init::Array{Int64,1}
-	power_out::Array{Float64,1}
+	power_out_init::Array{Float64,1}
 	uptime_init::Array{Float64,1}
 	dntime_init::Array{Float64,1}
 end
+=#
+#=
+struct UC_Results
+onoff_init::Array{Int64,1} 			<- FUCR_Init_genOnOff
+power_out_init::Array{Float64,1}    <- FUCR_Init_genOut
+uptime_init::Array{Float64,1}       <- FUCR_Init_UpTime
+downtime_init::Array{Float64,1}     <- FUCR_Init_DownTime
+
+startup  					<- FUCRtoBUCR1_genStartUp::Array{Int64,1}
+shutdown 					<- FUCRtoBUCR1_genShutDown::Array{Int64,1}
+onoff::Array{Int64,2} 		<- FUCRtoBUCR1_genOnOff[g,h]
+power_out::Array{Float64,2} <- FUCRtoBUCR1_genOut[g,h]
+genout_block 				<- FUCRtoBUCR1_genOut_Block[g,b,h]
+
+
+StorageResults
+soc_init::Array{Float64,1}          <- FUCR_Init_storgSOC
+
+
+Still defining
+for p=1:STORG_UNITS
+	global FUCRtoBUCR1_storgChrg[p,h]=JuMP.value.(FUCR_storgChrg[p,h]);
+	global FUCRtoBUCR1_storgDisc[p,h]=JuMP.value.(FUCR_storgDisc[p,h]);
+	global FUCRtoBUCR1_storgIdle[p,h]=JuMP.value.(FUCR_storgIdle[p,h]);
+	global FUCRtoBUCR1_storgChrgPwr[p,h]=JuMP.value.(FUCR_storgChrgPwr[p,h]);
+	global FUCRtoBUCR1_storgDiscPwr[p,h]=JuMP.value.(FUCR_storgDiscPwr[p,h]);
+	global FUCRtoBUCR1_storgSOC[p,h]=JuMP.value.(FUCR_storgSOC[p,h]);
+
+global FUCRtoBUCR1_genOnOff[g,h]= JuMP.value.(FUCR_genOnOff[g,h]);
+global FUCRtoBUCR1_genOut[g,h]= JuMP.value.(FUCR_genOut[g,h]);
+global FUCRtoBUCR1_genStartUp[g,h]= JuMP.value.(FUCR_genStartUp[g,h]);
+global FUCRtoBUCR1_genShutDown[g,h]=JuMP.value.(FUCR_genShutDown[g,h]);
+for b=1:BLOCKS
+	FUCRtoBUCR1_genOut_Block[g,b,h]=JuMP.value.(FUCR_genOut_Block[g,b,h]);
+=#
 
 mutable struct UC_Results
 	gens::UnitsResults
-	peakers::UnitsResults
-	soc_init::Array{Float64,1}
+	peakers::PeakersResults
+	storg::StorageResults
 end
+
 
 """
 Demand Data Pre-Processing for FUCR and SUCR models
@@ -128,16 +214,6 @@ trip_effic_dn::Array{Float64,1}      <- DF_Storage.TripEfficDown::Array{Float64,
 pwr_toenergy_ratio::Array{Float64,1} <- DF_Storage.PowerToEnergRatio::Array{Float64,1}
 soc_init::Array{Float64,1}           <- DF_Storage.SOCInit::Array{Float64,1}
 ----------
-
-struct UC_Results
-onoff_init::Array{Int64,1} 			<- FUCR_Init_genOnOff
-power_out::Array{Float64,1}         <- FUCR_Init_genOut
-uptime_init::Array{Float64,1}       <- FUCR_Init_UpTime
-downtime_init::Array{Float64,1}     <- FUCR_Init_DownTime
-soc_init::Array{Float64,1}          <- FUCR_Init_storgSOC
-
-
-FUCR_Init_UpTime_Peaker
 =#
 
 #=

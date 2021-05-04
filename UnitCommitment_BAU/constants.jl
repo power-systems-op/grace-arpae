@@ -29,5 +29,5 @@ const VIOLATION_MAX = 10;
 #Solver's optimality gap that serves as the optimization termination criteria
 const SOLVER_EPGAP =0.005;
 
-const FILE_ACCESS_OVER = "w+"
-const FILE_ACCESS_APPEND = "a+"
+const FILE_ACCESS_OVER = "w+";
+const FILE_ACCESS_APPEND = "a+";

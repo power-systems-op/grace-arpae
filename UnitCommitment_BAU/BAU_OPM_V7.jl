@@ -5,7 +5,7 @@
 #############################################################################
 # GRACE BAU UC
 # This program solves the Business as Usual Unit Commitment problem of
-# Duke Energy Power Syetem
+# Duke Energy Power System
 # See https://github.com/power-systems-op/grace-arpae/
 #############################################################################
 
@@ -40,7 +40,7 @@ const N_Zones = 2
 const M_Zones = 2
 const N_Blocks =7
 const INITIAL_DAY = 1
-const FINAL_DAY = 60
+const FINAL_DAY = 7
 
 #TODO: check if constant INITIAL_HR_BUCR should exist
 const INITIAL_HR_FUCR = 6 # represents the running time for the first WA unit commitment run. INITIAL_HR_FUCR=0 means the FUCR's optimal outcomes are ready at 00:00
@@ -244,23 +244,18 @@ BUCR_CogenGs = BUCR_CogenGs[1:8760, 3:(3+N_Zones-1)];
 Map_Gens_head = Map_Gens[2];
 Map_Gens = Map_Gens[1];
 Map_Gens = Map_Gens[:,3:N_Zones+2]
-# convert to integer table
-Map_Gens = Array{Int64}(Map_Gens)
 
 Map_Peakers_head = Map_Peakers[2];
 Map_Peakers = Map_Peakers[1];
 Map_Peakers = Map_Peakers[:,3:N_Zones+2]
-Map_Peakers = Array{Int64}(Map_Peakers)
 
 Map_Storage_head = Map_Storage[2];
 Map_Storage = Map_Storage[1];
 Map_Storage = Map_Storage[:,2:N_Zones+1]
-Map_Storage = Array{Int64}(Map_Storage)
 
 TranC_head = TranC[2];
 TranC = TranC[1];
 TranC = TranC[1:N_Zones,2:(2+N_Zones-1)];
-TranC = Array{Float64}(TranC)
 
 TranS_head = TranS[2];
 TranS = TranS[1];
@@ -416,46 +411,76 @@ BUCR1_Commit_Peaker_UB = zeros(N_Peakers)
 BUCR2_Commit_Peaker_LB = zeros(N_Peakers)
 BUCR2_Commit_Peaker_UB = zeros(N_Peakers)
 ## Auxiliary variables representing the initial values for commitment/dispatch schedules fed to different Models
-FUCR_Init_genOnOff = zeros(Int64, N_Gens)
-FUCR_Init_genOut = zeros(Float64, N_Gens)
-FUCR_Init_UpTime = zeros(Int64, N_Gens)
-FUCR_Init_DownTime = zeros(Int64, N_Gens)
-FUCR_Init_peakerOnOff = zeros(Int64, N_Peakers)
-FUCR_Init_peakerOut = zeros(Float64, N_Peakers)
-FUCR_Init_UpTime_Peaker = zeros(Int64, N_Peakers)
-FUCR_Init_DownTime_Peaker = zeros(Int64, N_Peakers)
-FUCR_Init_storgSOC = zeros(Float64, N_StorgUs)
+FUCR_Init_genOnOff = zeros(N_Gens)
+FUCR_Init_genOut = zeros(N_Gens)
+FUCR_Init_UpTime = zeros(N_Gens)
+FUCR_Init_DownTime = zeros(N_Gens)
+FUCR_Init_peakerOnOff = zeros(N_Peakers)
+FUCR_Init_peakerOut = zeros(N_Peakers)
+FUCR_Init_UpTime_Peaker = zeros(N_Peakers)
+FUCR_Init_DownTime_Peaker = zeros(N_Peakers)
+FUCR_Init_storgSOC = zeros(N_StorgUs)
 
-SUCR_Init_genOnOff = zeros(Int64, N_Gens)
-SUCR_Init_genOut = zeros(Float64, N_Gens)
-SUCR_Init_UpTime = zeros(Int64, N_Gens)
-SUCR_Init_DownTime = zeros(Int64, N_Gens)
-SUCR_Init_peakerOnOff = zeros(Int64, N_Peakers)
-SUCR_Init_peakerOut = zeros(Float64, N_Peakers)
-SUCR_Init_UpTime_Peaker = zeros(Int64,N_Peakers)
-SUCR_Init_DownTime_Peaker = zeros(Int64, N_Peakers)
-SUCR_Init_storgSOC = zeros(Float64, N_StorgUs)
+SUCR_Init_genOnOff = zeros(N_Gens)
+SUCR_Init_genOut = zeros(N_Gens)
+SUCR_Init_UpTime = zeros(N_Gens)
+SUCR_Init_DownTime = zeros(N_Gens)
+SUCR_Init_peakerOnOff = zeros(N_Peakers)
+SUCR_Init_peakerOut = zeros(N_Peakers)
+SUCR_Init_UpTime_Peaker = zeros(N_Peakers)
+SUCR_Init_DownTime_Peaker = zeros(N_Peakers)
+SUCR_Init_storgSOC = zeros(N_StorgUs)
 
-BUCR1_Init_genOnOff = zeros(Int64, N_Gens)
-BUCR1_Init_genOut = zeros(Float64, N_Gens)
-BUCR1_Init_UpTime = zeros(Int64, N_Gens)
-BUCR1_Init_DownTime = zeros(Int64, N_Gens)
-BUCR1_Init_peakerOnOff = zeros(Int64, N_Peakers)
-BUCR1_Init_peakerOut = zeros(Int64, N_Peakers)
-BUCR1_Init_UpTime_Peaker = zeros(Int64, N_Peakers)
-BUCR1_Init_DownTime_Peaker = zeros(Int64, N_Peakers)
-BUCR1_Init_storgSOC = zeros(Float64, N_StorgUs)
+BUCR1_Init_genOnOff = zeros(N_Gens)
+BUCR1_Init_genOut = zeros(N_Gens)
+BUCR1_Init_UpTime = zeros(N_Gens)
+BUCR1_Init_DownTime = zeros(N_Gens)
+BUCR1_Init_peakerOnOff = zeros(N_Peakers)
+BUCR1_Init_peakerOut = zeros(N_Peakers)
+BUCR1_Init_UpTime_Peaker = zeros(N_Peakers)
+BUCR1_Init_DownTime_Peaker = zeros(N_Peakers)
+BUCR1_Init_storgSOC = zeros(N_StorgUs)
 
-BUCR2_Init_genOnOff = zeros(Int64, N_Gens)
-BUCR2_Init_genOut = zeros(Float64, N_Gens)
-BUCR2_Init_UpTime = zeros(Int64, N_Gens)
-BUCR2_Init_DownTime = zeros(Int64, N_Gens)
-BUCR2_Init_peakerOnOff = zeros(Int64, N_Peakers)
-BUCR2_Init_peakerOut = zeros(Int64, N_Peakers)
-BUCR2_Init_UpTime_Peaker = zeros(Int64, N_Peakers)
-BUCR2_Init_DownTime_Peaker = zeros(Int64, N_Peakers)
-BUCR2_Init_storgSOC = zeros(Float64, N_StorgUs)
+BUCR2_Init_genOnOff = zeros(N_Gens)
+BUCR2_Init_genOut = zeros(N_Gens)
+BUCR2_Init_UpTime = zeros(N_Gens)
+BUCR2_Init_DownTime = zeros(N_Gens)
+BUCR2_Init_peakerOnOff = zeros(N_Peakers)
+BUCR2_Init_peakerOut = zeros(N_Peakers)
+BUCR2_Init_UpTime_Peaker = zeros(N_Peakers)
+BUCR2_Init_DownTime_Peaker = zeros(N_Peakers)
+BUCR2_Init_storgSOC = zeros(N_StorgUs)
 ## Pre-processing the data to calculate the model inputs:
+#=
+## Pre-processing calculations for the first method enforcing min up and down time constraints
+ReqUpTime=zeros(N_Gens,1) # Difference between minimum up time and  the number of periods that unit g was on before t=1 of the scheduling horizon
+ReqUpTimeInit=zeros(N_Gens,1) #determined based on ReqDnTime, represents the number of periods that unit must remain on at the beginning of scheduling horizon
+ReqDnTime=zeros(N_Gens,1) # Difference between minimum down time and  the number of periods that unit g was off before t=1 of the scheduling horizon
+ReqDnTimeInit=zeros(N_Gens,1) #determined based on ReqDnTime, represents the number of periods that unit must remain off at the beginning of scheduling horizon
+for g in 1:N_Gens
+   ReqUpTime[g] = (DF_Generators.MinUpTime[g] - DF_Generators.UpTimeInit[g])*DF_Generators.StatusInit[g]
+   if (ReqUpTime[g] > N_Hrs)
+      ReqUpTimeInit[g] = N_Hrs
+   elseif (ReqUpTime[g] <0)
+      ReqUpTimeInit[g] = 0
+   else
+      ReqUpTimeInit[g] = ReqUpTime[g]
+   end
+end
+ReqUpTimeInit_I = round.(Int,ReqUpTimeInit)
+for g in 1:N_Gens
+   ReqDnTime[g] = (DF_Generators.MinDownTime[g] - DF_Generators.DownTimeInit[g])*(1-DF_Generators.StatusInit[g])
+   if (ReqDnTime[g] > N_Hrs)
+      ReqDnTimeInit[g] = N_Hrs
+   elseif (ReqDnTime[g] <0)
+      ReqDnTimeInit[g] = 0
+   else
+      ReqDnTimeInit[g] = ReqDnTime[g]
+   end
+end
+ReqDnTimeInit_I = round.(Int,ReqDnTimeInit)
+=#
+##
 # The time range lower-bound for min up constrain using the alternative approach
 # LB for slow-start conventional generators
 lbu=zeros(N_Gens,N_Hrs_FUCR)
@@ -509,7 +534,7 @@ for day = INITIAL_DAY:FINAL_DAY
     #TODO: Change these assignments, to avoid replacing the objects
     #  only copy their values
     if day ==1
-        global FUCR_Init_genOnOff = convert(Array{Int64}, DF_Generators.StatusInit)
+        global FUCR_Init_genOnOff = convert(Array{Int64},DF_Generators.StatusInit)
         global FUCR_Init_genOut = convert(Array{Float64}, DF_Generators.PowerInit)
         global FUCR_Init_UpTime = convert(Array{Int64},DF_Generators.UpTimeInit)
         global FUCR_Init_DownTime = convert(Array{Int64},DF_Generators.DownTimeInit)
@@ -528,6 +553,7 @@ for day = INITIAL_DAY:FINAL_DAY
         global BUCR1_Init_peakerOut = convert(Array{Float64},DF_Peakers.PowerInit)
         global BUCR1_Init_UpTime_Peaker = convert(Array{Int64},DF_Peakers.UpTimeInit)
         global BUCR1_Init_DownTime_Peaker = convert(Array{Int64},DF_Peakers.DownTimeInit)
+        global BUCR1_Init_storgSOC = convert(Array{Float64},DF_Storage.SOCInit)
     end
 
     # Demand Data Pre-Processing for FUCR and SUCR
@@ -541,6 +567,7 @@ for day = INITIAL_DAY:FINAL_DAY
     FUCR_WA_HydroG = FUCR_HydroGs[R_Rng_Dn_FUCR:R_Rng_Up_FUCR, :] # week-ahead HydroG data for the first UC run at 6 am
     FUCR_WA_NuclearG = FUCR_NuclearGs[R_Rng_Dn_FUCR:R_Rng_Up_FUCR, :] # week-ahead WindG data for the first UC run at 6 am
     FUCR_WA_CogenG = FUCR_CogenGs[R_Rng_Dn_FUCR:R_Rng_Up_FUCR, :] # week-ahead HydroG data for the first UC run at 6 am
+
 
     D_Rng_Dn_SUCR = ((day-1)*(INITIAL_HR_FUCR+N_Hrs_FUCR))+INITIAL_HR_SUCR+1 # Bottom cell of the demand data needed for running the second WAUC run at 5 pm with 7-day look-ahead horizon
     D_Rng_Up_SUCR = day*(INITIAL_HR_FUCR+N_Hrs_FUCR) # Upper  cell of the demand data needed for running the second WAUC run at pm with 7-day look-ahead horizon
