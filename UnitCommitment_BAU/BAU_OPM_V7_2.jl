@@ -21,12 +21,15 @@ Version: 7.2
 #NOTES: This file was originally labeled as BAU_OPM_V5_Nuc_Cogen_Imp_Exp_MustRun_DCC
 # Changes in this version: Nuclear data was included
 #= Changes
-1. Specify data type of data of the vectors that containd the data read from CSV input files.
-2. Eliminate several rounding operations that have an data type specified
-3. Replace several global variables by local ones
-4. Replace auxiliary variables representing the initial values for commitment/dispatch schedules fed to different Models by structures.
-
-
+1. Specify data type of data of the vectors that store the data read from CSV input files.
+2. Replace several global variables by local variables
+3. Replace several auxiliary variables by structures.
+4. Replace variables that store the results of the first UC by structures
+5. Divide the main script in different julia scripts:
+ 5.1 constants.jl: Store the constants using across different julia files
+ 5.2 data_structure.jl: Define the structures using in the main file and in the UC models
+ 5.3 import_data.jl: Read input files and store data in dataframes and vectors
+ 5.4 fucr_model.jl: Solve first unit commitment model 
 =#
 
 #using Queryverse
@@ -1135,10 +1138,10 @@ for day = INITIAL_DAY:FINAL_DAY
     # Create and save the following parameters, which are transefered to BAUC2
         for h=1:24-INIT_HR_SUCR+INIT_HR_FUCR
             for g=1:GENS
-                global SUCRtoBUCR2_genOnOff[g,h]=JuMP.value.(SUCR_genOnOff[g,h]);
+                global SUCRtoBUCR2_genOnOff[g,h]=round(JuMP.value.(SUCR_genOnOff[g,h]));
                 global SUCRtoBUCR2_genOut[g,h]=JuMP.value.(SUCR_genOut[g,h]);
-                global SUCRtoBUCR2_genStartUp[g,h]=JuMP.value.(SUCR_genStartUp[g,h]);
-                global SUCRtoBUCR2_genShutDown[g,h]=JuMP.value.(SUCR_genShutDown[g,h]);
+                global SUCRtoBUCR2_genStartUp[g,h]=round(JuMP.value.(SUCR_genStartUp[g,h]));
+                global SUCRtoBUCR2_genShutDown[g,h]=round(JuMP.value.(SUCR_genShutDown[g,h]));
                 for b=1:BLOCKS
                     SUCRtoBUCR2_genOut_Block[g,b,h]=JuMP.value.(SUCR_genOut_Block[g,b,h]);
                 end
