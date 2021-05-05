@@ -74,7 +74,7 @@ end
 	power_out::Array{Float64,2} = zeros(GENS, INIT_HR_SUCR+INIT_HR_FUCR)
 	startup::Array{Int64,2} = zeros(GENS, INIT_HR_SUCR+INIT_HR_FUCR)
 	shutdown::Array{Int64,2} = zeros(GENS, INIT_HR_SUCR+INIT_HR_FUCR)
-	genout_block::Array{Float64,2} = zeros(GENS, INIT_HR_SUCR+INIT_HR_FUCR)
+	genout_block::Array{Float64,3} = zeros(GENS, BLOCKS, INIT_HR_SUCR+INIT_HR_FUCR)
 end
 
 @with_kw mutable struct PeakersResults
@@ -82,11 +82,11 @@ end
 	power_out_init::Array{Float64,1} = zeros(PEAKERS)
 	uptime_init::Array{Float64,1} = zeros(PEAKERS)
 	dntime_init::Array{Float64,1} = zeros(PEAKERS)
-	onoff::Array{Int64,2} = zeros(GENS, INIT_HR_SUCR+INIT_HR_FUCR)
-	power_out::Array{Float64,2} = zeros(GENS, INIT_HR_SUCR+INIT_HR_FUCR)
-	startup::Array{Int64,2} = zeros(GENS, INIT_HR_SUCR+INIT_HR_FUCR)
-	shutdown::Array{Int64,2} = zeros(GENS, INIT_HR_SUCR+INIT_HR_FUCR)
-	genout_block::Array{Float64,2} = zeros(GENS, INIT_HR_SUCR+INIT_HR_FUCR)
+	onoff::Array{Int64,2} = zeros(PEAKERS, INIT_HR_SUCR+INIT_HR_FUCR)
+	power_out::Array{Float64,2} = zeros(PEAKERS, INIT_HR_SUCR+INIT_HR_FUCR)
+	startup::Array{Int64,2} = zeros(PEAKERS, INIT_HR_SUCR+INIT_HR_FUCR)
+	shutdown::Array{Int64,2} = zeros(PEAKERS, INIT_HR_SUCR+INIT_HR_FUCR)
+	genout_block::Array{Float64,3} = zeros(PEAKERS,BLOCKS,INIT_HR_SUCR-INIT_HR_FUCR)
 end
 
 @with_kw mutable struct StorageResults
@@ -143,10 +143,33 @@ for b=1:BLOCKS
 =#
 
 mutable struct UC_Results
-	gens::UnitsResults
+	gens::GensResults
 	peakers::PeakersResults
 	storg::StorageResults
 end
+
+#= UC_Results
+FUCRtoBUCR1.gens.onoff 			<- FUCRtoBUCR1_genOnOff
+FUCRtoBUCR1.gens.power_out 		<- FUCRtoBUCR1_genOut
+FUCRtoBUCR1.gens.startup 		<- FUCRtoBUCR1_genStartUp
+FUCRtoBUCR1.gens.shutdown		<- FUCRtoBUCR1_genShutDown
+FUCRtoBUCR1.gens.genout_block   <-  FUCRtoBUCR1_genOut_Block
+
+FUCRtoBUCR1.peakers.onoff 			<- FUCRtoBUCR1_peakerOnOff
+FUCRtoBUCR1.peakers.power_out 		<- FUCRtoBUCR1_peakerOut
+FUCRtoBUCR1.peakers.startup 		<- FUCRtoBUCR1_peakerStartUp
+FUCRtoBUCR1.peakers.shutdown		<- FUCRtoBUCR1_peakerShutDown
+FUCRtoBUCR1.peakers.genout_block   <-  FUCRtoBUCR1_peakerOut_Block
+
+FUCRtoBUCR1.storg.chrg				<- FUCRtoBUCR1_storgChrg
+FUCRtoBUCR1.storg.disc				<- FUCRtoBUCR1_storgDisc
+FUCRtoBUCR1.storg.idle				<- FUCRtoBUCR1_storgIdle
+FUCRtoBUCR1.storg.chrgpwr			<- FUCRtoBUCR1_storgChrgPwr
+FUCRtoBUCR1.storg.discpwr			<- FUCRtoBUCR1_storgDiscPwr
+FUCRtoBUCR1.storg.soc				<- FUCRtoBUCR1_storgSOC
+=#
+
+
 
 
 """

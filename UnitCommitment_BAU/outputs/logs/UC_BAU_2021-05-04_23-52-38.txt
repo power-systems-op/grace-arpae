@@ -17,10 +17,10 @@
 | Perf. Monitoring   | Performance Monitoring Counters (PMC) are not supported    |
 | Hypervisor         | Yes, VMware                                                |
 
-└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7_1.jl:62
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7_2.jl:63
 Running model from day 1 to day 1 with the following parameters:
 Load-Shedding Penalty: 3000, Over-generation Penalty: 4000
 Max Load-Shedding Penalty 100, Max Over-generation Penalty: 100
 MaxGenLimit Viol Penalty: 500, OptimalityGap: 4000
-┌ Info: Time to read input data (s): 18.5875848
-└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7_1.jl:74
+┌ Info: Time to read input data (s): 1.6085584
+└ @ Main C:\Users\rapiduser\Documents\GitHub\grace-arpae\UnitCommitment_BAU\BAU_OPM_V7_2.jl:75

@@ -62,11 +62,11 @@ FuelPricePeakers = readdlm(".//inputs//csv//data_fuel_price_peakers.csv", ','; h
 
 FuelPrice_head = FuelPrice[2];
 FuelPrice = FuelPrice[1];
-FuelPrice = FuelPrice[2:GENS+1, 4:368];
+FuelPrice = Array{Float64}(FuelPrice[2:GENS+1, 4:368]);
 
 FuelPricePeakers_head = FuelPricePeakers[2];
 FuelPricePeakers = FuelPricePeakers[1];
-FuelPricePeakers = FuelPricePeakers[2:PEAKERS+1, 4:368];
+FuelPricePeakers = Array{Float64}(FuelPricePeakers[2:PEAKERS+1, 4:368]);
 
 # Reorganize data
 FUCR_Demands_head = FUCR_Demands[2];

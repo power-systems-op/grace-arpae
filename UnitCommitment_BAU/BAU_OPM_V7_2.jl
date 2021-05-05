@@ -11,7 +11,7 @@
 
 """
 File: BAU_OPM.jl
-Version: 7
+Version: 7.2
 ...
 # Arguments: None
 # Outputs: dataframe
@@ -47,6 +47,7 @@ t1_read_data = time_ns()
 include("import_data.jl")
 t2_read_data = time_ns()
 time_read_data = (t2_read_data -t1_read_data)/1.0e9;
+include("fucr_model.jl")
 
 ## Enabling debugging code, use ENV["JULIA_DEBUG"] = "" to desable ging code
 ENV["JULIA_DEBUG"] = "all"
@@ -77,43 +78,6 @@ open(".//outputs//csv//time_performance.csv", FILE_ACCESS_APPEND) do io
                 "", "", "Read CSV files"), ',')
 end;
 
-##
-#=generators = SysGenerator(DF_Generators.UNIT_ID,
-            DF_Generators.StatusInit,
-            DF_Generators.PowerInit,
-            DF_Generators.UpTimeInit,
-            DF_Generators.DownTimeInit,
-            DF_Generators.IHRC_B1_HR,
-            DF_Generators.IHRC_B2_HR,
-            DF_Generators.IHRC_B3_HR,
-            DF_Generators.IHRC_B4_HR,
-            DF_Generators.IHRC_B5_HR,
-            DF_Generators.IHRC_B6_HR,
-            DF_Generators.IHRC_B7_HR,
-            DF_Generators.IHRC_B1_Q,
-            DF_Generators.IHRC_B2_Q,
-            DF_Generators.IHRC_B3_Q,
-            DF_Generators.IHRC_B4_Q,
-            DF_Generators.IHRC_B5_Q,
-            DF_Generators.IHRC_B6_Q,
-            DF_Generators.IHRC_B7_Q,
-            DF_Generators.NoLoadHR,
-            DF_Generators.ShutdownCost,
-            DF_Generators.HotStartU_FixedCost,
-            DF_Generators.HotStartU_HeatRate ,
-            DF_Generators.MinDownTime,
-            DF_Generators.MinUpTime,
-            DF_Generators.MaxPowerOut,
-            DF_Generators.MinPowerOut,
-            DF_Generators.SpinningRes_Limit,
-            DF_Generators.RampUpLimit,
-            DF_Generators.RampShutDownLimit,
-            DF_Generators.Nuclear,
-            DF_Generators.Cogen,
-            DF_Generators.NaturalGasFired,
-)
-=#
-
 # Setting initial values
 fucr_gens = GensResults(
 	onoff_init = copy(DF_Generators.StatusInit),
@@ -121,16 +85,6 @@ fucr_gens = GensResults(
 	uptime_init = copy(DF_Generators.UpTimeInit),
 	dntime_init = copy(DF_Generators.DownTimeInit))
 
-#=	onoff_init::Array{Int64,1} = zeros(Int64, GENS)
-	power_out_init::Array{Float64,1}
-	uptime_init::Array{Float64,1}
-	dntime_init::Array{Float64,1}
-	onoff::Array{Int64,2}
-	power_out::Array{Float64,2}
-	startup::Array{Int64,2}
-	shutdown::Array{Int64,2}
-	genout_block::Array{Float64,2}
-=#
 fucr_peakers = PeakersResults(
 	onoff_init = copy(DF_Peakers.StatusInit),
 	power_out_init = copy(DF_Peakers.PowerInit),
@@ -139,17 +93,6 @@ fucr_peakers = PeakersResults(
 
 fucr_storg = StorageResults(
 	soc_init =copy(DF_Storage.SOCInit))
-
-#=	mutable struct StorageResults
-		soc_init::Array{Float64,1}
-		chrg::Array{Int64,2}
-		disc::Array{Int64,2}
-		idle::Array{Int64,2}
-		chrgpwr::Array{Float64,2}
-		discpwr::Array{Float64,2}
-		soc::Array{Float64,2}
-	end
-=#
 
 FUCR = UC_Results(fucr_gens, fucr_peakers, fucr_storg)
 
@@ -182,37 +125,21 @@ bucr1_peakers = PeakersResults(
 	uptime_init = copy(DF_Peakers.UpTimeInit),
 	dntime_init = copy(DF_Peakers.DownTimeInit))
 
-bucr1_storg = StorageResults(
-	soc_init =copy(DF_Storage.SOCInit))
+bucr1_storg = StorageResults(soc_init =copy(DF_Storage.SOCInit))
 
 BUCR1 = UC_Results(bucr1_gens, bucr1_peakers, bucr1_storg)
 
 bucr2_gens = GensResults()
-
-
-
-
-
 bucr2_peakers = PeakersResults()
-
-
-
-
-
-bucr2_storg = StorageResults(
-	soc_init = zeros(STORG_UNITS))
+bucr2_storg = StorageResults(soc_init = zeros(STORG_UNITS))
 
 BUCR2 = UC_Results(bucr2_gens, bucr2_peakers, bucr2_storg)
 
-fucr_to_bucr1_gens = GensResults()
-fucr_to_bucr1_peakers = PeakersResults()
-fucr_to_bucr1_storg = StorageResults()
+fucr_to_bucr1_gens = GensResults();
+fucr_to_bucr1_peakers = PeakersResults();
+fucr_to_bucr1_storg = StorageResults();
 
-FUCRtoBUCR1 = UC_Results(
-	fucr_to_bucr1_gens,
-	fucr_to_bucr1_peakers,
-	fucr_to_bucr1_storg)
-
+FUCRtoBUCR1 = UC_Results(fucr_to_bucr1_gens, fucr_to_bucr1_peakers, fucr_to_bucr1_storg);
 
 ## Headers of output files
 @time begin
@@ -234,8 +161,7 @@ BUCR_Curtail_header         = ["Day", "Hour", "Zone", "OverGeneration", "DemandC
 
 end #timer
 
-##
-# Spreadsheets for the first unit commitment run
+## Spreadsheets for the first unit commitment run
 # Creating Conventional generating units' schedules in the first unit commitment run
 open(".//outputs//csv//FUCR_GenOutputs.csv", FILE_ACCESS_OVER) do io
     writedlm(io, permutedims(FUCR_GenOutputs_header), ',')
@@ -258,7 +184,7 @@ open(".//outputs//csv//FUCR_Curtail.csv", FILE_ACCESS_OVER) do io
 end; # closes file
 
 # Spreadsheets for the second unit commitment run
-# Creating Conventional generating units' schedules in the second unit commitment run
+# Creating Conventional generating units' schedules in the 2nd unit commitment
 open(".//outputs//csv//SUCR_GenOutputs.csv", FILE_ACCESS_OVER) do io
     writedlm(io, permutedims(SUCR_GenOutputs_header), ',')
 end; # closes file
@@ -310,27 +236,6 @@ end; # closes file
 ## Creating variables that transfer optimal schedules between the Models
 
 # Some of the below variables may be unneccsary and can be deleted. Check at the end
-
-#=FUCRtoBUCR1.gens.onoff = zeros(Int64, GENS,INIT_HR_SUCR-INIT_HR_FUCR)
-FUCRtoBUCR1.gens.power_out = zeros(Float64, GENS,INIT_HR_SUCR-INIT_HR_FUCR)
-FUCRtoBUCR1.gens.genout_block = zeros(GENS,BLOCKS,INIT_HR_SUCR-INIT_HR_FUCR)
-FUCRtoBUCR1.gens.startup = zeros(Int64, GENS,INIT_HR_SUCR-INIT_HR_FUCR)
-FUCRtoBUCR1.gens.shutdown= zeros(Int64, GENS,INIT_HR_SUCR-INIT_HR_FUCR)
-
-FUCRtoBUCR1.peakers.onoff = zeros(Int64, PEAKERS,INIT_HR_SUCR-INIT_HR_FUCR)
-FUCRtoBUCR1.peakers.power_out = zeros(Float64, PEAKERS,INIT_HR_SUCR-INIT_HR_FUCR)
-FUCRtoBUCR1.peakers.genout_block = zeros(Float64, PEAKERS,BLOCKS,INIT_HR_SUCR-INIT_HR_FUCR)
-FUCRtoBUCR1.peakers.startup = zeros(Int64, PEAKERS,INIT_HR_SUCR-INIT_HR_FUCR)
-FUCRtoBUCR1.peakers.shutdown= zeros(Int64, PEAKERS,INIT_HR_SUCR-INIT_HR_FUCR)
-
-FUCRtoBUCR1.storg.chrg = zeros(Int64, STORG_UNITS, INIT_HR_SUCR-INIT_HR_FUCR)
-FUCRtoBUCR1.storg.disc = zeros(Int64, STORG_UNITS, INIT_HR_SUCR-INIT_HR_FUCR)
-FUCRtoBUCR1.storg.idle = zeros(Int64, STORG_UNITS, INIT_HR_SUCR-INIT_HR_FUCR)
-FUCRtoBUCR1.storg.chrgpwr = zeros(Float64, STORG_UNITS, INIT_HR_SUCR-INIT_HR_FUCR)
-FUCRtoBUCR1.storg.discpwr = zeros(Float64, STORG_UNITS, INIT_HR_SUCR-INIT_HR_FUCR)
-FUCRtoBUCR1.storg.soc = zeros(Float64, STORG_UNITS, INIT_HR_SUCR-INIT_HR_FUCR)
-=#
-
 SUCRtoBUCR2_genOnOff = zeros(Int64, GENS,24-INIT_HR_SUCR+INIT_HR_FUCR)
 SUCRtoBUCR2_genOut = zeros(Float64, GENS,24-INIT_HR_SUCR+INIT_HR_FUCR)
 SUCRtoBUCR2_genOut_Block = zeros(Float64, GENS,BLOCKS,24-INIT_HR_SUCR+INIT_HR_FUCR)
@@ -422,404 +327,14 @@ for day = INITIAL_DAY:FINAL_DAY
     	copy(SUCR_CogenGs[R_Rng_Dn_SUCR:R_Rng_Up_SUCR, :])
     )
 
-## This block models the first UC optimization that is run in the morning
+	## This block models the first UC optimization that is run in the morning
     t1_FUCRmodel = time_ns()
-    FUCRtoBUCR1 = fucr_model(DF_Generators, DF_Peakers, FuelPrice, FuelPricePeakers, DF_Storage, FUCRtoBUCR1)
-    FUCRmodel = direct_model(CPLEX.Optimizer())
-    # Enable Benders strategy
-    #MOI.set(FUCRmodel, MOI.RawParameter("CPXPARAM_Benders_Strategy"), 3)
-    set_optimizer_attribute(FUCRmodel, "CPX_PARAM_EPGAP", SOLVER_EPGAP)
 
-# Declaring the decision variables for conventional generators
-    @variable(FUCRmodel, FUCR_genOnOff[1:GENS, 0:HRS_FUCR], Bin) #Bin
-    @variable(FUCRmodel, FUCR_genStartUp[1:GENS, 1:HRS_FUCR], Bin) # startup variable
-    @variable(FUCRmodel, FUCR_genShutDown[1:GENS, 1:HRS_FUCR], Bin) # shutdown variable
-    @variable(FUCRmodel, FUCR_genOut[1:GENS, 0:HRS_FUCR]>=0) # Generator's output schedule
-    @variable(FUCRmodel, FUCR_genOut_Block[1:GENS, 1:BLOCKS, 1:HRS_FUCR]>=0) # Generator's output schedule from each block (block rfers to IHR curve blocks/segments)
-    @variable(FUCRmodel, FUCR_genResUp[1:GENS, 1:HRS_FUCR]>=0) # Generators' up reserve schedule
-    @variable(FUCRmodel, FUCR_genResNonSpin[1:GENS, 1:HRS_FUCR]>=0) # Scheduled up reserve on offline fast-start peakers
-    @variable(FUCRmodel, FUCR_genResDn[1:GENS, 1:HRS_FUCR]>=0) # Generator's down rserve schedule
-    @variable(FUCRmodel, FUCR_TotGenVioP[g=1:GENS, 1:HRS_FUCR]>=0)
-    @variable(FUCRmodel, FUCR_TotGenVioN[g=1:GENS, 1:HRS_FUCR]>=0)
-    @variable(FUCRmodel, FUCR_MaxGenVioP[g=1:GENS, 1:HRS_FUCR]>=0)
-    @variable(FUCRmodel, FUCR_MinGenVioP[g=1:GENS, 1:HRS_FUCR]>=0)
+	FUCRtoBUCR = UC_Results(GensResults(), PeakersResults(), StorageResults());
+    FUCRtoBUCR1 = fucr_model(day, DF_Generators, DF_Peakers, FuelPrice,
+						FuelPricePeakers, DF_Storage, FUCR, fucr_prep_demand)
 
-	# Declaring the decision variables for peaker units
-    @variable(FUCRmodel, 0<=FUCR_peakerOnOff[1:PEAKERS, 0:HRS_FUCR]<=1)
-    @variable(FUCRmodel, 0<=FUCR_peakerStartUp[1:PEAKERS, 1:HRS_FUCR]<=1)
-    @variable(FUCRmodel, 0<=FUCR_peakerShutDown[1:PEAKERS, 1:HRS_FUCR]<=1)
-    @variable(FUCRmodel, FUCR_peakerOut[1:PEAKERS, 0:HRS_FUCR]>=0) # Generator's output schedule
-    @variable(FUCRmodel, FUCR_peakerOut_Block[1:PEAKERS, 1:BLOCKS, 1:HRS_FUCR]>=0) # Generator's output schedule from each block (block rfers to IHR curve blocks/segments)
-    @variable(FUCRmodel, FUCR_peakerResUp[1:PEAKERS, 1:HRS_FUCR]>=0) # Generators' up reserve schedule
-    @variable(FUCRmodel, FUCR_peakerResNonSpin[1:PEAKERS, 1:HRS_FUCR]>=0) # Scheduled up reserve on offline fast-start peakers
-    @variable(FUCRmodel, FUCR_peakerResDn[1:PEAKERS, 1:HRS_FUCR]>=0) # Generator's down rserve schedule
-
-    # declaring decision variables for storage Units
-    @variable(FUCRmodel, FUCR_storgChrg[1:STORG_UNITS, 1:HRS_FUCR], Bin) #Bin variable equal to 1 if unit runs in the charging mode
-    @variable(FUCRmodel, FUCR_storgDisc[1:STORG_UNITS, 1:HRS_FUCR], Bin) #Bin variable equal to 1 if unit runs in the discharging mode
-    @variable(FUCRmodel, FUCR_storgIdle[1:STORG_UNITS, 1:HRS_FUCR], Bin) ##Bin variable equal to 1 if unit runs in the idle mode
-    @variable(FUCRmodel, FUCR_storgChrgPwr[1:STORG_UNITS, 0:HRS_FUCR]>=0) #Chargung power
-    @variable(FUCRmodel, FUCR_storgDiscPwr[1:STORG_UNITS, 0:HRS_FUCR]>=0) # Discharging Power
-    @variable(FUCRmodel, FUCR_storgSOC[1:STORG_UNITS, 0:HRS_FUCR]>=0) # state of charge (stored energy level for storage unit at time t)
-    @variable(FUCRmodel, FUCR_storgResUp[1:STORG_UNITS, 0:HRS_FUCR]>=0) # Scheduled up reserve
-    @variable(FUCRmodel, FUCR_storgResDn[1:STORG_UNITS, 0:HRS_FUCR]>=0) # Scheduled down reserve
-
-    # declaring decision variables for renewable generation
-    @variable(FUCRmodel, FUCR_solarG[1:N_ZONES, 1:HRS_FUCR]>=0) # solar energy schedules
-    @variable(FUCRmodel, FUCR_windG[1:N_ZONES, 1:HRS_FUCR]>=0) # wind energy schedules
-    @variable(FUCRmodel, FUCR_hydroG[1:N_ZONES, 1:HRS_FUCR]>=0) # hydro energy schedules
-    @variable(FUCRmodel, FUCR_solarGSpil[1:N_ZONES, 1:HRS_FUCR]>=0) # solar energy schedules
-    @variable(FUCRmodel, FUCR_windGSpil[1:N_ZONES, 1:HRS_FUCR]>=0) # wind energy schedules
-    @variable(FUCRmodel, FUCR_hydroGSpil[1:N_ZONES, 1:HRS_FUCR]>=0) # hydro energy schedules
-
-    # Declaring decision variables for hourly dispatched and curtailed demand
-    @variable(FUCRmodel, FUCR_Demand[1:N_ZONES, 1:HRS_FUCR]>=0) # Hourly scheduled demand
-    @variable(FUCRmodel, FUCR_Demand_Curt[1:N_ZONES, 1:HRS_FUCR]>=0) # Hourly schedule demand
-
-    # Declaring variables for transmission system
-    @variable(FUCRmodel, FUCR_voltAngle[1:N_ZONES, 1:HRS_FUCR]) #voltage angle at zone/bus n in t//
-    @variable(FUCRmodel, FUCR_powerFlow[1:N_ZONES, 1:M_ZONES, 1:HRS_FUCR]) #transmission Flow from zone n to zone m//
-
-    # Declaring over and undergeneration decision variable
-    @variable(FUCRmodel, FUCR_OverGen[1:N_ZONES, 1:HRS_FUCR]>=0) #overgeneration at zone n and time t//
-
-    # Defining the objective function that minimizes the overal cost of supplying electricity (=total variable, no-load, startup, and shutdown costs)
-    @objective(FUCRmodel, Min, sum(sum(DF_Generators.IHRC_B1_HR[g]*FuelPrice[g,day]*FUCR_genOut_Block[g,1,t]
-                                       +DF_Generators.IHRC_B2_HR[g]*FuelPrice[g,day]*FUCR_genOut_Block[g,2,t]
-                                       +DF_Generators.IHRC_B3_HR[g]*FuelPrice[g,day]*FUCR_genOut_Block[g,3,t]
-                                       +DF_Generators.IHRC_B4_HR[g]*FuelPrice[g,day]*FUCR_genOut_Block[g,4,t]
-                                       +DF_Generators.IHRC_B5_HR[g]*FuelPrice[g,day]*FUCR_genOut_Block[g,5,t]
-                                       +DF_Generators.IHRC_B6_HR[g]*FuelPrice[g,day]*FUCR_genOut_Block[g,6,t]
-                                       +DF_Generators.IHRC_B7_HR[g]*FuelPrice[g,day]*FUCR_genOut_Block[g,7,t]
-                                       +DF_Generators.NoLoadHR[g]*FuelPrice[g,day]*FUCR_genOnOff[g,t]
-                                       +((DF_Generators.HotStartU_FixedCost[g]
-                                       +(DF_Generators.HotStartU_HeatRate[g]*FuelPrice[g,day]))*FUCR_genStartUp[g,t])
-                                       +DF_Generators.ShutdownCost[g]*FUCR_genShutDown[g, t]
-                                       +(FUCR_TotGenVioP[g,t]*VIOLATION_PENALTY)
-                                       +(FUCR_TotGenVioN[g,t]*VIOLATION_PENALTY)
-                                       +(FUCR_MaxGenVioP[g,t]*VIOLATION_PENALTY)
-                                       +(FUCR_MinGenVioP[g,t]*VIOLATION_PENALTY) for g in 1:GENS)
-                                       +sum(DF_Peakers.IHRC_B1_HR[k]*FuelPricePeakers[k,day]*FUCR_peakerOut_Block[k,1,t]
-                                       +DF_Peakers.IHRC_B2_HR[k]*FuelPricePeakers[k,day]*FUCR_peakerOut_Block[k,2,t]
-                                       +DF_Peakers.IHRC_B3_HR[k]*FuelPricePeakers[k,day]*FUCR_peakerOut_Block[k,3,t]
-                                       +DF_Peakers.IHRC_B4_HR[k]*FuelPricePeakers[k,day]*FUCR_peakerOut_Block[k,4,t]
-                                       +DF_Peakers.IHRC_B5_HR[k]*FuelPricePeakers[k,day]*FUCR_peakerOut_Block[k,5,t]
-                                       +DF_Peakers.IHRC_B6_HR[k]*FuelPricePeakers[k,day]*FUCR_peakerOut_Block[k,6,t]
-                                       +DF_Peakers.IHRC_B7_HR[k]*FuelPricePeakers[k,day]*FUCR_peakerOut_Block[k,7,t]
-                                       +DF_Peakers.NoLoadHR[k]*FuelPricePeakers[k,day]*FUCR_peakerOnOff[k,t]
-                                       +((DF_Peakers.HotStartU_FixedCost[k]
-                                       +(DF_Peakers.HotStartU_HeatRate[k]*FuelPricePeakers[k,day]))*FUCR_peakerStartUp[k,t])
-                                       +DF_Peakers.ShutdownCost[k]*FUCR_peakerShutDown[k, t] for k in 1:PEAKERS) for t in 1:HRS_FUCR)
-                                       +sum(sum((FUCR_Demand_Curt[n,t]*LOAD_SHED_PENALTY)
-                                       +(FUCR_OverGen[n,t]*OVERGEN_PENALTY) for n=1:N_ZONES) for t=1:HRS_FUCR))
-
-#Initialization of commitment and dispatch variables for convnentioal generatoes at t=0 (representing the last hour of previous scheduling horizon day=day-1 and t=24)
-    @constraint(FUCRmodel, conInitGenOnOff[g=1:GENS], FUCR_genOnOff[g,0]==FUCR.gens.onoff_init[g]) # initial generation level for generator g at t=0
-    @constraint(FUCRmodel, conInitGenOut[g=1:GENS], FUCR_genOut[g,0]==FUCR.gens.power_out_init[g]) # initial on/off status for generators g at t=0
-#Initialization of commitment and dispatch variables for peakers  at t=0 (representing the last hour of previous scheduling horizon day=day-1 and t=24)
-    @constraint(FUCRmodel, conInitGenOnOff_Peakers[k=1:PEAKERS], FUCR_peakerOnOff[k,0]==FUCR.peakers.onoff_init[k]) # initial generation level for peaker k at t=0
-    @constraint(FUCRmodel, conInitGenOut_Peakers[k=1:PEAKERS], FUCR_peakerOut[k,0]==FUCR.peakers.power_out_init[k]) # initial on/off status for peaker k at t=0
-#Initialization of SOC variables for storage units at t=0 (representing the last hour of previous scheduling horizon day=day-1 and t=24)
-    @constraint(FUCRmodel, conInitSOC[p=1:STORG_UNITS], FUCR_storgSOC[p,0]==FUCR.storg.soc_init[p]) # SOC for storage unit p at t=0
-
-#Base-Load Operation of nuclear Generators
-    @constraint(FUCRmodel, conNuckBaseLoad[t=1:HRS_FUCR, g=1:GENS], FUCR_genOnOff[g,t]>=DF_Generators.Nuclear[g]) #
-    @constraint(FUCRmodel, conNuclearTotGenZone[t=1:HRS_FUCR, n=1:N_ZONES], sum((FUCR_genOut[g,t]*Map_Gens[g,n]*DF_Generators.Nuclear[g]) for g=1:GENS) -fucr_prep_demand.nuclear_wa[t,n] ==0)
-
-#Limits on generation of cogen units
-    @constraint(FUCRmodel, conCoGenBaseLoad[t=1:HRS_FUCR, g=1:GENS], FUCR_genOnOff[g,t]>=DF_Generators.Cogen[g]) #
-    @constraint(FUCRmodel, conCoGenTotGenZone[t=1:HRS_FUCR, n=1:N_ZONES], sum((FUCR_genOut[g,t]*Map_Gens[g,n]*DF_Generators.Cogen[g]) for g=1:GENS) -fucr_prep_demand.cogen_wa[t,n] ==0)
-
-# Constraints representing technical limits of conventional generators
-#Status transition trajectory of
-    @constraint(FUCRmodel, conStartUpAndDn[t=1:HRS_FUCR, g=1:GENS], (FUCR_genOnOff[g,t] - FUCR_genOnOff[g,t-1] - FUCR_genStartUp[g,t] + FUCR_genShutDown[g,t])==0)
-# Max Power generation limit in Block 1
-    @constraint(FUCRmodel, conMaxPowBlock1[t=1:HRS_FUCR, g=1:GENS],  FUCR_genOut_Block[g,1,t] <= DF_Generators.IHRC_B1_Q[g]*FUCR_genOnOff[g,t] )
-# Max Power generation limit in Block 2
-    @constraint(FUCRmodel, conMaxPowBlock2[t=1:HRS_FUCR, g=1:GENS],  FUCR_genOut_Block[g,2,t] <= DF_Generators.IHRC_B2_Q[g]*FUCR_genOnOff[g,t] )
-# Max Power generation limit in Block 3
-    @constraint(FUCRmodel, conMaxPowBlock3[t=1:HRS_FUCR, g=1:GENS],  FUCR_genOut_Block[g,3,t] <= DF_Generators.IHRC_B3_Q[g]*FUCR_genOnOff[g,t] )
-# Max Power generation limit in Block 4
-    @constraint(FUCRmodel, conMaxPowBlock4[t=1:HRS_FUCR, g=1:GENS],  FUCR_genOut_Block[g,4,t] <= DF_Generators.IHRC_B4_Q[g]*FUCR_genOnOff[g,t] )
-# Max Power generation limit in Block 5
-    @constraint(FUCRmodel, conMaxPowBlock5[t=1:HRS_FUCR, g=1:GENS],  FUCR_genOut_Block[g,5,t] <= DF_Generators.IHRC_B5_Q[g]*FUCR_genOnOff[g,t] )
-# Max Power generation limit in Block 6
-    @constraint(FUCRmodel, conMaxPowBlock6[t=1:HRS_FUCR, g=1:GENS],  FUCR_genOut_Block[g,6,t] <= DF_Generators.IHRC_B6_Q[g]*FUCR_genOnOff[g,t] )
-# Max Power generation limit in Block 7
-    @constraint(FUCRmodel, conMaxPowBlock7[t=1:HRS_FUCR, g=1:GENS],  FUCR_genOut_Block[g,7,t] <= DF_Generators.IHRC_B7_Q[g]*FUCR_genOnOff[g,t] )
-# Total Production of each generation equals the sum of generation from its all blocks
-    @constraint(FUCRmodel, conTotalGen[t=1:HRS_FUCR, g=1:GENS],  sum(FUCR_genOut_Block[g,b,t] for b=1:BLOCKS) + FUCR_TotGenVioP[g,t] - FUCR_TotGenVioN[g,t] ==FUCR_genOut[g,t])
-#Max power generation limit
-    @constraint(FUCRmodel, conMaxPow[t=1:HRS_FUCR, g=1:GENS],  FUCR_genOut[g,t]+FUCR_genResUp[g,t] - FUCR_MaxGenVioP[g,t] <= DF_Generators.MaxPowerOut[g]*FUCR_genOnOff[g,t] )
-# Min power generation limit
-    @constraint(FUCRmodel, conMinPow[t=1:HRS_FUCR, g=1:GENS],  FUCR_genOut[g,t]-FUCR_genResDn[g,t] + FUCR_MinGenVioP[g,t] >= DF_Generators.MinPowerOut[g]*FUCR_genOnOff[g,t] )
-# Up reserve provision limit
-    @constraint(FUCRmodel, conMaxResUp[t=1:HRS_FUCR, g=1:GENS], FUCR_genResUp[g,t] <= DF_Generators.SpinningRes_Limit[g]*FUCR_genOnOff[g,t] )
-# Non-Spinning Reserve Limit
-#    @constraint(FUCRmodel, conMaxNonSpinResUp[t=1:HRS_SUCR, g=1:GENS], FUCR_genResNonSpin[g,t] <= (DF_Generators.NonSpinningRes_Limit[g]*(1-FUCR_genOnOff[g,t])*DF_Generators.FastStart[g]))
-    @constraint(FUCRmodel, conMaxNonSpinResUp[t=1:HRS_SUCR, g=1:GENS], FUCR_genResNonSpin[g,t] <= 0)
-#Down reserve provision limit
-    @constraint(FUCRmodel, conMaxResDown[t=1:HRS_FUCR, g=1:GENS],  FUCR_genResDn[g,t] <= DF_Generators.SpinningRes_Limit[g]*FUCR_genOnOff[g,t] )
-#Up ramp rate limit
-    @constraint(FUCRmodel, conRampRateUp[t=1:HRS_FUCR, g=1:GENS], (FUCR_genOut[g,t] - FUCR_genOut[g,t-1] <=(DF_Generators.RampUpLimit[g]*FUCR_genOnOff[g, t-1]) + (DF_Generators.RampStartUpLimit[g]*FUCR_genStartUp[g,t])))
-# Down ramp rate limit
-    @constraint(FUCRmodel, conRampRateDown[t=1:HRS_FUCR, g=1:GENS], (FUCR_genOut[g,t-1] - FUCR_genOut[g,t] <=(DF_Generators.RampDownLimit[g]*FUCR_genOnOff[g,t]) + (DF_Generators.RampShutDownLimit[g]*FUCR_genShutDown[g,t])))
-# Min Up Time limit with alternative formulation
-    @constraint(FUCRmodel, conUpTime[t=1:HRS_FUCR, g=1:GENS], (sum(FUCR_genStartUp[g,r] for r=lb_MUT[g,t]:t)<=FUCR_genOnOff[g,t]))
-# Min down Time limit with alternative formulation
-    @constraint(FUCRmodel, conDownTime[t=1:HRS_FUCR, g=1:GENS], (1-sum(FUCR_genShutDown[g,s] for s=lb_MDT[g,t]:t)>=FUCR_genOnOff[g,t]))
-
-# Peaker Units' constraints
-#Status transition trajectory of
-    @constraint(FUCRmodel, conStartUpAndDn_Peaker[t=1:HRS_FUCR, k=1:PEAKERS], (FUCR_peakerOnOff[k,t] - FUCR_peakerOnOff[k,t-1] - FUCR_peakerStartUp[k,t] + FUCR_peakerShutDown[k,t])==0)
-# Max Power generation limit in Block 1
-    @constraint(FUCRmodel, conMaxPowBlock1_Peaker[t=1:HRS_FUCR, k=1:PEAKERS],  FUCR_peakerOut_Block[k,1,t] <= DF_Peakers.IHRC_B1_Q[k]*FUCR_peakerOnOff[k,t] )
-# Max Power generation limit in Block 2
-    @constraint(FUCRmodel, conMaxPowBlock2_Peaker[t=1:HRS_FUCR, k=1:PEAKERS],  FUCR_peakerOut_Block[k,2,t] <= DF_Peakers.IHRC_B2_Q[k]*FUCR_peakerOnOff[k,t] )
-# Max Power generation limit in Block 3
-    @constraint(FUCRmodel, conMaxPowBlock3_Peaker[t=1:HRS_FUCR, k=1:PEAKERS],  FUCR_peakerOut_Block[k,3,t] <= DF_Peakers.IHRC_B3_Q[k]*FUCR_peakerOnOff[k,t] )
-# Max Power generation limit in Block 4
-    @constraint(FUCRmodel, conMaxPowBlock4_Peaker[t=1:HRS_FUCR, k=1:PEAKERS],  FUCR_peakerOut_Block[k,4,t] <= DF_Peakers.IHRC_B4_Q[k]*FUCR_peakerOnOff[k,t] )
-# Max Power generation limit in Block 5
-    @constraint(FUCRmodel, conMaxPowBlock5_Peaker[t=1:HRS_FUCR, k=1:PEAKERS],  FUCR_peakerOut_Block[k,5,t] <= DF_Peakers.IHRC_B5_Q[k]*FUCR_peakerOnOff[k,t] )
-# Max Power generation limit in Block 6
-    @constraint(FUCRmodel, conMaxPowBlock6_Peaker[t=1:HRS_FUCR, k=1:PEAKERS],  FUCR_peakerOut_Block[k,6,t] <= DF_Peakers.IHRC_B6_Q[k]*FUCR_peakerOnOff[k,t] )
-# Max Power generation limit in Block 7
-    @constraint(FUCRmodel, conMaxPowBlock7_Peaker[t=1:HRS_FUCR, k=1:PEAKERS],  FUCR_peakerOut_Block[k,7,t] <= DF_Peakers.IHRC_B7_Q[k]*FUCR_peakerOnOff[k,t] )
-# Total Production of each generation equals the sum of generation from its all blocks
-    @constraint(FUCRmodel, conTotalGen_Peaker[t=1:HRS_FUCR, k=1:PEAKERS],  sum(FUCR_peakerOut_Block[k,b,t] for b=1:BLOCKS)>=FUCR_peakerOut[k,t])
-#Max power generation limit
-    @constraint(FUCRmodel, conMaxPow_Peaker[t=1:HRS_FUCR, k=1:PEAKERS],  FUCR_peakerOut[k,t]+FUCR_peakerResUp[k,t] <= DF_Peakers.MaxPowerOut[k]*FUCR_peakerOnOff[k,t] )
-# Min power generation limit
-    @constraint(FUCRmodel, conMinPow_Peaker[t=1:HRS_FUCR, k=1:PEAKERS],  FUCR_peakerOut[k,t]-FUCR_peakerResDn[k,t] >= DF_Peakers.MinPowerOut[k]*FUCR_peakerOnOff[k,t] )
-# Up reserve provision limit
-    @constraint(FUCRmodel, conMaxResUp_Peaker[t=1:HRS_FUCR, k=1:PEAKERS], FUCR_peakerResUp[k,t] <= DF_Peakers.SpinningRes_Limit[k]*FUCR_peakerOnOff[k,t] )
-# Non-Spinning Reserve Limit
-    @constraint(FUCRmodel, conMaxNonSpinResUp_Peaker[t=1:HRS_SUCR, k=1:PEAKERS], FUCR_peakerResNonSpin[k,t] <= (DF_Peakers.NonSpinningRes_Limit[k]*(1-FUCR_peakerOnOff[k,t])))
-#Down reserve provision limit
-    @constraint(FUCRmodel, conMaxResDown_Peaker[t=1:HRS_FUCR, k=1:PEAKERS],  FUCR_peakerResDn[k,t] <= DF_Peakers.SpinningRes_Limit[k]*FUCR_peakerOnOff[k,t] )
-#Up ramp rate limit
-    @constraint(FUCRmodel, conRampRateUp_Peaker[t=1:HRS_FUCR, k=1:PEAKERS], (FUCR_peakerOut[k,t] - FUCR_peakerOut[k,t-1] <=(DF_Peakers.RampUpLimit[k]*FUCR_peakerOnOff[k, t-1]) + (DF_Peakers.RampStartUpLimit[k]*FUCR_peakerStartUp[k,t])))
-# Down ramp rate limit
-    @constraint(FUCRmodel, conRampRateDown_Peaker[t=1:HRS_FUCR, k=1:PEAKERS], (FUCR_peakerOut[k,t-1] - FUCR_peakerOut[k,t] <=(DF_Peakers.RampDownLimit[k]*FUCR_peakerOnOff[k,t]) + (DF_Peakers.RampShutDownLimit[k]*FUCR_peakerShutDown[k,t])))
-# Min Up Time limit with alternative formulation
-    @constraint(FUCRmodel, conUpTime_Peaker[t=1:HRS_FUCR, k=1:PEAKERS], (sum(FUCR_peakerStartUp[k,r] for r=lb_MUT_Peaker[k,t]:t)<=FUCR_peakerOnOff[k,t]))
-# Min down Time limit with alternative formulation
-    @constraint(FUCRmodel, conDownTime_Peaker[t=1:HRS_FUCR, k=1:PEAKERS], (1-sum(FUCR_peakerShutDown[k,s] for s=lb_MDT_Peaker[k,t]:t)>=FUCR_peakerOnOff[k,t]))
-
-    # Renewable generation constraints
-    @constraint(FUCRmodel, conSolarLimit[t=1:HRS_FUCR, n=1:N_ZONES], FUCR_solarG[n, t] + FUCR_solarGSpil[n,t]<=fucr_prep_demand.solar_wa[t,n])
-    @constraint(FUCRmodel, conWindLimit[t=1:HRS_FUCR, n=1:N_ZONES], FUCR_windG[n, t] + FUCR_windGSpil[n,t]<=fucr_prep_demand.wind_wa[t,n])
-    @constraint(FUCRmodel, conHydroLimit[t=1:HRS_FUCR, n=1:N_ZONES], FUCR_hydroG[n, t] + FUCR_hydroGSpil[n,t]<=fucr_prep_demand.hydro_wa[t,n])
-
-   #=
-   @constraint(FUCRmodel, conSolarLimit[t=1:HRS_FUCR, n=1:N_ZONES], FUCR_solarG[n, t] + FUCR_solarGSpil[n,t]<=0)
-   @constraint(FUCRmodel, conWindLimit[t=1:HRS_FUCR, n=1:N_ZONES], FUCR_windG[n, t] + FUCR_windGSpil[n,t]<=0)
-   @constraint(FUCRmodel, conHydroLimit[t=1:HRS_FUCR, n=1:N_ZONES], FUCR_hydroG[n, t] + FUCR_hydroGSpil[n,t]<=0)
-   =#
-
-    # Constraints representing technical characteristics of storage units
-    # status transition of storage units between charging, discharging, and idle modes
-    @constraint(FUCRmodel, conStorgStatusTransition[t=1:HRS_FUCR, p=1:STORG_UNITS], (FUCR_storgChrg[p,t]+FUCR_storgDisc[p,t]+FUCR_storgIdle[p,t])==1)
-    # charging power limit
-    @constraint(FUCRmodel, conStrgChargPowerLimit[t=1:HRS_FUCR, p=1:STORG_UNITS], (FUCR_storgChrgPwr[p,t] - FUCR_storgResDn[p,t])<=DF_Storage.Power[p]*FUCR_storgChrg[p,t])
-    # Discharging power limit
-    @constraint(FUCRmodel, conStrgDisChgPowerLimit[t=1:HRS_FUCR, p=1:STORG_UNITS], (FUCR_storgDiscPwr[p,t] + FUCR_storgResUp[p,t])<=DF_Storage.Power[p]*FUCR_storgDisc[p,t])
-    # Down reserve provision limit
-    @constraint(FUCRmodel, conStrgDownResrvMax[t=1:HRS_FUCR, p=1:STORG_UNITS], FUCR_storgResDn[p,t]<=DF_Storage.Power[p]*FUCR_storgChrg[p,t])
-# Up reserve provision limit`
-    @constraint(FUCRmodel, conStrgUpResrvMax[t=1:HRS_FUCR, p=1:STORG_UNITS], FUCR_storgResUp[p,t]<=DF_Storage.Power[p]*FUCR_storgDisc[p,t])
-# State of charge at t
-    @constraint(FUCRmodel, conStorgSOC[t=1:HRS_FUCR, p=1:STORG_UNITS], FUCR_storgSOC[p,t]==FUCR_storgSOC[p,t-1]-(FUCR_storgDiscPwr[p,t]/DF_Storage.TripEfficDown[p])+(FUCR_storgChrgPwr[p,t]*DF_Storage.TripEfficUp[p])-(FUCR_storgSOC[p,t]*DF_Storage.SelfDischarge[p]))
-# minimum energy limit
-    @constraint(FUCRmodel, conMinEnrgStorgLimi[t=1:HRS_FUCR, p=1:STORG_UNITS], FUCR_storgSOC[p,t]-(FUCR_storgResUp[p,t]/DF_Storage.TripEfficDown[p])+(FUCR_storgResDn[p,t]/DF_Storage.TripEfficUp[p])>=0)
-# Maximum energy limit
-    @constraint(FUCRmodel, conMaxEnrgStorgLimi[t=1:HRS_FUCR, p=1:STORG_UNITS], FUCR_storgSOC[p,t]-(FUCR_storgResUp[p,t]/DF_Storage.TripEfficDown[p])+(FUCR_storgResDn[p,t]/DF_Storage.TripEfficUp[p])<=(DF_Storage.Power[p]/DF_Storage.PowerToEnergRatio[p]))
-# Constraints representing transmission grid capacity constraints
-# DC Power Flow Calculation
-    #@constraint(FUCRmodel, conDCPowerFlowPos[t=1:HRS_FUCR, n=1:N_ZONES, m=1:N_ZONES], FUCR_powerFlow[n,m,t]-(TranS[n,m]*(FUCR_voltAngle[n,t]-FUCR_voltAngle[m,t])) ==0)
-    @constraint(FUCRmodel, conDCPowerFlowNeg[t=1:HRS_FUCR, n=1:N_ZONES, m=1:N_ZONES], FUCR_powerFlow[n,m,t]+FUCR_powerFlow[m,n,t]==0)
-# Tranmission flow bounds (from n to m and from m to n)
-    @constraint(FUCRmodel, conPosFlowLimit[t=1:HRS_FUCR, n=1:N_ZONES, m=1:N_ZONES], FUCR_powerFlow[n,m,t]<=TranC[n,m])
-    @constraint(FUCRmodel, conNegFlowLimit[t=1:HRS_FUCR, n=1:N_ZONES, m=1:N_ZONES], FUCR_powerFlow[n,m,t]>=-TranC[n,m])
-# Voltage Angle bounds and reference point
-    #@constraint(FUCRmodel, conVoltAnglUB[t=1:HRS_FUCR, n=1:N_ZONES], FUCR_voltAngle[n,t]<=π)
-    #@constraint(FUCRmodel, conVoltAnglLB[t=1:HRS_FUCR, n=1:N_ZONES], FUCR_voltAngle[n,t]>=-π)
-    #@constraint(FUCRmodel, conVoltAngRef[t=1:HRS_FUCR], FUCR_voltAngle[1,t]==0)
-
-    # Demand-side Constraints
-    @constraint(FUCRmodel, conDemandLimit[t=1:HRS_FUCR, n=1:N_ZONES], FUCR_Demand[n,t]+ FUCR_Demand_Curt[n,t] == fucr_prep_demand.wk_ahead[t,n])
-
-    # Demand Curtailment and wind generation limits
-    @constraint(FUCRmodel, conDemandCurtLimit[t=1:HRS_FUCR, n=1:N_ZONES], FUCR_Demand_Curt[n,t] <= LOAD_SHED_MAX);
-    @constraint(FUCRmodel, conOverGenLimit[t=1:HRS_FUCR, n=1:N_ZONES], FUCR_OverGen[n,t] <= OVERGEN_MAX);
-
-    # System-wide Constraints
-    #nodal balance constraint
-    @constraint(FUCRmodel, conNodBalanc[t=1:HRS_FUCR, n=1:N_ZONES], sum((FUCR_genOut[g,t]*Map_Gens[g,n]) for g=1:GENS) +sum((FUCR_peakerOut[k,t]*Map_Peakers[k,n]) for k=1:PEAKERS)  + sum((FUCR_storgDiscPwr[p,t]*Map_Storage[p,n]) for p=1:STORG_UNITS) - sum((FUCR_storgChrgPwr[p,t]*Map_Storage[p,n]) for p=1:STORG_UNITS) +FUCR_solarG[n, t] +FUCR_windG[n, t] +FUCR_hydroG[n, t] - FUCR_Demand[n,t] - FUCR_OverGen[n,t]== sum(FUCR_powerFlow[n,m,t] for m=1:M_ZONES))
-
-     #@constraint(FUCRmodel, conNodBalanc[t=1:HRS_FUCR], sum(FUCR_genOut[g,t] for g=1:GENS) + sum((FUCR_storgDiscPwr[p,t]) for p=1:STORG_UNITS) - sum((FUCR_storgChrgPwr[p,t]) for p=1:STORG_UNITS) +sum(FUCR_solarG[n, t] for n=1:N_ZONES) + sum(FUCR_windG[n, t] for n=1:N_ZONES)+ sum(FUCR_hydroG[n, t] for n=1:N_ZONES) - sum(fucr_prep_demand.wk_ahead[t,n] for n=1:N_ZONES) == 0)
-
-    # @constraint(FUCRmodel, conNodBalanc[t=1:HRS_FUCR], sum((FUCR_genOut[g,t]) for g=1:GENS) + sum((FUCR_storgDiscPwr[p,t]) for p=1:STORG_UNITS) - sum((FUCR_storgChrgPwr[p,t]) for p=1:STORG_UNITS) +sum((FUCR_solarG[n, t]) for n=1:N_ZONES) +sum((FUCR_windG[n, t]) for n=1:N_ZONES) +sum((FUCR_hydroG[n, t]) for n=1:N_ZONES) - sum((fucr_prep_demand.wk_ahead[t,n]) for n=1:N_ZONES) == 0)
-# Minimum zonal up reserve requirement, if there are more than two zones, we should  define reserve regions for DEC and DEP
-     #@constraint(FUCRmodel, conMinUpReserveReq[t=1:HRS_FUCR, n=1:N_ZONES], sum((FUCR_genResUp[g,t]*Map_Gens[g,n]) for g=1:GENS) + sum((FUCR_storgResUp[p,t]*Map_Storage[p,n]) for p=1:STORG_UNITS) >= Reserve_Req_Up[n] )
-     #@constraint(FUCRmodel, conMinUpReserveReq[t=1:HRS_FUCR], sum((FUCR_genResUp[g,t]+FUCR_genResNonSpin[g,t]) for g=1:GENS) + sum((FUCR_storgResUp[p,t]) for p=1:STORG_UNITS) >= sum(Reserve_Req_Up[n] for n=1:N_ZONES))
-     @constraint(FUCRmodel, conMinUpReserveReq[t=1:HRS_FUCR], sum((FUCR_genResUp[g,t]) for g=1:GENS) + sum((FUCR_peakerResUp[k,t]+FUCR_peakerResNonSpin[k,t]) for k=1:PEAKERS)+ sum((FUCR_storgResUp[p,t]) for p=1:STORG_UNITS) >= sum(Reserve_Req_Up[n] for n=1:N_ZONES))
-
-
-    # Minimum down reserve requirement
-    # @constraint(FUCRmodel, conMinDnReserveReq[t=1:HRS_FUCR], sum(genResDn[g,t] for g=1:GENS) + sum(storgResDn[p,t] for p=1:STORG_UNITS) >= Reserve_Req_Dn[t] )
-
-    t2_FUCRmodel = time_ns()
-    time_FUCRmodel = (t2_FUCRmodel -t1_FUCRmodel)/1.0e9;
-    @info "FUCRmodel for day: $day setup executed in (s): $time_FUCRmodel";
-
-    open(".//outputs//csv//time_performance.csv", FILE_ACCESS_APPEND) do io
-            writedlm(io, hcat("FUCRmodel", time_FUCRmodel, "day: $day",
-                    "", "", "Model Setup"), ',')
-    end; # closes file
-
-# solve the First WAUC model (FUCR)
-    JuMP.optimize!(FUCRmodel)
-
-# Pricing general results in the terminal window
-    println("Objective value: ", JuMP.objective_value(FUCRmodel))
-
-    println("------------------------------------")
-    println("------- FUCR OBJECTIVE VALUE -------")
-    println("Objective value for day ", day, " is ", JuMP.objective_value(FUCRmodel))
-    println("------------------------------------")
-    println("-------FUCR PRIMAL STATUS -------")
-    println(primal_status(FUCRmodel))
-    println("------------------------------------")
-    println("------- FUCR DUAL STATUS -------")
-    println(JuMP.dual_status(FUCRmodel))
-    println("Day: ", day, " solved")
-    println("---------------------------")
-    println("FUCRmodel Number of variables: ", JuMP.num_variables(FUCRmodel))
-    @info "FUCRmodel Number of variables: " JuMP.num_variables(FUCRmodel)
-
-    open(".//outputs//csv//time_performance.csv", FILE_ACCESS_APPEND) do io
-            writedlm(io, hcat("FUCRmodel", JuMP.num_variables(FUCRmodel), "day: $day",
-                    "", "", "Variables"), ',')
-    end;
-
-    @debug "FUCRmodel for day: $day optimized executed in (s):  $(solve_time(FUCRmodel))";
-
-    open(".//outputs//csv//time_performance.csv", FILE_ACCESS_APPEND) do io
-            writedlm(io, hcat("FUCRmodel", solve_time(FUCRmodel), "day: $day",
-                    "", "", "Model Optimization"), ',')
-    end; # closes file
-
-# Write the conventional generators' schedules in CSV file
-    t1_write_FUCRmodel_results = time_ns()
-    open(".//outputs//csv//FUCR_GenOutputs.csv", FILE_ACCESS_APPEND) do io
-        for t in 1:HRS_FUCR, g=1:GENS
-            writedlm(io, hcat(day, t+INIT_HR_FUCR, g, DF_Generators.UNIT_NAME[g],
-                DF_Generators.MinPowerOut[g], DF_Generators.MaxPowerOut[g],
-                JuMP.value.(FUCR_genOut[g,t]), JuMP.value.(FUCR_genOnOff[g,t]),
-                JuMP.value.(FUCR_genShutDown[g,t]), JuMP.value.(FUCR_genStartUp[g,t]),
-                JuMP.value.(FUCR_genResUp[g,t]), JuMP.value.(FUCR_genResNonSpin[g,t]),
-                JuMP.value.(FUCR_genResDn[g,t]), JuMP.value.(FUCR_TotGenVioP[g,t]),
-                JuMP.value.(FUCR_TotGenVioN[g,t]), JuMP.value.(FUCR_MaxGenVioP[g,t]),
-                JuMP.value.(FUCR_MinGenVioP[g,t]) ), ',')
-        end # ends the loop
-    end; # closes file
-# Write the peakers' schedules in CSV file
-    open(".//outputs//csv//FUCR_PeakerOutputs.csv", FILE_ACCESS_APPEND) do io
-        for t in 1:HRS_FUCR, k=1:PEAKERS
-            writedlm(io, hcat(day, t+INIT_HR_FUCR, k, DF_Peakers.UNIT_NAME[k],
-               DF_Peakers.MinPowerOut[k], DF_Peakers.MaxPowerOut[k],
-               JuMP.value.(FUCR_peakerOut[k,t]), JuMP.value.(FUCR_peakerOnOff[k,t]),
-               JuMP.value.(FUCR_peakerShutDown[k,t]), JuMP.value.(FUCR_peakerStartUp[k,t]),
-               JuMP.value.(FUCR_peakerResUp[k,t]), JuMP.value.(FUCR_peakerResNonSpin[k,t]),
-               JuMP.value.(FUCR_peakerResDn[k,t]) ), ',')
-        end # ends the loop
-    end; # closes file
-
-    # Writing storage units' optimal schedules in CSV file
-    open(".//outputs//csv//FUCR_StorageOutputs.csv", FILE_ACCESS_APPEND) do io
-         for t in 1:HRS_FUCR, p=1:STORG_UNITS
-            writedlm(io, hcat(day, t+INIT_HR_FUCR, p, DF_Storage.Name[p],
-                DF_Storage.Power[p], DF_Storage.Power[p]/DF_Storage.PowerToEnergRatio[p],
-                JuMP.value.(FUCR_storgChrg[p,t]), JuMP.value.(FUCR_storgDisc[p,t]),
-                JuMP.value.(FUCR_storgIdle[p,t]), JuMP.value.(FUCR_storgChrgPwr[p,t]),
-                JuMP.value.(FUCR_storgDiscPwr[p,t]), JuMP.value.(FUCR_storgSOC[p,t]),
-                JuMP.value.(FUCR_storgResUp[p,t]), JuMP.value.(FUCR_storgResDn[p,t]) ), ',')
-         end # ends the loop
-    end; # closes file
-
-    # Writing the transmission line flows in CSV file
-    open(".//outputs//csv//FUCR_TranFlowOutputs.csv", FILE_ACCESS_APPEND) do io
-        for t in 1:HRS_FUCR, n=1:N_ZONES, m=1:M_ZONES
-           writedlm(io, hcat(day, t+INIT_HR_FUCR, n,
-               JuMP.value.(FUCR_powerFlow[n,m,t]), TranC[n,m] ), ',')
-        end # ends the loop
-    end; # closes file
-
-    # Writing the curtilment, overgeneration, and spillage outcomes in CSV file
-    open(".//outputs//csv//FUCR_Curtail.csv", FILE_ACCESS_APPEND) do io
-        for t in 1:HRS_FUCR, n=1:N_ZONES
-           writedlm(io, hcat(day, t+INIT_HR_FUCR, n,
-               JuMP.value.(FUCR_OverGen[n,t]), JuMP.value.(FUCR_Demand_Curt[n,t]),
-               JuMP.value.(FUCR_windGSpil[n,t]), JuMP.value.(FUCR_solarGSpil[n,t]),
-               JuMP.value.(FUCR_hydroGSpil[n,t])), ',')
-        end # ends the loop
-    end; # closes file
-
-    t2_write_FUCRmodel_results = time_ns()
-
-    time_write_FUCRmodel_results = (t2_write_FUCRmodel_results -t1_write_FUCRmodel_results)/1.0e9;
-    @info "Write FUCRmodel results for day $day: $time_write_FUCRmodel_results executed in (s)";
-
-    open(".//outputs//csv//time_performance.csv", FILE_ACCESS_APPEND) do io
-            writedlm(io, hcat("FUCRmodel", time_write_FUCRmodel_results, "day: $day",
-                    "", "", "Write CSV files"), ',')
-    end; #closes file
-
-## Create and save the following parameters to be passed to BUCR1
-    t1_FUCRtoBUCR1_data_hand = time_ns()
-
-    for h=1:INIT_HR_SUCR-INIT_HR_FUCR
-        for g=1:GENS
-            FUCRtoBUCR1.gens.onoff[g,h]= JuMP.value.(FUCR_genOnOff[g,h]);
-            FUCRtoBUCR1.gens.power_out[g,h]= JuMP.value.(FUCR_genOut[g,h]);
-            FUCRtoBUCR1.gens.startup[g,h]= JuMP.value.(FUCR_genStartUp[g,h]);
-            FUCRtoBUCR1.gens.shutdown[g,h]=JuMP.value.(FUCR_genShutDown[g,h]);
-            for b=1:BLOCKS
-                FUCRtoBUCR1.gens.genout_block[g,b,h]=JuMP.value.(FUCR_genOut_Block[g,b,h]);
-            end
-        end
-        for k=1:PEAKERS
-            FUCRtoBUCR1.peakers.onoff[k,h]= round(JuMP.value.(FUCR_peakerOnOff[k,h]));
-            FUCRtoBUCR1.peakers.power_out[k,h]=JuMP.value.(FUCR_peakerOut[k,h]);
-            FUCRtoBUCR1.peakers.startup[k,h]= round(JuMP.value.(FUCR_peakerStartUp[k,h]));
-            FUCRtoBUCR1.peakers.shutdown[k,h]= round(JuMP.value.(FUCR_peakerShutDown[k,h]));
-            for b=1:BLOCKS
-                FUCRtoBUCR1.peakers.genout_block[k,b,h]=JuMP.value.(FUCR_peakerOut_Block[k,b,h]);
-            end
-        end
-        for p=1:STORG_UNITS
-            FUCRtoBUCR1.storg.chrg[p,h]=JuMP.value.(FUCR_storgChrg[p,h]);
-            FUCRtoBUCR1.storg.disc[p,h]=JuMP.value.(FUCR_storgDisc[p,h]);
-            FUCRtoBUCR1.storg.idle[p,h]=JuMP.value.(FUCR_storgIdle[p,h]);
-            FUCRtoBUCR1.storg.chrgpwr[p,h]=JuMP.value.(FUCR_storgChrgPwr[p,h]);
-            FUCRtoBUCR1.storg.discpwr[p,h]=JuMP.value.(FUCR_storgDiscPwr[p,h]);
-            FUCRtoBUCR1.storg.soc[p,h]=JuMP.value.(FUCR_storgSOC[p,h]);
-        end
-    end
-
-    t2_FUCRtoBUCR1_data_hand = time_ns();
-
-    time_FUCRtoBUCR1_data_hand = (t2_FUCRtoBUCR1_data_hand -t1_FUCRtoBUCR1_data_hand)/1.0e9;
-    @info "FUCRtoBUCR1 data handling for day $day executed in (s): $time_FUCRtoBUCR1_data_hand";
-
-    open(".//outputs//csv//time_performance.csv", FILE_ACCESS_APPEND) do io
-            writedlm(io, hcat("FUCRmodel", time_FUCRtoBUCR1_data_hand, "day: $day",
-                    " ", "Pre-processing variables", "Data Manipulation"), ',')
-    end; #closes file
-## This block models the Balancing Unit Commitment Runs between the morning and evening UC Runs
-
+	## This block models the Balancing Unit Commitment Runs between the morning and evening UC Runs
     for h=1:INIT_HR_SUCR-INIT_HR_FUCR # number of BUCR periods in between FUCR and SUCR
         # Pre-processing demand variables
         t1_BUCR_SUCR_data_hand = time_ns()
