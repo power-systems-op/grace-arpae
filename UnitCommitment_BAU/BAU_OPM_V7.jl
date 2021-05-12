@@ -17,7 +17,6 @@ Version: 7
 # Outputs: dataframe
 # Examples: N/A
 """
-
 #NOTES: This file was originally labeled as BAU_OPM_V5_Nuc_Cogen_Imp_Exp_MustRun_DCC
 # Changes in this version: Nuclear data was included
 
@@ -40,7 +39,7 @@ const N_Zones = 2
 const M_Zones = 2
 const N_Blocks =7
 const INITIAL_DAY = 1
-const FINAL_DAY = 7
+const FINAL_DAY = 60
 
 #TODO: check if constant INITIAL_HR_BUCR should exist
 const INITIAL_HR_FUCR = 6 # represents the running time for the first WA unit commitment run. INITIAL_HR_FUCR=0 means the FUCR's optimal outcomes are ready at 00:00
@@ -74,12 +73,10 @@ io_log = open(
     FILE_ACCESS_APPEND,
 )
 
-
 #log document
 logger = SimpleLogger(io_log)
 flush(io_log)
 global_logger(logger)
-
 
 @info "Hardware Features: " cpuinfo()
 
@@ -91,6 +88,11 @@ write(io_log, "MaxGenLimit Viol Penalty: $ViolPenalty, OptimalityGap: $OverGen_C
 time_performance_header    = ["Section", "Time", "Note1", "Note2", "Note3", "Note4"]
 open(".//outputs//csv//time_performance.csv", FILE_ACCESS_OVER) do io
     writedlm(io, permutedims(time_performance_header), ',')
+end; # closes file
+
+objective_values_header    = ["Section", "Time", "Time2", "Note1", "Value"]
+open(".//outputs//csv//objective_values.csv", FILE_ACCESS_OVER) do io
+    writedlm(io, permutedims(objective_values_header), ',')
 end; # closes file
 
 t1 = time_ns()
@@ -266,7 +268,6 @@ Reserve_Reqs = Reserve_Reqs[1];
 Reserve_Req_Up = Reserve_Reqs
 
 ## Headers of output files
-@time begin
 FUCR_GenOutputs_header      = ["Day", "Hour", "GeneratorID", "UNIT_NAME", "MinPowerOut", "MaxPowerOut", "Output", "On/off", "ShutDown", "Startup", "UpSpinRes", "Non_SpinRes", "DownSpinRes", "TotalGenPosV", "TotalGenNegV", "MaxGenVio", "MinGenVio"]
 FUCR_PeakerOutputs_header   = ["Day", "Hour", "PeakerID", "UNIT_NAME", "MinPowerOut", "MaxPowerOut", "Output", "On/off", "ShutDown", "Startup", "UpSpinRes", "Non_SpinRes", "DownSpinRes", "TotalGenPosV", "TotalGenNegV", "MaxGenVio", "MinGenVio"]
 FUCR_StorageOutputs_header  = ["Day", "Hour", "StorageUniID", "Power", "EnergyLimit", "Charge_St", "Discharge_St", "Idle_St", "storgChrgPwr", "storgDiscPwr", "storgSOC", "storgResUp", "storgResDn"]
@@ -282,8 +283,6 @@ BUCR_PeakerOutputs_header   = ["Day", "Hour", "GeneratorID", "UNIT_NAME", "MinPo
 BUCR_StorageOutputs_header  = ["Day", "Hour", "StorageUniID", "Power", "EnergyLimit", "Charge_St", "Discharge_St", "Idle_St", "storgChrgPwr", "storgDiscPwr", "storgSOC", "storgResUp", "storgResDn"]
 BUCR_TranFlowOutputs_header = ["Day", "Time period", "Source", "Sink", "Flow", "TransCap"]
 BUCR_Curtail_header         = ["Day", "Hour", "Zone", "OverGeneration", "DemandCurtailment", "WindCrtailment", "SolarCurtailment", "HydroSpillage"]
-
-end #timer
 
 ##
 # Spreadsheets for the first unit commitment run
@@ -307,7 +306,6 @@ end; # closes file
 open(".//outputs//csv//FUCR_Curtail.csv", FILE_ACCESS_OVER) do io
     writedlm(io, permutedims(FUCR_Curtail_header), ',')
 end; # closes file
-
 
 # Spreadsheets for the second unit commitment run
 # Creating Conventional generating units' schedules in the second unit commitment run
@@ -354,10 +352,6 @@ end; # closes file
 open(".//outputs//csv//BUCR_Curtail.csv", FILE_ACCESS_OVER) do io
     writedlm(io, permutedims(BUCR_Curtail_header), ',')
 end; # closes file
-
-## Creating the output spreadsheet that save the optimal outcomes as reported by WA and RT UC Models
-######## Spreadsheets for the first unit commitment run
-# Creating Conventional generating units' schedules in the first unit commitment run
 
 ## Creating variables that transfer optimal schedules between the Models
 
@@ -832,11 +826,15 @@ for day = INITIAL_DAY:FINAL_DAY
                     "", "", "Model Setup"), ',')
     end; # closes file
 
-# solve the First WAUC model (FUCR)
+    # solve the First WAUC model (FUCR)
     JuMP.optimize!(FUCRmodel)
 
-# Pricing general results in the terminal window
+    # Pricing general results in the terminal window
     println("Objective value: ", JuMP.objective_value(FUCRmodel))
+    open(".//outputs//csv//objective_values.csv", FILE_ACCESS_APPEND) do io
+            writedlm(io, hcat("FUCRmodel", "day: $day",
+                    "", "", JuMP.objective_value(FUCRmodel)), ',')
+    end;
 
     println("------------------------------------")
     println("------- FUCR OBJECTIVE VALUE -------")
@@ -1249,6 +1247,11 @@ for day = INITIAL_DAY:FINAL_DAY
         # Pricing general results in the terminal window
         println("Objective value: ", JuMP.objective_value(BUCR1model))
 
+        open(".//outputs//csv//objective_values.csv", FILE_ACCESS_APPEND) do io
+                writedlm(io, hcat("BUCR1model", "day: $day",
+                        "hour $(h+INITIAL_HR_FUCR)", "", JuMP.objective_value(BUCR1model)), ',')
+        end;
+
         println("------------------------------------")
         println("------- BAUC1 OBJECTIVE VALUE -------")
         println("Objective value for day ", day, " and hour ", h+INITIAL_HR_FUCR," is: ", JuMP.objective_value(BUCR1model))
@@ -1336,9 +1339,9 @@ for day = INITIAL_DAY:FINAL_DAY
                 writedlm(io, hcat("BUCR1model", time_write_BUCR1model_results, "day: $day",
                         "hour $(h+INITIAL_HR_FUCR)", "", "Write CSV files"), ',')
         end; #closes file
-## Initilization of the next UC Run
-    # This must be updated later when we run two WAUCs every day and then RTUCs
-    # Setting initial values for BUCR1 (next hour), SUCR1, and BUCR2
+        ## Initilization of the next UC Run
+        # This must be updated later when we run two WAUCs every day and then RTUCs
+        # Setting initial values for BUCR1 (next hour), SUCR1, and BUCR2
         t1_BUCR1_init_next_UC = time_ns();
 
         for g=1:N_Gens
@@ -1670,8 +1673,15 @@ for day = INITIAL_DAY:FINAL_DAY
                     "", "", "Model Setup"), ',')
     end; # closes file
 
-# solve the First WAUC model (SUCR)
+    # solve the First WAUC model (SUCR)
     JuMP.optimize!(SUCRmodel)
+    println("Objective value: ", JuMP.objective_value(SUCRmodel))
+
+    open(".//outputs//csv//objective_values.csv", FILE_ACCESS_APPEND) do io
+            writedlm(io, hcat("SUCRmodel", "day: $day",
+                    "", "", JuMP.objective_value(SUCRmodel)), ',')
+    end;
+
 # Pricing general results in the terminal window
     println("Objective value: ", JuMP.objective_value(SUCRmodel))
     println("------------------------------------")
@@ -2083,6 +2093,11 @@ for day = INITIAL_DAY:FINAL_DAY
 
         # Pricing general results in the terminal window
         println("Objective value: ", JuMP.objective_value(BUCR2model))
+
+        open(".//outputs//csv//objective_values.csv", FILE_ACCESS_APPEND) do io
+                writedlm(io, hcat("BUCR2model", "day: $day",
+                        "hour $(h+INITIAL_HR_SUCR)", "", JuMP.objective_value(BUCR2model)), ',')
+        end;
 
         println("------------------------------------")
         println("------- BAUC2 OBJECTIVE VALUE -------")

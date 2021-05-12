@@ -4,8 +4,8 @@ using DelimitedFiles
 
 include("constants.jl")
 
-path_dat = "C://Users//rapiduser//Documents//GitHub//grace-arpae//UnitCommitment_BAU"
-cd(path_dat)
+#path_dat = "C://Users//rapiduser//Documents//GitHub//grace-arpae//UnitCommitment_BAU"
+#cd(path_dat)
 
 ##
 # Importing input data from the input spreadsheets

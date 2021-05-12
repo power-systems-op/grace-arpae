@@ -77,6 +77,11 @@ open(".//outputs//csv//time_performance.csv", FILE_ACCESS_APPEND) do io
                 "", "", "Read CSV files"), ',')
 end;
 
+objective_values_header    = ["Section", "Time", "Time2", "Note1", "Value"]
+open(".//outputs//csv//objective_values_v71.csv", FILE_ACCESS_OVER) do io
+    writedlm(io, permutedims(objective_values_header), ',')
+end; # closes file
+
 ##
 #=generators = SysGenerator(DF_Generators.UNIT_ID,
             DF_Generators.StatusInit,
@@ -424,7 +429,7 @@ for day = INITIAL_DAY:FINAL_DAY
 
 ## This block models the first UC optimization that is run in the morning
     t1_FUCRmodel = time_ns()
-    FUCRtoBUCR1 = fucr_model(DF_Generators, DF_Peakers, FuelPrice, FuelPricePeakers, DF_Storage, FUCRtoBUCR1)
+    #FUCRtoBUCR1 = fucr_model(DF_Generators, DF_Peakers, FuelPrice, FuelPricePeakers, DF_Storage, FUCRtoBUCR1)
     FUCRmodel = direct_model(CPLEX.Optimizer())
     # Enable Benders strategy
     #MOI.set(FUCRmodel, MOI.RawParameter("CPXPARAM_Benders_Strategy"), 3)
@@ -684,6 +689,11 @@ for day = INITIAL_DAY:FINAL_DAY
 
 # Pricing general results in the terminal window
     println("Objective value: ", JuMP.objective_value(FUCRmodel))
+
+	open(".//outputs//csv//objective_values_v71.csv", FILE_ACCESS_APPEND) do io
+            writedlm(io, hcat("FUCRmodel", "day: $day",
+                    "", "", JuMP.objective_value(FUCRmodel)), ',')
+    end;
 
     println("------------------------------------")
     println("------- FUCR OBJECTIVE VALUE -------")
@@ -1096,6 +1106,10 @@ for day = INITIAL_DAY:FINAL_DAY
 
         # Pricing general results in the terminal window
         println("Objective value: ", JuMP.objective_value(BUCR1model))
+		open(".//outputs//csv//objective_values_v71.csv", FILE_ACCESS_APPEND) do io
+				writedlm(io, hcat("BUCR1model", "day: $day",
+						"hour $(h+INIT_HR_FUCR)", "", JuMP.objective_value(BUCR1model)), ',')
+		end;
 
         println("------------------------------------")
         println("------- BAUC1 OBJECTIVE VALUE -------")
@@ -1519,6 +1533,12 @@ for day = INITIAL_DAY:FINAL_DAY
 
 # solve the First WAUC model (SUCR)
     JuMP.optimize!(SUCRmodel)
+
+	open(".//outputs//csv//objective_values_v71.csv", FILE_ACCESS_APPEND) do io
+			writedlm(io, hcat("SUCRmodel", "day: $day",
+					"", "", JuMP.objective_value(SUCRmodel)), ',')
+	end;
+
 # Pricing general results in the terminal window
     println("Objective value: ", JuMP.objective_value(SUCRmodel))
     println("------------------------------------")
@@ -1918,6 +1938,10 @@ for day = INITIAL_DAY:FINAL_DAY
 
         # solve the First WAUC model (BUCR)
         JuMP.optimize!(BUCR2model)
+		open(".//outputs//csv//objective_values_v71.csv", FILE_ACCESS_APPEND) do io
+				writedlm(io, hcat("BUCR2model", "day: $day",
+						"hour $(h+INIT_HR_SUCR)", "", JuMP.objective_value(BUCR2model)), ',')
+		end;
 
         #compute_conflict!(BUCR2model)
         #if MOI.get(BUCR2model, MOI.ConflictStatus()) != MOI.CONFLICT_FOUND

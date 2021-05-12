@@ -65,6 +65,7 @@ end
 """
 
 """
+# change power_out by genout
 @with_kw mutable struct GensResults
 	onoff_init::Array{Int64,1} = zeros(GENS)
 	power_out_init::Array{Float64,1} = zeros(GENS)
@@ -76,6 +77,10 @@ end
 	shutdown::Array{Int64,2} = zeros(GENS, INIT_HR_SUCR+INIT_HR_FUCR)
 	genout_block::Array{Float64,3} = zeros(GENS, BLOCKS, INIT_HR_SUCR+INIT_HR_FUCR)
 end
+
+
+# in BUCRs
+#TODO: Include these variables in UC_Results structures
 
 @with_kw mutable struct PeakersResults
 	onoff_init::Array{Int64,1} = zeros(PEAKERS)
@@ -89,6 +94,20 @@ end
 	genout_block::Array{Float64,3} = zeros(PEAKERS,BLOCKS,INIT_HR_SUCR-INIT_HR_FUCR)
 end
 
+
+
+#=
+BUCR1_commit.gens_lb
+
+BUCR1_commit.gens_lb::Array{Int64,1}   <- BUCR1_Commit_LB
+BUCR1_commit.gens_ub::Array{Int64,1}   <- BUCR1_Commit_UB
+
+Peakers
+BUCR1_commit.peakers_lb::Array{Int64,1}  <-  BUCR1_Commit_Peaker_LB
+BUCR1_commit.peakers_ub::Array{Int64,1}  <-  BUCR1_Commit_Peaker_UB
+=#
+
+
 @with_kw mutable struct StorageResults
 	soc_init::Array{Float64,1} = zeros(STORG_UNITS)
 	chrg::Array{Int64,2} = zeros(STORG_UNITS, 24-INIT_HR_SUCR+INIT_HR_FUCR)
@@ -97,7 +116,7 @@ end
 	chrgpwr::Array{Float64,2} = zeros(STORG_UNITS, 24-INIT_HR_SUCR+INIT_HR_FUCR)
 	discpwr::Array{Float64,2} = zeros(STORG_UNITS, 24-INIT_HR_SUCR+INIT_HR_FUCR)
 	soc::Array{Float64,2} = zeros(STORG_UNITS, 24-INIT_HR_SUCR+INIT_HR_FUCR)
-end
+end;
 
 #=
 mutable struct UnitsResults
@@ -119,7 +138,6 @@ shutdown 					<- FUCRtoBUCR1_genShutDown::Array{Int64,1}
 onoff::Array{Int64,2} 		<- FUCRtoBUCR1_genOnOff[g,h]
 power_out::Array{Float64,2} <- FUCRtoBUCR1_genOut[g,h]
 genout_block 				<- FUCRtoBUCR1_genOut_Block[g,b,h]
-
 
 StorageResults
 soc_init::Array{Float64,1}          <- FUCR_Init_storgSOC
@@ -146,7 +164,7 @@ mutable struct UC_Results
 	gens::GensResults
 	peakers::PeakersResults
 	storg::StorageResults
-end
+end;
 
 #= UC_Results
 FUCRtoBUCR1.gens.onoff 			<- FUCRtoBUCR1_genOnOff
@@ -170,32 +188,77 @@ FUCRtoBUCR1.storg.soc				<- FUCRtoBUCR1_storgSOC
 =#
 
 
-
-
 """
 Demand Data Pre-Processing for FUCR and SUCR models
-wk_ahead: week-ahead demand data for the first UC run at 6 am
-solarg_wa: week-ahead SolarG data for the first UC run at 6 am
-windg_wa: week-ahead WindG data for the first UC run at 6 am
-hydrog_wa: week-ahead HydroG data for the first UC run at 6 am
-nuclearg_wa: week-ahead WindG data for the first UC run at 6 am
-cogeng_wa: week-ahead HydroG data for the first UC run at 6 am
+ wk_ahead: week-ahead demand data for the first UC run at 6 am
+ solarg_wa: week-ahead SolarG data for the first UC run at 6 am
+ windg_wa: week-ahead WindG data for the first UC run at 6 am
+ hydrog_wa: week-ahead HydroG data for the first UC run at 6 am
+ nuclearg_wa: week-ahead WindG data for the first UC run at 6 am
+ cogeng_wa: week-ahead HydroG data for the first UC run at 6 am
 """
-mutable struct DemandPreprocGens
+#=
+#TODO add these variables to the DemandWAPreprocGens structure:
+lb_MUT::Array{Int64,2} = zeros(Int64, GENS, HRS_FUCR);
+lb_MDT::Array{Int64,2} = zeros(Int64, GENS, HRS_FUCR);
+lb_MUT_Peaker::Array{Int64,2} =zeros(Int64, PEAKERS, HRS_FUCR)
+lb_MDT_Peaker::Array{Int64,2} =zeros(Int64, PEAKERS, HRS_FUCR)
+=#
+mutable struct DemandWAPreprocGens
 	wk_ahead::Array{Int64,2}
 	solar_wa::Array{Int64,2}
 	wind_wa::Array{Int64,2}
 	hydro_wa::Array{Int64,2}
 	nuclear_wa::Array{Int64,2}
 	cogen_wa::Array{Int64,2}
-end
+end;
+
+
+"""
+Demand Data Pre-Processing for BUCR models
+"""
+#=
+#TODO add these variables to the DemandHrPreprocGens structure:
+	gens_lb::Array{Int64,1} = zeros(GENS)
+	gens_ub::Array{Int64,1} = zeros(GENS)
+	peakers_lb::Array{Int64,1} = zeros(PEAKERS)
+	peakers_ub::Array{Int64,1} = zeros(PEAKERS)
+=#
+mutable struct DemandHrPreprocGens
+	demand::Array{Int64,1}
+	solar::Array{Int64,1}
+	wind::Array{Int64,1}
+	hydro::Array{Int64,1}
+	nuclear::Array{Int64,1}
+	cogen::Array{Int64,1}
+end;
+
+#=
+bucr1_prepoc.demand::Array{Int64,2}  <- BUCR1_Hr_Demand
+bucr1_prepoc.solar::Array{Int64,2}   <- BUCR1_Hr_SolarG
+bucr1_prepoc.wind::Array{Int64,2}    <- BUCR1_Hr_WindG
+bucr1_prepoc.hydro::Array{Int64,2}   <- BUCR1_Hr_HydroG
+bucr1_prepoc.nuclear::Array{Int64,2} <- BUCR1_Hr_NuclearG
+bucr1_prepoc.cogen::Array{Int64,2}   <- BUCR1_Hr_CogenG
+=#
+
+@with_kw mutable struct StorageResults
+	soc_init::Array{Float64,1} = zeros(STORG_UNITS)
+	chrg::Array{Int64,2} = zeros(STORG_UNITS, 24-INIT_HR_SUCR+INIT_HR_FUCR)
+	disc::Array{Int64,2} = zeros(STORG_UNITS, 24-INIT_HR_SUCR+INIT_HR_FUCR)
+	idle::Array{Int64,2} = zeros(STORG_UNITS, 24-INIT_HR_SUCR+INIT_HR_FUCR)
+	chrgpwr::Array{Float64,2} = zeros(STORG_UNITS, 24-INIT_HR_SUCR+INIT_HR_FUCR)
+	discpwr::Array{Float64,2} = zeros(STORG_UNITS, 24-INIT_HR_SUCR+INIT_HR_FUCR)
+	soc::Array{Float64,2} = zeros(STORG_UNITS, 24-INIT_HR_SUCR+INIT_HR_FUCR)
+end;
+
 #= STRUCT DemandPreprocGens, Also for SUCR model
-wk_ahead::Array{Float64,1} 		<- FUCR_WA_Demand
-solar_wa::Array{Float64,1}		<- FUCR_WA_SolarG
-wind_wa::Array{Float64,1}      <- FUCR_WA_WindG
-hydro_wa::Array{Float64,1}     <- FUCR_WA_HydroG
-nuclear_wa::Array{Float64,1}   <- FUCR_WA_NuclearG
-cogen_wa::Array{Float64,1}     <- FUCR_WA_CogenG
+wk_ahead::Array{Int64,1} 		<- FUCR_WA_Demand
+solar_wa::Array{Int64,1}		<- FUCR_WA_SolarG
+wind_wa::Array{Int64,1}      <- FUCR_WA_WindG
+hydro_wa::Array{Int64,1}     <- FUCR_WA_HydroG
+nuclear_wa::Array{Int64,1}   <- FUCR_WA_NuclearG
+cogen_wa::Array{Int64,1}     <- FUCR_WA_CogenG
 =#
 
 #=
