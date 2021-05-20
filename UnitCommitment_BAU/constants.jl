@@ -6,7 +6,7 @@ const M_ZONES = 2
 const BLOCKS = 7
 
 const INITIAL_DAY = 1
-const FINAL_DAY = 30
+const FINAL_DAY = 60
 # Running time for the 1st Week-Ahead UC run.
 # INIT_HR_FUCR=0 means the FUCR's optimal outcomes are ready at 00:00
 const INIT_HR_FUCR = 6

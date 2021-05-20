@@ -76,6 +76,7 @@ end
 	startup::Array{Int64,2} = zeros(GENS, INIT_HR_SUCR+INIT_HR_FUCR)
 	shutdown::Array{Int64,2} = zeros(GENS, INIT_HR_SUCR+INIT_HR_FUCR)
 	genout_block::Array{Float64,3} = zeros(GENS, BLOCKS, INIT_HR_SUCR+INIT_HR_FUCR)
+
 end
 
 
