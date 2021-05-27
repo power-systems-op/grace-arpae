@@ -39,7 +39,7 @@ const N_Zones = 2
 const M_Zones = 2
 const N_Blocks =7
 const INITIAL_DAY = 1
-const FINAL_DAY = 60
+const FINAL_DAY = 25
 
 #TODO: check if constant INITIAL_HR_BUCR should exist
 const INITIAL_HR_FUCR = 6 # represents the running time for the first WA unit commitment run. INITIAL_HR_FUCR=0 means the FUCR's optimal outcomes are ready at 00:00
@@ -86,12 +86,12 @@ write(io_log, "Max Load-Shedding Penalty $DemandCurt_Max, Max Over-generation Pe
 write(io_log, "MaxGenLimit Viol Penalty: $ViolPenalty, OptimalityGap: $OverGen_C\n")
 
 time_performance_header    = ["Section", "Time", "Note1", "Note2", "Note3", "Note4"]
-open(".//outputs//csv//time_performance.csv", FILE_ACCESS_OVER) do io
+open(".//outputs//time_performance.csv", FILE_ACCESS_OVER) do io
     writedlm(io, permutedims(time_performance_header), ',')
 end; # closes file
 
 objective_values_header    = ["Section", "Time", "Time2", "Note1", "Value"]
-open(".//outputs//csv//objective_values.csv", FILE_ACCESS_OVER) do io
+open(".//outputs//objective_values.csv", FILE_ACCESS_OVER) do io
     writedlm(io, permutedims(objective_values_header), ',')
 end; # closes file
 
@@ -99,61 +99,61 @@ t1 = time_ns()
 ##
 # Importing input data from the input spreadsheets
 # Generators' specifications
-DF_Generators = CSV.read(".//inputs//csv//data_generators.csv", DataFrame);
+DF_Generators = CSV.read(".//inputs//data_generators.csv", DataFrame);
 # Generators location map: if a generator g is located in zone z Map_Gens[g,z]=1; and 0 otherwise
-Map_Gens = readdlm(".//inputs//csv//location_generators.csv", ','; header = true);
+Map_Gens = readdlm(".//inputs//location_generators.csv", ','; header = true);
 
 #Peaker Units' specifications and location
-DF_Peakers = CSV.read(".//inputs//csv//data_peakers.csv", DataFrame);
+DF_Peakers = CSV.read(".//inputs//data_peakers.csv", DataFrame);
 # Peakers location map: if a peaker p is located in zone z Map_Gens[p,z]=1; # and 0 otherwise
-Map_Peakers = readdlm(".//inputs//csv//location_peakers.csv", ','; header = true);
+Map_Peakers = readdlm(".//inputs//location_peakers.csv", ','; header = true);
 
 # Storage Units' specification and location
-DF_Storage = CSV.read(".//inputs//csv//data_storage.csv", DataFrame);
-Map_Storage = readdlm(".//inputs//csv//location_storage.csv", ','; header = true);
+DF_Storage = CSV.read(".//inputs//data_storage.csv", DataFrame);
+Map_Storage = readdlm(".//inputs//location_storage.csv", ','; header = true);
 
 # Energy demand at each location
-FUCR_Demands = readdlm(".//inputs//csv//data_demand.csv", ','; header = true);
-SUCR_Demands = readdlm(".//inputs//csv//data_demand_updated.csv", ','; header = true);
-BUCR_Demands = readdlm(".//inputs//csv//data_demand_actual.csv", ','; header = true);
+FUCR_Demands = readdlm(".//inputs//data_demand.csv", ','; header = true);
+SUCR_Demands = readdlm(".//inputs//data_demand_updated.csv", ','; header = true);
+BUCR_Demands = readdlm(".//inputs//data_demand_actual.csv", ','; header = true);
 
 # solar generation data at each location
-FUCR_SolarGs = readdlm(".//inputs//csv//data_solar.csv", ','; header = true);
-SUCR_SolarGs = readdlm(".//inputs//csv//data_solar_updated.csv", ','; header = true);
-BUCR_SolarGs = readdlm(".//inputs//csv//data_solar_actual.csv", ','; header = true);
+FUCR_SolarGs = readdlm(".//inputs//data_solar.csv", ','; header = true);
+SUCR_SolarGs = readdlm(".//inputs//data_solar_updated.csv", ','; header = true);
+BUCR_SolarGs = readdlm(".//inputs//data_solar_actual.csv", ','; header = true);
 
 # wind energy data for each location
-FUCR_WindGs = readdlm(".//inputs//csv//data_wind.csv", ','; header = true);
-SUCR_WindGs = readdlm(".//inputs//csv//data_wind_updated.csv", ','; header = true);
-BUCR_WindGs = readdlm(".//inputs//csv//data_wind_actual.csv", ','; header = true);
+FUCR_WindGs = readdlm(".//inputs//data_wind.csv", ','; header = true);
+SUCR_WindGs = readdlm(".//inputs//data_wind_updated.csv", ','; header = true);
+BUCR_WindGs = readdlm(".//inputs//data_wind_actual.csv", ','; header = true);
 
 #hydro generation data for each location
-FUCR_HydroGs = readdlm(".//inputs//csv//data_hydro.csv", ','; header = true);
-SUCR_HydroGs = readdlm(".//inputs//csv//data_hydro_updated.csv", ','; header = true);
-BUCR_HydroGs = readdlm(".//inputs//csv//data_hydro_actual.csv", ','; header = true);
+FUCR_HydroGs = readdlm(".//inputs//data_hydro.csv", ','; header = true);
+SUCR_HydroGs = readdlm(".//inputs//data_hydro_updated.csv", ','; header = true);
+BUCR_HydroGs = readdlm(".//inputs//data_hydro_actual.csv", ','; header = true);
 
 #nuclear generation timeseries for each location
-FUCR_NuclearGs = readdlm(".//inputs//csv//data_nuclear.csv", ','; header = true);
-SUCR_NuclearGs = readdlm(".//inputs//csv//data_nuclear_updated.csv", ','; header = true);
-BUCR_NuclearGs = readdlm(".//inputs//csv//data_nuclear_actual.csv", ','; header = true);
+FUCR_NuclearGs = readdlm(".//inputs//data_nuclear.csv", ','; header = true);
+SUCR_NuclearGs = readdlm(".//inputs//data_nuclear_updated.csv", ','; header = true);
+BUCR_NuclearGs = readdlm(".//inputs//data_nuclear_actual.csv", ','; header = true);
 
 #Cogenerators' generation timeseries for each location
-FUCR_CogenGs = readdlm(".//inputs//csv//data_cogen.csv", ','; header = true);
-SUCR_CogenGs = readdlm(".//inputs//csv//data_cogen_updated.csv", ','; header = true);
-BUCR_CogenGs = readdlm(".//inputs//csv//data_cogen_actual.csv", ','; header = true);
+FUCR_CogenGs = readdlm(".//inputs//data_cogen.csv", ','; header = true);
+SUCR_CogenGs = readdlm(".//inputs//data_cogen_updated.csv", ','; header = true);
+BUCR_CogenGs = readdlm(".//inputs//data_cogen_actual.csv", ','; header = true);
 
-TranC = readdlm(".//inputs//csv//LineCapacity.csv", ','; header = true);
-TranS = readdlm(".//inputs//csv//LineSusceptance.csv", ','; header = true);
-Reserve_Reqs = readdlm(".//inputs//csv//data_reserve_reqs.csv", ','; header = true);
+TranC = readdlm(".//inputs//LineCapacity.csv", ','; header = true);
+TranS = readdlm(".//inputs//LineSusceptance.csv", ','; header = true);
+Reserve_Reqs = readdlm(".//inputs//data_reserve_reqs.csv", ','; header = true);
 
-FuelPrice = readdlm(".//inputs//csv//data_fuel_price.csv", ','; header = true);
-FuelPricePeakers = readdlm(".//inputs//csv//data_fuel_price_peakers.csv", ','; header = true);
+FuelPrice = readdlm(".//inputs//data_fuel_price.csv", ','; header = true);
+FuelPricePeakers = readdlm(".//inputs//data_fuel_price_peakers.csv", ','; header = true);
 
 t2_read_data = time_ns()
 time_read_data = (t2_read_data -t1)/1.0e9;
 @info "Time to read input data (s): $time_read_data";
 
-open(".//outputs//csv//time_performance.csv", FILE_ACCESS_APPEND) do io
+open(".//outputs//time_performance.csv", FILE_ACCESS_APPEND) do io
         writedlm(io, hcat("Read Input Data", time_read_data, "",
                 "", "", "Read CSV files"), ',')
 end;
@@ -287,69 +287,69 @@ BUCR_Curtail_header         = ["Day", "Hour", "Zone", "OverGeneration", "DemandC
 ##
 # Spreadsheets for the first unit commitment run
 # Creating Conventional generating units' schedules in the first unit commitment run
-open(".//outputs//csv//FUCR_GenOutputs.csv", FILE_ACCESS_OVER) do io
+open(".//outputs//FUCR_GenOutputs.csv", FILE_ACCESS_OVER) do io
     writedlm(io, permutedims(FUCR_GenOutputs_header), ',')
 end; # closes file
 
-open(".//outputs//csv//FUCR_PeakerOutputs.csv", FILE_ACCESS_OVER) do io
+open(".//outputs//FUCR_PeakerOutputs.csv", FILE_ACCESS_OVER) do io
     writedlm(io, permutedims(FUCR_PeakerOutputs_header), ',')
 end; # closes file
 
-open(".//outputs//csv//FUCR_StorageOutputs.csv", FILE_ACCESS_OVER) do io
+open(".//outputs//FUCR_StorageOutputs.csv", FILE_ACCESS_OVER) do io
     writedlm(io, permutedims(FUCR_StorageOutputs_header), ',')
 end;
 
-open(".//outputs//csv//FUCR_TranFlowOutputs.csv", FILE_ACCESS_OVER) do io
+open(".//outputs//FUCR_TranFlowOutputs.csv", FILE_ACCESS_OVER) do io
     writedlm(io, permutedims(FUCR_TranFlowOutputs_header), ',')
 end; # closes file
 
-open(".//outputs//csv//FUCR_Curtail.csv", FILE_ACCESS_OVER) do io
+open(".//outputs//FUCR_Curtail.csv", FILE_ACCESS_OVER) do io
     writedlm(io, permutedims(FUCR_Curtail_header), ',')
 end; # closes file
 
 # Spreadsheets for the second unit commitment run
 # Creating Conventional generating units' schedules in the second unit commitment run
-open(".//outputs//csv//SUCR_GenOutputs.csv", FILE_ACCESS_OVER) do io
+open(".//outputs//SUCR_GenOutputs.csv", FILE_ACCESS_OVER) do io
     writedlm(io, permutedims(SUCR_GenOutputs_header), ',')
 end; # closes file
 
-open(".//outputs//csv//SUCR_PeakerOutputs.csv", FILE_ACCESS_OVER) do io
+open(".//outputs//SUCR_PeakerOutputs.csv", FILE_ACCESS_OVER) do io
     writedlm(io, permutedims(SUCR_PeakerOutputs_header), ',')
 end; # closes file
 
-open(".//outputs//csv//SUCR_StorageOutputs.csv", FILE_ACCESS_OVER) do io
+open(".//outputs//SUCR_StorageOutputs.csv", FILE_ACCESS_OVER) do io
     writedlm(io, permutedims(SUCR_StorageOutputs_header), ',')
 end;
 
-open(".//outputs//csv//SUCR_TranFlowOutputs.csv", FILE_ACCESS_OVER) do io
+open(".//outputs//SUCR_TranFlowOutputs.csv", FILE_ACCESS_OVER) do io
     writedlm(io, permutedims(SUCR_TranFlowOutputs_header), ',')
 end; # closes file
 
-open(".//outputs//csv//SUCR_Curtail.csv", FILE_ACCESS_OVER) do io
+open(".//outputs//SUCR_Curtail.csv", FILE_ACCESS_OVER) do io
     writedlm(io, permutedims(SUCR_Curtail_header), ',')
 end; # closes file
 
 # Spreadsheets for the balancing unit commitment run
 # Write the conventional generators' schedules
-open(".//outputs//csv//BUCR_GenOutputs.csv", FILE_ACCESS_OVER) do io
+open(".//outputs//BUCR_GenOutputs.csv", FILE_ACCESS_OVER) do io
     writedlm(io, permutedims(BUCR_GenOutputs_header), ',')
 end; # closes file
 
-open(".//outputs//csv//BUCR_PeakerOutputs.csv", FILE_ACCESS_OVER) do io
+open(".//outputs//BUCR_PeakerOutputs.csv", FILE_ACCESS_OVER) do io
     writedlm(io, permutedims(BUCR_PeakerOutputs_header), ',')
 end; # closes file
 
 # Writing storage units' optimal schedules into CSV file
-open(".//outputs//csv//BUCR_StorageOutputs.csv", FILE_ACCESS_OVER) do io
+open(".//outputs//BUCR_StorageOutputs.csv", FILE_ACCESS_OVER) do io
     writedlm(io, permutedims(BUCR_StorageOutputs_header), ',')
 end; # closes file
 
 # Writing the transmission flow schedules in CSV file
-open(".//outputs//csv//BUCR_TranFlowOutputs.csv", FILE_ACCESS_OVER) do io
+open(".//outputs//BUCR_TranFlowOutputs.csv", FILE_ACCESS_OVER) do io
     writedlm(io, permutedims(BUCR_TranFlowOutputs_header), ',')
 end; # closes file
 
-open(".//outputs//csv//BUCR_Curtail.csv", FILE_ACCESS_OVER) do io
+open(".//outputs//BUCR_Curtail.csv", FILE_ACCESS_OVER) do io
     writedlm(io, permutedims(BUCR_Curtail_header), ',')
 end; # closes file
 
@@ -821,7 +821,7 @@ for day = INITIAL_DAY:FINAL_DAY
     time_FUCRmodel = (t2_FUCRmodel -t1_FUCRmodel)/1.0e9;
     @info "FUCRmodel for day: $day setup executed in (s): $time_FUCRmodel";
 
-    open(".//outputs//csv//time_performance.csv", FILE_ACCESS_APPEND) do io
+    open(".//outputs//time_performance.csv", FILE_ACCESS_APPEND) do io
             writedlm(io, hcat("FUCRmodel", time_FUCRmodel, "day: $day",
                     "", "", "Model Setup"), ',')
     end; # closes file
@@ -831,7 +831,7 @@ for day = INITIAL_DAY:FINAL_DAY
 
     # Pricing general results in the terminal window
     println("Objective value: ", JuMP.objective_value(FUCRmodel))
-    open(".//outputs//csv//objective_values.csv", FILE_ACCESS_APPEND) do io
+    open(".//outputs//objective_values.csv", FILE_ACCESS_APPEND) do io
             writedlm(io, hcat("FUCRmodel", "day: $day",
                     "", "", JuMP.objective_value(FUCRmodel)), ',')
     end;
@@ -850,21 +850,21 @@ for day = INITIAL_DAY:FINAL_DAY
     println("FUCRmodel Number of variables: ", JuMP.num_variables(FUCRmodel))
     @info "FUCRmodel Number of variables: " JuMP.num_variables(FUCRmodel)
 
-    open(".//outputs//csv//time_performance.csv", FILE_ACCESS_APPEND) do io
+    open(".//outputs//time_performance.csv", FILE_ACCESS_APPEND) do io
             writedlm(io, hcat("FUCRmodel", JuMP.num_variables(FUCRmodel), "day: $day",
                     "", "", "Variables"), ',')
     end;
 
     @debug "FUCRmodel for day: $day optimized executed in (s):  $(solve_time(FUCRmodel))";
 
-    open(".//outputs//csv//time_performance.csv", FILE_ACCESS_APPEND) do io
+    open(".//outputs//time_performance.csv", FILE_ACCESS_APPEND) do io
             writedlm(io, hcat("FUCRmodel", solve_time(FUCRmodel), "day: $day",
                     "", "", "Model Optimization"), ',')
     end; # closes file
 
 # Write the conventional generators' schedules in CSV file
     t1_write_FUCRmodel_results = time_ns()
-    open(".//outputs//csv//FUCR_GenOutputs.csv", FILE_ACCESS_APPEND) do io
+    open(".//outputs//FUCR_GenOutputs.csv", FILE_ACCESS_APPEND) do io
         for t in 1:N_Hrs_FUCR, g=1:N_Gens
             writedlm(io, hcat(day, t+INITIAL_HR_FUCR, g, DF_Generators.UNIT_NAME[g],
                 DF_Generators.MinPowerOut[g], DF_Generators.MaxPowerOut[g],
@@ -877,7 +877,7 @@ for day = INITIAL_DAY:FINAL_DAY
         end # ends the loop
     end; # closes file
 # Write the peakers' schedules in CSV file
-    open(".//outputs//csv//FUCR_PeakerOutputs.csv", FILE_ACCESS_APPEND) do io
+    open(".//outputs//FUCR_PeakerOutputs.csv", FILE_ACCESS_APPEND) do io
         for t in 1:N_Hrs_FUCR, k=1:N_Peakers
             writedlm(io, hcat(day, t+INITIAL_HR_FUCR, k, DF_Peakers.UNIT_NAME[k],
                DF_Peakers.MinPowerOut[k], DF_Peakers.MaxPowerOut[k],
@@ -889,7 +889,7 @@ for day = INITIAL_DAY:FINAL_DAY
     end; # closes file
 
     # Writing storage units' optimal schedules in CSV file
-    open(".//outputs//csv//FUCR_StorageOutputs.csv", FILE_ACCESS_APPEND) do io
+    open(".//outputs//FUCR_StorageOutputs.csv", FILE_ACCESS_APPEND) do io
          for t in 1:N_Hrs_FUCR, p=1:N_StorgUs
             writedlm(io, hcat(day, t+INITIAL_HR_FUCR, p, DF_Storage.Name[p],
                 DF_Storage.Power[p], DF_Storage.Power[p]/DF_Storage.PowerToEnergRatio[p],
@@ -901,7 +901,7 @@ for day = INITIAL_DAY:FINAL_DAY
     end; # closes file
 
     # Writing the transmission line flows in CSV file
-    open(".//outputs//csv//FUCR_TranFlowOutputs.csv", FILE_ACCESS_APPEND) do io
+    open(".//outputs//FUCR_TranFlowOutputs.csv", FILE_ACCESS_APPEND) do io
         for t in 1:N_Hrs_FUCR, n=1:N_Zones, m=1:M_Zones
            writedlm(io, hcat(day, t+INITIAL_HR_FUCR, n,
                JuMP.value.(FUCR_powerFlow[n,m,t]), TranC[n,m] ), ',')
@@ -909,7 +909,7 @@ for day = INITIAL_DAY:FINAL_DAY
     end; # closes file
 
     # Writing the curtilment, overgeneration, and spillage outcomes in CSV file
-    open(".//outputs//csv//FUCR_Curtail.csv", FILE_ACCESS_APPEND) do io
+    open(".//outputs//FUCR_Curtail.csv", FILE_ACCESS_APPEND) do io
         for t in 1:N_Hrs_FUCR, n=1:N_Zones
            writedlm(io, hcat(day, t+INITIAL_HR_FUCR, n,
                JuMP.value.(FUCR_OverGen[n,t]), JuMP.value.(FUCR_Demand_Curt[n,t]),
@@ -923,7 +923,7 @@ for day = INITIAL_DAY:FINAL_DAY
     time_write_FUCRmodel_results = (t2_write_FUCRmodel_results -t1_write_FUCRmodel_results)/1.0e9;
     @info "Write FUCRmodel results for day $day: $time_write_FUCRmodel_results executed in (s)";
 
-    open(".//outputs//csv//time_performance.csv", FILE_ACCESS_APPEND) do io
+    open(".//outputs//time_performance.csv", FILE_ACCESS_APPEND) do io
             writedlm(io, hcat("FUCRmodel", time_write_FUCRmodel_results, "day: $day",
                     "", "", "Write CSV files"), ',')
     end; #closes file
@@ -964,7 +964,7 @@ for day = INITIAL_DAY:FINAL_DAY
     time_FUCRtoBUCR1_data_hand = (t2_FUCRtoBUCR1_data_hand -t1_FUCRtoBUCR1_data_hand)/1.0e9;
     @info "FUCRtoBUCR1 data handling for day $day executed in (s): $time_FUCRtoBUCR1_data_hand";
 
-    open(".//outputs//csv//time_performance.csv", FILE_ACCESS_APPEND) do io
+    open(".//outputs//time_performance.csv", FILE_ACCESS_APPEND) do io
             writedlm(io, hcat("FUCRmodel", time_FUCRtoBUCR1_data_hand, "day: $day",
                     " ", "Pre-processing variables", "Data Manipulation"), ',')
     end; #closes file
@@ -1018,7 +1018,7 @@ for day = INITIAL_DAY:FINAL_DAY
         time_BUCR_SUCR_data_hand = (t2_BUCR_SUCR_data_hand -t1_BUCR_SUCR_data_hand)/1.0e9;
         @info "BUCR_SUCR data handling for day $day executed in (s): $time_BUCR_SUCR_data_hand";
 
-        open(".//outputs//csv//time_performance.csv", FILE_ACCESS_APPEND) do io
+        open(".//outputs//time_performance.csv", FILE_ACCESS_APPEND) do io
                 writedlm(io, hcat("BUCR1model", time_BUCR_SUCR_data_hand, "day: $day",
                         "hour $(h+INITIAL_HR_FUCR)", "Pre-processing variables", "Data Manipulation"), ',')
         end; #closes file
@@ -1113,6 +1113,7 @@ for day = INITIAL_DAY:FINAL_DAY
     # Constraints representing technical limits of conventional generators
         #Status transition trajectory of
         @constraint(BUCR1model, conStartUpAndDn[g=1:N_Gens], (BUCR1_genOnOff[g] - BUCR1_Init_genOnOff[g] - BUCR1_genStartUp[g] + BUCR1_genShutDown[g])==0)
+        @constraint(BUCR1model, conStartUpAndDn1[g=1:N_Gens], (BUCR1_genShutDown[g] + BUCR1_genStartUp[g]) <= 1.2)
         # Max Power generation limit in Block 1
         @constraint(BUCR1model, conMaxPowBlock1[g=1:N_Gens],  BUCR1_genOut_Block[g,1] <= DF_Generators.IHRC_B1_Q[g]*BUCR1_genOnOff[g] )
         # Max Power generation limit in Block 2
@@ -1236,7 +1237,7 @@ for day = INITIAL_DAY:FINAL_DAY
         time_BUCR1model = (t2_BUCR1model -t1_BUCR1model)/1.0e9;
         @info "BUCR1model for day: $day, hour $(h+INITIAL_HR_FUCR) setup executed in (s):  $time_BUCR1model";
 
-        open(".//outputs//csv//time_performance.csv", FILE_ACCESS_APPEND) do io
+        open(".//outputs//time_performance.csv", FILE_ACCESS_APPEND) do io
                 writedlm(io, hcat("BUCR1model", time_BUCR1model, "day: $day",
                         "hour $(h+INITIAL_HR_FUCR)", "", "Model Setup"), ',')
         end; # closes file
@@ -1247,7 +1248,7 @@ for day = INITIAL_DAY:FINAL_DAY
         # Pricing general results in the terminal window
         println("Objective value: ", JuMP.objective_value(BUCR1model))
 
-        open(".//outputs//csv//objective_values.csv", FILE_ACCESS_APPEND) do io
+        open(".//outputs//objective_values.csv", FILE_ACCESS_APPEND) do io
                 writedlm(io, hcat("BUCR1model", "day: $day",
                         "hour $(h+INITIAL_HR_FUCR)", "", JuMP.objective_value(BUCR1model)), ',')
         end;
@@ -1265,7 +1266,7 @@ for day = INITIAL_DAY:FINAL_DAY
         println("---------------------------")
         println("BUCR1model Number of variables: ", JuMP.num_variables(BUCR1model))
         @info "BUCR1model Number of variables: " JuMP.num_variables(BUCR1model)
-        open(".//outputs//csv//time_performance.csv", FILE_ACCESS_APPEND) do io
+        open(".//outputs//time_performance.csv", FILE_ACCESS_APPEND) do io
                 writedlm(io, hcat("BUCR1model", JuMP.num_variables(BUCR1model), "day: $day",
                         "hour $(h+INITIAL_HR_FUCR)", "", "Variables"), ',')
         end;
@@ -1273,7 +1274,7 @@ for day = INITIAL_DAY:FINAL_DAY
         @debug "BUCR1model for day: $day, hour $(h+INITIAL_HR_FUCR) optimized executed in (s): $(solve_time(BUCR1model))";
 
         t1_write_BUCR1model_results = time_ns()
-        open(".//outputs//csv//time_performance.csv", FILE_ACCESS_APPEND) do io
+        open(".//outputs//time_performance.csv", FILE_ACCESS_APPEND) do io
                 writedlm(io, hcat("BUCR1model", solve_time(BUCR1model), "day: $day",
                         "hour $(h+INITIAL_HR_FUCR)", "", "Model Optimization"), ',')
         end; # closes file
@@ -1282,7 +1283,7 @@ for day = INITIAL_DAY:FINAL_DAY
 # Later we need to include a variable for day so the cell number in which the results are printed is updated accordingly
 
 # Write the conventional generators' schedules
-        open(".//outputs//csv//BUCR_GenOutputs.csv", FILE_ACCESS_APPEND) do io
+        open(".//outputs//BUCR_GenOutputs.csv", FILE_ACCESS_APPEND) do io
             for g=1:N_Gens
                 writedlm(io, hcat(day, h+INITIAL_HR_FUCR, g, DF_Generators.UNIT_ID[g],
 					DF_Generators.MinPowerOut[g], DF_Generators.MaxPowerOut[g],
@@ -1293,7 +1294,7 @@ for day = INITIAL_DAY:FINAL_DAY
         end; # closes file
 
 # Write the conventional peakers' schedules
-        open(".//outputs//csv//BUCR_PeakerOutputs.csv", FILE_ACCESS_APPEND) do io
+        open(".//outputs//BUCR_PeakerOutputs.csv", FILE_ACCESS_APPEND) do io
             for k=1:N_Peakers
                 writedlm(io, hcat(day, h+INITIAL_HR_FUCR, k, DF_Peakers.UNIT_ID[k],
                     DF_Peakers.MinPowerOut[k], DF_Peakers.MaxPowerOut[k],
@@ -1303,7 +1304,7 @@ for day = INITIAL_DAY:FINAL_DAY
         end; # closes file
 
 # Writing storage units' optimal schedules in CSV file
-        open(".//outputs//csv//BUCR_StorageOutputs.csv", FILE_ACCESS_APPEND) do io
+        open(".//outputs//BUCR_StorageOutputs.csv", FILE_ACCESS_APPEND) do io
             for p=1:N_StorgUs
                 writedlm(io, hcat(day, h+INITIAL_HR_FUCR, p, DF_Storage.Name[p],
 					DF_Storage.Power[p], DF_Storage.Power[p]/DF_Storage.PowerToEnergRatio[p],
@@ -1314,7 +1315,7 @@ for day = INITIAL_DAY:FINAL_DAY
         end; # closes file
 
 # Writing the transmission flow schedules in CSV file
-        open(".//outputs//csv//BUCR_TranFlowOutputs.csv", FILE_ACCESS_APPEND) do io
+        open(".//outputs//BUCR_TranFlowOutputs.csv", FILE_ACCESS_APPEND) do io
             for n=1:N_Zones, m=1:M_Zones
                 writedlm(io, hcat(day, h+INITIAL_HR_FUCR, n, m,
                     JuMP.value.(BUCR1_powerFlow[n,m]), TranC[n,m] ), ',')
@@ -1322,7 +1323,7 @@ for day = INITIAL_DAY:FINAL_DAY
         end; # closes file
 
 # Writing the curtilment, overgeneration, and spillage outcomes in CSV file
-        open(".//outputs//csv//BUCR_Curtail.csv", FILE_ACCESS_APPEND) do io
+        open(".//outputs//BUCR_Curtail.csv", FILE_ACCESS_APPEND) do io
             for n=1:N_Zones
                writedlm(io, hcat(day, h+INITIAL_HR_FUCR, n,
                    JuMP.value.(BUCR1_OverGen[n]), JuMP.value.(BUCR1_Demand_Curt[n]),
@@ -1335,7 +1336,7 @@ for day = INITIAL_DAY:FINAL_DAY
         time_write_BUCR1model_results = (t2_write_BUCR1model_results -t1_write_BUCR1model_results)/1.0e9;
         @info "Write BUCR1model results for day $day and hour $(h+INITIAL_HR_FUCR) executed in (s): $time_write_BUCR1model_results";
 
-        open(".//outputs//csv//time_performance.csv", FILE_ACCESS_APPEND) do io
+        open(".//outputs//time_performance.csv", FILE_ACCESS_APPEND) do io
                 writedlm(io, hcat("BUCR1model", time_write_BUCR1model_results, "day: $day",
                         "hour $(h+INITIAL_HR_FUCR)", "", "Write CSV files"), ',')
         end; #closes file
@@ -1429,7 +1430,7 @@ for day = INITIAL_DAY:FINAL_DAY
         time_BUCR1_init_next_UC = (t2_BUCR1_init_next_UC -t1_BUCR1_init_next_UC)/1.0e9;
         @info "BUCR1_init_next_UC data handling for day $day and hour hour $(h+INITIAL_HR_FUCR) executed in (s): $time_BUCR1_init_next_UC";
 
-        open(".//outputs//csv//time_performance.csv", FILE_ACCESS_APPEND) do io
+        open(".//outputs//time_performance.csv", FILE_ACCESS_APPEND) do io
                 writedlm(io, hcat("BUCR1model", time_BUCR1_init_next_UC, "day: $day",
                         "hour $(h+INITIAL_HR_FUCR)", "BUCR1_init_next_UC", "Data Manipulation"), ',')
         end; #closes file
@@ -1668,7 +1669,7 @@ for day = INITIAL_DAY:FINAL_DAY
     time_SUCRmodel = (t2_SUCRmodel -t1_SUCRmodel)/1.0e9;
     @info "SUCRmodel for day: $day setup executed in (s): $time_SUCRmodel";
 
-    open(".//outputs//csv//time_performance.csv", FILE_ACCESS_APPEND) do io
+    open(".//outputs//time_performance.csv", FILE_ACCESS_APPEND) do io
             writedlm(io, hcat("SUCRmodel", time_SUCRmodel, "day: $day",
                     "", "", "Model Setup"), ',')
     end; # closes file
@@ -1677,7 +1678,7 @@ for day = INITIAL_DAY:FINAL_DAY
     JuMP.optimize!(SUCRmodel)
     println("Objective value: ", JuMP.objective_value(SUCRmodel))
 
-    open(".//outputs//csv//objective_values.csv", FILE_ACCESS_APPEND) do io
+    open(".//outputs//objective_values.csv", FILE_ACCESS_APPEND) do io
             writedlm(io, hcat("SUCRmodel", "day: $day",
                     "", "", JuMP.objective_value(SUCRmodel)), ',')
     end;
@@ -1698,14 +1699,14 @@ for day = INITIAL_DAY:FINAL_DAY
     println("SUCRmodel Number of variables: ", JuMP.num_variables(SUCRmodel))
     @info "SUCRmodel Number of variables: " JuMP.num_variables(SUCRmodel)
 
-    open(".//outputs//csv//time_performance.csv", FILE_ACCESS_APPEND) do io
+    open(".//outputs//time_performance.csv", FILE_ACCESS_APPEND) do io
             writedlm(io, hcat("SUCRmodel", JuMP.num_variables(SUCRmodel), "day: $day",
                     "", "", "Variables"), ',')
     end;
 
     @debug "SUCRmodel for day: $day optimized executed in (s):  $(solve_time(SUCRmodel))";
 
-    open(".//outputs//csv//time_performance.csv", FILE_ACCESS_APPEND) do io
+    open(".//outputs//time_performance.csv", FILE_ACCESS_APPEND) do io
             writedlm(io, hcat("SUCRmodel", solve_time(SUCRmodel), "day: $day",
                     "", "", "Model Optimization"), ',')
     end; # closes file
@@ -1717,7 +1718,7 @@ for day = INITIAL_DAY:FINAL_DAY
 
     # Write the conventional generators' schedules
     t1_write_SUCRmodel_results = time_ns()
-    open(".//outputs//csv//SUCR_GenOutputs.csv", FILE_ACCESS_APPEND) do io
+    open(".//outputs//SUCR_GenOutputs.csv", FILE_ACCESS_APPEND) do io
         for t in 1:N_Hrs_SUCR, g=1:N_Gens
             writedlm(io, hcat(day, t+INITIAL_HR_SUCR, g, DF_Generators.UNIT_ID[g],
                 DF_Generators.MinPowerOut[g], DF_Generators.MaxPowerOut[g],
@@ -1730,7 +1731,7 @@ for day = INITIAL_DAY:FINAL_DAY
         end # ends the loop
     end; # closes file
 
-    open(".//outputs//csv//SUCR_PeakerOutputs.csv", FILE_ACCESS_APPEND) do io
+    open(".//outputs//SUCR_PeakerOutputs.csv", FILE_ACCESS_APPEND) do io
         for t in 1:N_Hrs_SUCR, k=1:N_Peakers
             writedlm(io, hcat(day, t+INITIAL_HR_SUCR, k, DF_Peakers.UNIT_ID[k],
                 DF_Peakers.MinPowerOut[k], DF_Peakers.MaxPowerOut[k],
@@ -1742,7 +1743,7 @@ for day = INITIAL_DAY:FINAL_DAY
     end; # closes file
 
 # Writing storage units' optimal schedules in CSV file
-    open(".//outputs//csv//SUCR_StorageOutputs.csv", FILE_ACCESS_APPEND) do io
+    open(".//outputs//SUCR_StorageOutputs.csv", FILE_ACCESS_APPEND) do io
         for t in 1:N_Hrs_SUCR, p=1:N_StorgUs
             writedlm(io, hcat(day, t+INITIAL_HR_SUCR, p, DF_Storage.Power[p],
 				DF_Storage.Power[p]/DF_Storage.PowerToEnergRatio[p],
@@ -1754,7 +1755,7 @@ for day = INITIAL_DAY:FINAL_DAY
     end; # closes file
 
 # Writing the transmission flow schedules into spreadsheets
-    open(".//outputs//csv//SUCR_TranFlowOutputs.csv", FILE_ACCESS_APPEND) do io
+    open(".//outputs//SUCR_TranFlowOutputs.csv", FILE_ACCESS_APPEND) do io
         for t in 1:N_Hrs_SUCR, n=1:N_Zones, m=1:M_Zones
             writedlm(io, hcat(day, t+INITIAL_HR_SUCR, n, m,
                 JuMP.value.(SUCR_powerFlow[n,m,t]), TranC[n,m] ), ',')
@@ -1762,7 +1763,7 @@ for day = INITIAL_DAY:FINAL_DAY
     end; # closes file
 
     # Writing the curtilment, overgeneration, and spillage outcomes in CSV file
-    open(".//outputs//csv//SUCR_Curtail.csv", FILE_ACCESS_APPEND) do io
+    open(".//outputs//SUCR_Curtail.csv", FILE_ACCESS_APPEND) do io
         for t in 1:N_Hrs_SUCR, n=1:N_Zones
            writedlm(io, hcat(day, t+INITIAL_HR_SUCR, n,
                JuMP.value.(SUCR_OverGen[n,t]), JuMP.value.(SUCR_Demand_Curt[n,t]),
@@ -1775,7 +1776,7 @@ for day = INITIAL_DAY:FINAL_DAY
     time_write_SUCRmodel_results = (t2_write_SUCRmodel_results -t1_write_SUCRmodel_results)/1.0e9;
     @info "Write SUCRmodel results for day $day: $time_write_SUCRmodel_results executed in (s)";
 
-    open(".//outputs//csv//time_performance.csv", FILE_ACCESS_APPEND) do io
+    open(".//outputs//time_performance.csv", FILE_ACCESS_APPEND) do io
             writedlm(io, hcat("SUCRmodel", time_write_SUCRmodel_results, "day: $day",
                     "", "", "Write CSV files"), ',')
     end; #closes file
@@ -1955,6 +1956,7 @@ for day = INITIAL_DAY:FINAL_DAY
         # Constraints representing technical limits of conventional generators
         #Status transition trajectory of
         @constraint(BUCR2model, conStartUpAndDn[g=1:N_Gens], (BUCR2_genOnOff[g] - BUCR2_Init_genOnOff[g] - BUCR2_genStartUp[g] + BUCR2_genShutDown[g])==0)
+        @constraint(BUCR2model, conStartUpAndDn1[g=1:N_Gens], (BUCR2_genShutDown[g] + BUCR2_genStartUp[g]) <= 1.2)
         # Max Power generation limit in Block 1
         @constraint(BUCR2model, conMaxPowBlock1[g=1:N_Gens],  BUCR2_genOut_Block[g,1] <= DF_Generators.IHRC_B1_Q[g]*BUCR2_genOnOff[g] )
         # Max Power generation limit in Block 2
@@ -2074,7 +2076,7 @@ for day = INITIAL_DAY:FINAL_DAY
         time_BUCR2model = (t2_BUCR2model -t1_BUCR2model)/1.0e9;
         @info "BUCR2model for day: $day and hour $(h+INITIAL_HR_SUCR) setup executed in (s): $time_BUCR2model";
 
-        open(".//outputs//csv//time_performance.csv", FILE_ACCESS_APPEND) do io
+        open(".//outputs//time_performance.csv", FILE_ACCESS_APPEND) do io
                 writedlm(io, hcat("BUCR2model", time_BUCR2model, "day: $day",
                         "hour $(h+INITIAL_HR_SUCR)", "", "Model Setup"), ',')
         end; # closes file
@@ -2094,7 +2096,7 @@ for day = INITIAL_DAY:FINAL_DAY
         # Pricing general results in the terminal window
         println("Objective value: ", JuMP.objective_value(BUCR2model))
 
-        open(".//outputs//csv//objective_values.csv", FILE_ACCESS_APPEND) do io
+        open(".//outputs//objective_values.csv", FILE_ACCESS_APPEND) do io
                 writedlm(io, hcat("BUCR2model", "day: $day",
                         "hour $(h+INITIAL_HR_SUCR)", "", JuMP.objective_value(BUCR2model)), ',')
         end;
@@ -2112,14 +2114,14 @@ for day = INITIAL_DAY:FINAL_DAY
         println("---------------------------")
         println("BUCR2model Number of variables: ", JuMP.num_variables(BUCR2model))
         @info "BUCR2model Number of variables: " JuMP.num_variables(BUCR2model)
-        open(".//outputs//csv//time_performance.csv", FILE_ACCESS_APPEND) do io
+        open(".//outputs//time_performance.csv", FILE_ACCESS_APPEND) do io
                 writedlm(io, hcat("BUCR2model", JuMP.num_variables(BUCR2model), "day: $day",
                         "hour $(h+INITIAL_HR_SUCR)", "", "Variables"), ',')
         end;
 
         @debug "BUCR2model for day: $day and hour $(h+INITIAL_HR_SUCR) optimized executed in (s): $(solve_time(BUCR2model))";
 
-        open(".//outputs//csv//time_performance.csv", FILE_ACCESS_APPEND) do io
+        open(".//outputs//time_performance.csv", FILE_ACCESS_APPEND) do io
                 writedlm(io, hcat("BUCR2model", solve_time(BUCR2model), "day: $day",
                         "hour $(h+INITIAL_HR_SUCR)", "", "Model Optimization"), ',')
         end; # closes file
@@ -2129,7 +2131,7 @@ for day = INITIAL_DAY:FINAL_DAY
 
         # Write the conventional generators' schedules
         t1_write_BUCR2model_results = time_ns()
-        open(".//outputs//csv//BUCR_GenOutputs.csv", FILE_ACCESS_APPEND) do io
+        open(".//outputs//BUCR_GenOutputs.csv", FILE_ACCESS_APPEND) do io
             for g=1:N_Gens
                 writedlm(io, hcat(day, h+INITIAL_HR_SUCR, g, DF_Generators.UNIT_ID[g],
                     DF_Generators.MinPowerOut[g], DF_Generators.MaxPowerOut[g],
@@ -2140,7 +2142,7 @@ for day = INITIAL_DAY:FINAL_DAY
         end; # closes file
 
 # Write the peakers' schedules
-        open(".//outputs//csv//BUCR_PeakerOutputs.csv", FILE_ACCESS_APPEND) do io
+        open(".//outputs//BUCR_PeakerOutputs.csv", FILE_ACCESS_APPEND) do io
             for k=1:N_Peakers
                 writedlm(io, hcat(day, h+INITIAL_HR_SUCR, k, DF_Peakers.UNIT_ID[k],
                     DF_Peakers.MinPowerOut[k], DF_Peakers.MaxPowerOut[k],
@@ -2151,7 +2153,7 @@ for day = INITIAL_DAY:FINAL_DAY
 
 
     # Writing storage units' optimal schedules into CSV file
-        open(".//outputs//csv//BUCR_StorageOutputs.csv", FILE_ACCESS_APPEND) do io
+        open(".//outputs//BUCR_StorageOutputs.csv", FILE_ACCESS_APPEND) do io
             for p=1:N_StorgUs
                 writedlm(io, hcat(day, h+INITIAL_HR_SUCR, p, DF_Storage.Name[p],
                         DF_Storage.Power[p], DF_Storage.Power[p]/DF_Storage.PowerToEnergRatio[p],
@@ -2163,7 +2165,7 @@ for day = INITIAL_DAY:FINAL_DAY
 
 
         # Writing the transmission flow schedules in CSV file
-        open(".//outputs//csv//BUCR_TranFlowOutputs.csv", FILE_ACCESS_APPEND) do io
+        open(".//outputs//BUCR_TranFlowOutputs.csv", FILE_ACCESS_APPEND) do io
             for n=1:N_Zones, m=1:M_Zones
                 writedlm(io, hcat(day, h+INITIAL_HR_SUCR, n, m,
                     JuMP.value.(BUCR2_powerFlow[n,m]), TranC[n,m]), ',')
@@ -2172,7 +2174,7 @@ for day = INITIAL_DAY:FINAL_DAY
 
 
         # Writing the curtilment, overgeneration, and spillage outcomes in CSV file
-        open(".//outputs//csv//BUCR_Curtail.csv", FILE_ACCESS_APPEND) do io
+        open(".//outputs//BUCR_Curtail.csv", FILE_ACCESS_APPEND) do io
             for n=1:N_Zones
                writedlm(io, hcat(day, h+INITIAL_HR_SUCR, n,
                    JuMP.value.(BUCR2_OverGen[n]), JuMP.value.(BUCR2_Demand_Curt[n]),
@@ -2185,7 +2187,7 @@ for day = INITIAL_DAY:FINAL_DAY
         time_write_BUCR2model_results = (t2_write_BUCR2model_results -t1_write_BUCR2model_results)/1.0e9;
         @info "Write BUCR2model results for day $day and hour $(h+INITIAL_HR_SUCR) executed in (s): $time_write_BUCR2model_results";
 
-        open(".//outputs//csv//time_performance.csv", FILE_ACCESS_APPEND) do io
+        open(".//outputs//time_performance.csv", FILE_ACCESS_APPEND) do io
                 writedlm(io, hcat("BUCR2model", time_write_BUCR2model_results, "day: $day",
                         "hour $(h+INITIAL_HR_SUCR)", "", "Write CSV files"), ',')
         end; #closes file
@@ -2290,7 +2292,7 @@ for day = INITIAL_DAY:FINAL_DAY
     t2_day_execution = time_ns()
     time_day_execution = (t2_day_execution - t1_day_execution)/1.0e9;
 
-    open(".//outputs//csv//time_performance.csv", FILE_ACCESS_APPEND) do io
+    open(".//outputs//time_performance.csv", FILE_ACCESS_APPEND) do io
             writedlm(io, hcat("Whole Day", time_day_execution,
                     "day: $day", " ", "Whole Day Execution"), ',')
     end; #closes file
@@ -2304,7 +2306,7 @@ elapsedTime = (t2 -t1)/1.0e9;
 write(io_log, "Whole program time execution (s):\t $elapsedTime\n")
 @info "Whole Program setup executed in (s):" elapsedTime;
 
-open(".//outputs//csv//time_performance.csv", FILE_ACCESS_APPEND) do io
+open(".//outputs//time_performance.csv", FILE_ACCESS_APPEND) do io
         writedlm(io, hcat("Whole Program", elapsedTime,
                 "", "", "Whole Execution"), ',')
 end; #closes file

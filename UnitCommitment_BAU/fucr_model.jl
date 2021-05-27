@@ -262,7 +262,7 @@ function fucr_model(day::Int64, df_gens::DataFrame, df_peakers::DataFrame,
 	time_FUCRmodel = (t2_FUCRmodel -t1_FUCRmodel)/1.0e9;
 	@info "FUCRmodel for day: $day setup executed in (s): $time_FUCRmodel";
 
-	open(".//outputs//csv//time_performance.csv", FILE_ACCESS_APPEND) do io
+	open(".//outputs//time_performance.csv", FILE_ACCESS_APPEND) do io
 	      writedlm(io, hcat("FUCRmodel", time_FUCRmodel, "day: $day",
 	              "", "", "Model Setup"), ',')
 	end; # closes file
@@ -273,7 +273,7 @@ function fucr_model(day::Int64, df_gens::DataFrame, df_peakers::DataFrame,
 	# Pricing general results in the terminal window
 	println("Objective value: ", JuMP.objective_value(FUCRmodel))
 
-	open(".//outputs//csv//objective_values_v76.csv", FILE_ACCESS_APPEND) do io
+	open(".//outputs//objective_values_v76.csv", FILE_ACCESS_APPEND) do io
 	      writedlm(io, hcat("FUCRmodel", "day: $day",
 	              "", "", JuMP.objective_value(FUCRmodel)), ',')
 	end;
@@ -292,21 +292,21 @@ function fucr_model(day::Int64, df_gens::DataFrame, df_peakers::DataFrame,
 	println("FUCRmodel Number of variables: ", JuMP.num_variables(FUCRmodel))
 	@info "FUCRmodel Number of variables: " JuMP.num_variables(FUCRmodel)
 
-	open(".//outputs//csv//time_performance.csv", FILE_ACCESS_APPEND) do io
+	open(".//outputs//time_performance.csv", FILE_ACCESS_APPEND) do io
 	      writedlm(io, hcat("FUCRmodel", JuMP.num_variables(FUCRmodel), "day: $day",
 	              "", "", "Variables"), ',')
 	end;
 
 	@debug "FUCRmodel for day: $day optimized executed in (s):  $(solve_time(FUCRmodel))";
 
-	open(".//outputs//csv//time_performance.csv", FILE_ACCESS_APPEND) do io
+	open(".//outputs//time_performance.csv", FILE_ACCESS_APPEND) do io
 	      writedlm(io, hcat("FUCRmodel", solve_time(FUCRmodel), "day: $day",
 	              "", "", "Model Optimization"), ',')
 	end; # closes file
 
 	# Write the conventional generators' schedules in CSV file
 	t1_write_FUCRmodel_results = time_ns()
-	open(".//outputs//csv//FUCR_GenOutputs.csv", FILE_ACCESS_APPEND) do io
+	open(".//outputs//FUCR_GenOutputs.csv", FILE_ACCESS_APPEND) do io
 	  for t in 1:HRS_FUCR, g=1:GENS
 	      writedlm(io, hcat(day, t+INIT_HR_FUCR, g, df_gens.UNIT_NAME[g],
 	          df_gens.MinPowerOut[g], df_gens.MaxPowerOut[g],
@@ -319,7 +319,7 @@ function fucr_model(day::Int64, df_gens::DataFrame, df_peakers::DataFrame,
 	  end # ends the loop
 	end; # closes file
 	# Write the peakers' schedules in CSV file
-	open(".//outputs//csv//FUCR_PeakerOutputs.csv", FILE_ACCESS_APPEND) do io
+	open(".//outputs//FUCR_PeakerOutputs.csv", FILE_ACCESS_APPEND) do io
 	  for t in 1:HRS_FUCR, k=1:PEAKERS
 	      writedlm(io, hcat(day, t+INIT_HR_FUCR, k, df_peakers.UNIT_NAME[k],
 	         df_peakers.MinPowerOut[k], df_peakers.MaxPowerOut[k],
@@ -331,7 +331,7 @@ function fucr_model(day::Int64, df_gens::DataFrame, df_peakers::DataFrame,
 	end; # closes file
 
 	# Writing storage units' optimal schedules in CSV file
-	open(".//outputs//csv//FUCR_StorageOutputs.csv", FILE_ACCESS_APPEND) do io
+	open(".//outputs//FUCR_StorageOutputs.csv", FILE_ACCESS_APPEND) do io
 	   for t in 1:HRS_FUCR, p=1:STORG_UNITS
 	      writedlm(io, hcat(day, t+INIT_HR_FUCR, p, df_storage.Name[p],
 	          df_storage.Power[p], df_storage.Power[p]/df_storage.PowerToEnergRatio[p],
@@ -343,7 +343,7 @@ function fucr_model(day::Int64, df_gens::DataFrame, df_peakers::DataFrame,
 	end; # closes file
 
 	# Writing the transmission line flows in CSV file
-	open(".//outputs//csv//FUCR_TranFlowOutputs.csv", FILE_ACCESS_APPEND) do io
+	open(".//outputs//FUCR_TranFlowOutputs.csv", FILE_ACCESS_APPEND) do io
 	  for t in 1:HRS_FUCR, n=1:N_ZONES, m=1:M_ZONES
 	     writedlm(io, hcat(day, t+INIT_HR_FUCR, n,
 	         JuMP.value.(fucrm_powerFlow[n,m,t]), TranC[n,m] ), ',')
@@ -351,7 +351,7 @@ function fucr_model(day::Int64, df_gens::DataFrame, df_peakers::DataFrame,
 	end; # closes file
 
 	# Writing the curtilment, overgeneration, and spillage outcomes in CSV file
-	open(".//outputs//csv//FUCR_Curtail.csv", FILE_ACCESS_APPEND) do io
+	open(".//outputs//FUCR_Curtail.csv", FILE_ACCESS_APPEND) do io
 	  for t in 1:HRS_FUCR, n=1:N_ZONES
 	     writedlm(io, hcat(day, t+INIT_HR_FUCR, n,
 	         JuMP.value.(fucrm_OverGen[n,t]), JuMP.value.(fucrm_Demand_Curt[n,t]),
@@ -365,7 +365,7 @@ function fucr_model(day::Int64, df_gens::DataFrame, df_peakers::DataFrame,
 	time_write_FUCRmodel_results = (t2_write_FUCRmodel_results -t1_write_FUCRmodel_results)/1.0e9;
 	@info "Write FUCRmodel results for day $day: $time_write_FUCRmodel_results executed in (s)";
 
-	open(".//outputs//csv//time_performance.csv", FILE_ACCESS_APPEND) do io
+	open(".//outputs//time_performance.csv", FILE_ACCESS_APPEND) do io
 	      writedlm(io, hcat("FUCRmodel", time_write_FUCRmodel_results, "day: $day",
 	              "", "", "Write CSV files"), ',')
 	end; #closes file
@@ -406,7 +406,7 @@ function fucr_model(day::Int64, df_gens::DataFrame, df_peakers::DataFrame,
 	time_FUCRtoBUCR1_data_hand = (t2_FUCRtoBUCR1_data_hand -t1_FUCRtoBUCR1_data_hand)/1.0e9;
 	@info "FUCRtoBUCR1 data handling for day $day executed in (s): $time_FUCRtoBUCR1_data_hand";
 
-	open(".//outputs//csv//time_performance.csv", FILE_ACCESS_APPEND) do io
+	open(".//outputs//time_performance.csv", FILE_ACCESS_APPEND) do io
 		  writedlm(io, hcat("FUCRmodel", time_FUCRtoBUCR1_data_hand, "day: $day",
 				  " ", "Pre-processing variables", "Data Manipulation"), ',')
 	end; #closes file

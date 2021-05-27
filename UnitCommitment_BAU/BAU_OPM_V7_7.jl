@@ -11,7 +11,7 @@
 
 """
 File: BAU_OPM.jl
-Version: 7.5
+Version: 7.7
 ...
 # Arguments: None
 # Outputs: dataframe
@@ -91,18 +91,18 @@ write(io_log, "Max Load-Shedding Penalty $LOAD_SHED_MAX, Max Over-generation Pen
 write(io_log, "MaxGenLimit Viol Penalty: $VIOLATION_PENALTY, OptimalityGap: $OVERGEN_PENALTY\n")
 
 time_performance_header    = ["Section", "Time", "Note1", "Note2", "Note3", "Note4"]
-open(".//outputs//csv//time_performance.csv", FILE_ACCESS_OVER) do io
+open(".//outputs//time_performance.csv", FILE_ACCESS_OVER) do io
     writedlm(io, permutedims(time_performance_header), ',')
 end; # closes file
 
 @info "Time to read input data (s): $time_read_data";
-open(".//outputs//csv//time_performance.csv", FILE_ACCESS_APPEND) do io
+open(".//outputs//time_performance.csv", FILE_ACCESS_APPEND) do io
         writedlm(io, hcat("Read Input Data", time_read_data, "",
                 "", "", "Read CSV files"), ',')
 end;
 
 objective_values_header    = ["Section", "Time", "Time2", "Note1", "Value"]
-open(".//outputs//csv//objective_values_v76.csv", FILE_ACCESS_OVER) do io
+open(".//outputs//objective_values_v76.csv", FILE_ACCESS_OVER) do io
     writedlm(io, permutedims(objective_values_header), ',')
 end; # closes file
 
@@ -128,69 +128,69 @@ end #timer
 
 ## Spreadsheets for the first unit commitment run
 # Creating conventional generating units' schedules in the 1st unit commitment run
-open(".//outputs//csv//FUCR_GenOutputs.csv", FILE_ACCESS_OVER) do io
+open(".//outputs//FUCR_GenOutputs.csv", FILE_ACCESS_OVER) do io
     writedlm(io, permutedims(FUCR_GenOutputs_header), ',')
 end; # closes file
 
-open(".//outputs//csv//FUCR_PeakerOutputs.csv", FILE_ACCESS_OVER) do io
+open(".//outputs//FUCR_PeakerOutputs.csv", FILE_ACCESS_OVER) do io
     writedlm(io, permutedims(FUCR_PeakerOutputs_header), ',')
 end; # closes file
 
-open(".//outputs//csv//FUCR_StorageOutputs.csv", FILE_ACCESS_OVER) do io
+open(".//outputs//FUCR_StorageOutputs.csv", FILE_ACCESS_OVER) do io
     writedlm(io, permutedims(FUCR_StorageOutputs_header), ',')
 end;
 
-open(".//outputs//csv//FUCR_TranFlowOutputs.csv", FILE_ACCESS_OVER) do io
+open(".//outputs//FUCR_TranFlowOutputs.csv", FILE_ACCESS_OVER) do io
     writedlm(io, permutedims(FUCR_TranFlowOutputs_header), ',')
 end; # closes file
 
-open(".//outputs//csv//FUCR_Curtail.csv", FILE_ACCESS_OVER) do io
+open(".//outputs//FUCR_Curtail.csv", FILE_ACCESS_OVER) do io
     writedlm(io, permutedims(FUCR_Curtail_header), ',')
 end; # closes file
 
 # Spreadsheets for the second unit commitment run
 # Creating conventional generating units' schedules in the 2nd unit commitment run
-open(".//outputs//csv//SUCR_GenOutputs.csv", FILE_ACCESS_OVER) do io
+open(".//outputs//SUCR_GenOutputs.csv", FILE_ACCESS_OVER) do io
     writedlm(io, permutedims(SUCR_GenOutputs_header), ',')
 end; # closes file
 
-open(".//outputs//csv//SUCR_PeakerOutputs.csv", FILE_ACCESS_OVER) do io
+open(".//outputs//SUCR_PeakerOutputs.csv", FILE_ACCESS_OVER) do io
     writedlm(io, permutedims(SUCR_PeakerOutputs_header), ',')
 end; # closes file
 
-open(".//outputs//csv//SUCR_StorageOutputs.csv", FILE_ACCESS_OVER) do io
+open(".//outputs//SUCR_StorageOutputs.csv", FILE_ACCESS_OVER) do io
     writedlm(io, permutedims(SUCR_StorageOutputs_header), ',')
 end; # closes file
 
-open(".//outputs//csv//SUCR_TranFlowOutputs.csv", FILE_ACCESS_OVER) do io
+open(".//outputs//SUCR_TranFlowOutputs.csv", FILE_ACCESS_OVER) do io
     writedlm(io, permutedims(SUCR_TranFlowOutputs_header), ',')
 end; # closes file
 
-open(".//outputs//csv//SUCR_Curtail.csv", FILE_ACCESS_OVER) do io
+open(".//outputs//SUCR_Curtail.csv", FILE_ACCESS_OVER) do io
     writedlm(io, permutedims(SUCR_Curtail_header), ',')
 end; # closes file
 
 # Spreadsheets for the balancing unit commitment run
 # Write the conventional generators' schedules
-open(".//outputs//csv//BUCR_GenOutputs.csv", FILE_ACCESS_OVER) do io
+open(".//outputs//BUCR_GenOutputs.csv", FILE_ACCESS_OVER) do io
     writedlm(io, permutedims(BUCR_GenOutputs_header), ',')
 end; # closes file
 
-open(".//outputs//csv//BUCR_PeakerOutputs.csv", FILE_ACCESS_OVER) do io
+open(".//outputs//BUCR_PeakerOutputs.csv", FILE_ACCESS_OVER) do io
     writedlm(io, permutedims(BUCR_PeakerOutputs_header), ',')
 end; # closes file
 
 # Writing storage units' optimal schedules into CSV file
-open(".//outputs//csv//BUCR_StorageOutputs.csv", FILE_ACCESS_OVER) do io
+open(".//outputs//BUCR_StorageOutputs.csv", FILE_ACCESS_OVER) do io
     writedlm(io, permutedims(BUCR_StorageOutputs_header), ',')
 end; # closes file
 
 # Writing the transmission flow schedules in CSV file
-open(".//outputs//csv//BUCR_TranFlowOutputs.csv", FILE_ACCESS_OVER) do io
+open(".//outputs//BUCR_TranFlowOutputs.csv", FILE_ACCESS_OVER) do io
     writedlm(io, permutedims(BUCR_TranFlowOutputs_header), ',')
 end; # closes file
 
-open(".//outputs//csv//BUCR_Curtail.csv", FILE_ACCESS_OVER) do io
+open(".//outputs//BUCR_Curtail.csv", FILE_ACCESS_OVER) do io
     writedlm(io, permutedims(BUCR_Curtail_header), ',')
 end; # closes file
 
@@ -399,7 +399,7 @@ function run_main_code()
 	        time_BUCR_SUCR_data_hand = (t2_BUCR_SUCR_data_hand -t1_BUCR_SUCR_data_hand)/1.0e9;
 	        @info "BUCR_SUCR data handling for day $day executed in (s): $time_BUCR_SUCR_data_hand";
 
-	        open(".//outputs//csv//time_performance.csv", FILE_ACCESS_APPEND) do io
+	        open(".//outputs//time_performance.csv", FILE_ACCESS_APPEND) do io
 	                writedlm(io, hcat("BUCR1model", time_BUCR_SUCR_data_hand,
 						"day: $day", "hour $(h+INIT_HR_FUCR)",
 						"Pre-processing variables", "Data Manipulation"), ',')
@@ -514,7 +514,7 @@ function run_main_code()
 		t2_day_execution = time_ns()
 		time_day_execution = (t2_day_execution - t1_day_execution)/1.0e9;
 
-		open(".//outputs//csv//time_performance.csv", FILE_ACCESS_APPEND) do io
+		open(".//outputs//time_performance.csv", FILE_ACCESS_APPEND) do io
 				writedlm(io, hcat("Whole Day", time_day_execution,
 						"day: $day", " ", "Whole Day Execution"), ',')
 		end; #closes file
@@ -539,7 +539,7 @@ elapsedTime = (t2 -t1)/1.0e9;
 write(io_log, "Whole program time execution (s):\t $elapsedTime\n")
 @info "Whole Program setup executed in (s):" elapsedTime;
 
-open(".//outputs//csv//time_performance.csv", FILE_ACCESS_APPEND) do io
+open(".//outputs//time_performance.csv", FILE_ACCESS_APPEND) do io
         writedlm(io, hcat("Whole Program", elapsedTime,
                 "", "", "Whole Execution"), ',')
 end; #closes file

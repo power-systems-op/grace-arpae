@@ -247,7 +247,7 @@ function sucr_model(day::Int64, df_gens::DataFrame,
 	time_SUCRmodel = (t2_SUCRmodel -t1_SUCRmodel)/1.0e9;
 	@info "SUCRmodel for day: $day setup executed in (s): $time_SUCRmodel";
 
-	open(".//outputs//csv//time_performance.csv", FILE_ACCESS_APPEND) do io
+	open(".//outputs//time_performance.csv", FILE_ACCESS_APPEND) do io
 			writedlm(io, hcat("SUCRmodel", time_SUCRmodel, "day: $day",
 					"", "", "Model Setup"), ',')
 	end; # close file
@@ -255,7 +255,7 @@ function sucr_model(day::Int64, df_gens::DataFrame,
 	# solve the Second WA-UC model (SUCR)
 	JuMP.optimize!(SUCRmodel)
 
-	open(".//outputs//csv//objective_values_v76.csv", FILE_ACCESS_APPEND) do io
+	open(".//outputs//objective_values_v76.csv", FILE_ACCESS_APPEND) do io
 			writedlm(io, hcat("SUCRmodel", "day: $day",
 					"", "", JuMP.objective_value(SUCRmodel)), ',')
 	end;
@@ -276,14 +276,14 @@ function sucr_model(day::Int64, df_gens::DataFrame,
 	println("SUCRmodel Number of variables: ", JuMP.num_variables(SUCRmodel))
 	@info "SUCRmodel Number of variables: " JuMP.num_variables(SUCRmodel)
 
-	open(".//outputs//csv//time_performance.csv", FILE_ACCESS_APPEND) do io
+	open(".//outputs//time_performance.csv", FILE_ACCESS_APPEND) do io
 			writedlm(io, hcat("SUCRmodel", JuMP.num_variables(SUCRmodel), "day: $day",
 					"", "", "Variables"), ',')
 	end;
 
 	@debug "SUCRmodel for day: $day optimized executed in (s):  $(solve_time(SUCRmodel))";
 
-	open(".//outputs//csv//time_performance.csv", FILE_ACCESS_APPEND) do io
+	open(".//outputs//time_performance.csv", FILE_ACCESS_APPEND) do io
 			writedlm(io, hcat("SUCRmodel", solve_time(SUCRmodel), "day: $day",
 					"", "", "Model Optimization"), ',')
 	end; # close file
@@ -294,7 +294,7 @@ function sucr_model(day::Int64, df_gens::DataFrame,
 
 	# Write the conventional generators' schedules
 	t1_write_SUCRmodel_results = time_ns()
-	open(".//outputs//csv//SUCR_GenOutputs.csv", FILE_ACCESS_APPEND) do io
+	open(".//outputs//SUCR_GenOutputs.csv", FILE_ACCESS_APPEND) do io
 		for t in 1:HRS_SUCR, g=1:GENS
 			writedlm(io, hcat(day, t+INIT_HR_SUCR, g, df_gens.UNIT_ID[g],
 				df_gens.MinPowerOut[g], df_gens.MaxPowerOut[g],
@@ -307,7 +307,7 @@ function sucr_model(day::Int64, df_gens::DataFrame,
 		end # ends the loop
 	end; # close file
 
-	open(".//outputs//csv//SUCR_PeakerOutputs.csv", FILE_ACCESS_APPEND) do io
+	open(".//outputs//SUCR_PeakerOutputs.csv", FILE_ACCESS_APPEND) do io
 		for t in 1:HRS_SUCR, k=1:PEAKERS
 			writedlm(io, hcat(day, t+INIT_HR_SUCR, k, df_peakers.UNIT_ID[k],
 				df_peakers.MinPowerOut[k], df_peakers.MaxPowerOut[k],
@@ -319,7 +319,7 @@ function sucr_model(day::Int64, df_gens::DataFrame,
 	end; # close file
 
 	# Writing storage units' optimal schedules in CSV file
-	open(".//outputs//csv//SUCR_StorageOutputs.csv", FILE_ACCESS_APPEND) do io
+	open(".//outputs//SUCR_StorageOutputs.csv", FILE_ACCESS_APPEND) do io
 		for t in 1:HRS_SUCR, p=1:STORG_UNITS
 			writedlm(io, hcat(day, t+INIT_HR_SUCR, p, df_storage.Power[p],
 				df_storage.Power[p]/df_storage.PowerToEnergRatio[p],
@@ -331,7 +331,7 @@ function sucr_model(day::Int64, df_gens::DataFrame,
 	end; # close file
 
 	# Writing the transmission flow schedules into spreadsheets
-	open(".//outputs//csv//SUCR_TranFlowOutputs.csv", FILE_ACCESS_APPEND) do io
+	open(".//outputs//SUCR_TranFlowOutputs.csv", FILE_ACCESS_APPEND) do io
 		for t in 1:HRS_SUCR, n=1:N_ZONES, m=1:M_ZONES
 			writedlm(io, hcat(day, t+INIT_HR_SUCR, n, m,
 				JuMP.value.(sucrm_powerFlow[n,m,t]), TranC[n,m] ), ',')
@@ -339,7 +339,7 @@ function sucr_model(day::Int64, df_gens::DataFrame,
 	end; # close file
 
 	# Writing the curtilment, overgeneration, and spillage outcomes in CSV file
-	open(".//outputs//csv//SUCR_Curtail.csv", FILE_ACCESS_APPEND) do io
+	open(".//outputs//SUCR_Curtail.csv", FILE_ACCESS_APPEND) do io
 		for t in 1:HRS_SUCR, n=1:N_ZONES
 		   writedlm(io, hcat(day, t+INIT_HR_SUCR, n,
 			   JuMP.value.(sucrm_OverGen[n,t]), JuMP.value.(sucrm_Demand_Curt[n,t]),
@@ -352,7 +352,7 @@ function sucr_model(day::Int64, df_gens::DataFrame,
 	time_write_SUCRmodel_results = (t2_write_SUCRmodel_results -t1_write_SUCRmodel_results)/1.0e9;
 	@info "Write SUCRmodel results for day $day: $time_write_SUCRmodel_results executed in (s)";
 
-	open(".//outputs//csv//time_performance.csv", FILE_ACCESS_APPEND) do io
+	open(".//outputs//time_performance.csv", FILE_ACCESS_APPEND) do io
 			writedlm(io, hcat("SUCRmodel", time_write_SUCRmodel_results, "day: $day",
 					"", "", "Write CSV files"), ',')
 	end; #close file

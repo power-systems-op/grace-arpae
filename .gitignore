@@ -264,8 +264,10 @@ dmypy.json
 /inputs/*
 /outputs/*
 /examples_Julia/UC_BAU_DCC_V3/inputs/*
-/inputs/csv/*
-/UnitCommitment_Bau/inputs/csv/*
-/UnitCommitment_Bau/outputs/csv/*
+/UnitCommitment_BAU/inputs/*
+/UnitCommitment_BAU/inputs/old/*
+/UnitCommitment_BAU/outputs/*
+/UnitCommitment_BAU/inputs/csv/*
+/UnitCommitment_BAU/outputs/csv/*
 /examples_Julia/Postprocessing_Python/inputs/*
 /UnitCommitment_Bau/old/*

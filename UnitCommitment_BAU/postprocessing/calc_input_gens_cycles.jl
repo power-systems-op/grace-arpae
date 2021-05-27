@@ -13,28 +13,31 @@ const FILE_ACCESS_OVER = "w+";
 const FILE_ACCESS_APPEND = "a+";
 #include("import_post_data.jl")
 
-DF_Gen_Sch = CSV.read(".//inputs//csv//UnitSchedule_(DEC-DEP 2019).csv",
+DF_Gen_Sch = CSV.read(".//inputs//UnitSchedule_(DEC-DEP 2019).csv",
                   dateformat="mm-dd-yyyy THH:MM:SS.000Z", header=true, copycols=true, DataFrame);
 
-DF_Gens = CSV.read(".//inputs//csv//data_generators.csv", header=true, DataFrame);
-DF_Peakers = CSV.read(".//inputs//csv//data_peakers.csv", header=true, DataFrame);
+DF_Gens = CSV.read(".//inputs//data_generators.csv", header=true, DataFrame);
+DF_Peakers = CSV.read(".//inputs//data_peakers.csv", header=true, DataFrame);
 
 select!(DF_Gens, Not(:Cogen));
 
 #=
 cycles_units_header    = ["Section", "Time", "Note1", "Note2", "Note3", "Note4"]
-open(".//outputs//csv//postproc_gens_cycle_units.csv", FILE_ACCESS_OVER) do io
+open(".//outputs//postproc_gens_cycle_units.csv", FILE_ACCESS_OVER) do io
     writedlm(io, permutedims(cycles_units_header), ',')
 end; # closes file
 =#
 
 
 function calc_gens_cycles(df_results::DataFrame, df_gen_sch::DataFrame,
-    df_gens_all::DataFrame, n_month::Int64)
+    df_gens_all::DataFrame, ini_date::String, end_date::String)
     #Selects a subset of schedules that fall into the months that users specify.
     # @where could be extended to include other month using the OR operation (||)
+    ini_date = DateTime(ini_date, "mm/dd/yyyy HH:MM:SS");
+    end_date = DateTime(end_date, "mm/dd/yyyy HH:MM:SS");
+
     df_gens_sch_drange = @from i in df_gen_sch begin
-                @where Dates.month(i.BEGIN_DATE) == n_month && i.EDITION_NAME=="Actual"
+                @where DateTime(i.BEGIN_DATE) >= ini_date && DateTime(i.BEGIN_DATE) <= end_date && i.EDITION_NAME=="Actual"
                 @select {i.PORTFOLIO_NAME, i.EDITION_NAME, i.UNIT_NAME, i.CC_KEY, i.UNIT_TYPE, i.BEGIN_DATE, i.MW}
                 @collect DataFrame
            end
@@ -47,7 +50,6 @@ function calc_gens_cycles(df_results::DataFrame, df_gen_sch::DataFrame,
     insertcols!(df_convgen_sch, size(df_convgen_sch,2), :On_Off => Int64.(df_convgen_sch.MW .> 0));
     insertcols!(df_convgen_sch, size(df_convgen_sch,2), :ShutDown => zeros(Int64));
     insertcols!(df_convgen_sch, size(df_convgen_sch,2), :StartUp => zeros(Int64));
-    #CSV.write(".//outputs//csv//postproc_gens_cycle_month$n_month.csv", df_convgen_sch)
 
     for unit in eachrow(df_gens_all)
         unit_name = unit.UNIT_NAME;
@@ -57,10 +59,6 @@ function calc_gens_cycles(df_results::DataFrame, df_gen_sch::DataFrame,
 
         sort!(df_unit_sch, :BEGIN_DATE)
 
-    #=    if unit.UNIT == 120
-            break
-        end;
-    =#
         was_on = zero(Int64);
         for row in eachrow(df_unit_sch)
             if rownumber(row) == 1  #First row, save initial ON/OFF value
@@ -80,9 +78,7 @@ function calc_gens_cycles(df_results::DataFrame, df_gen_sch::DataFrame,
         else
             df_results = vcat(df_results, df_unit_sch);
         end;
-
         #println("Number of cycles for unit:", df_unit_sch.UNIT_NAME, "is: ", n_cycles)
-        #CSV.write(".//outputs//csv//postproc_gens_cycle_unit$unit_name.csv", df_unit_sch)
     end; # for loop all units in dataframe df_gens_all
 
     return df_results;
@@ -96,23 +92,31 @@ DF_Gens_All = vcat(DF_Gens, DF_Peakers);
 # Reformats the date-time data given in column BEGIN_DATE
 DF_Gen_Sch.BEGIN_DATE = DateTime.(DF_Gen_Sch.BEGIN_DATE, "mm/dd/yyyy HH:MM:SS p");
 
-#TODO: Change date range to be dates (MM/DD/YY) instead of inital month end months
-
-#=
-n_month = 1;
+Start_date = "01/01/2019 00:00:00"
+Final_date = "12/24/2019 23:00:00"
 DF_Results = DataFrame();
-DF_Results = calc_gens_cycles(DF_Results, DF_Gen_Sch, DF_Gens_All, n_month);
-CSV.write(".//outputs//csv//postproc_gens_cycle_ALLUNITS.csv", DF_Results)
-=#
-let
-    ini_month = 1;
-    end_month = 12;
-    DF_Results = DataFrame();
-    for month in ini_month:end_month
-        DF_Results = calc_gens_cycles(DF_Results, DF_Gen_Sch, DF_Gens_All, month);
-    end;
-    CSV.write(".//outputs//csv//postproc_gens_cycle_ALLUNITS.csv", DF_Results);
-end
+
+DF_Results = calc_gens_cycles(DF_Results, DF_Gen_Sch, DF_Gens_All, Start_date, Final_date);
+
+Start_date = replace(Start_date, "/" => "-")
+Final_date = replace(Final_date, "/" => "-")
+Start_date = Start_date[1:findfirst(isequal(' '), Start_date)-1]
+Final_date = Final_date[1:findfirst(isequal(' '), Final_date)-1]
+
+CSV.write(".//outputs//postprocess//postproc_gens_cycles_$(Start_date)_$(Final_date).csv", DF_Results)
+
+# Get Summary of results by unit and save them
+#Reference: https://julia-data-query.readthedocs.io/en/latest/dplyr.html
+
+DF_Results_Byname = groupby(DF_Results, [:UNIT_NAME, :UNIT_TYPE]);
+
+DF_Results_Summary = @combine(DF_Results_Byname,
+  Sum_On_Off = sum(:On_Off),
+  Avg_On_Off = mean(:On_Off),
+  Sum_StartUp = sum(:StartUp),
+  Sum_ShutDown = sum(:ShutDown))
+
+CSV.write(".//outputs//postprocess//postproc_gens_cycles_SUMMARY_$(Start_date)_$(Final_date).csv", DF_Results_Summary)
 
 #=TODO:
 Emissions calculations for 358 days

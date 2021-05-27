@@ -10,55 +10,55 @@ include("constants.jl")
 ##
 # Importing input data from the input spreadsheets
 # Generators' specifications
-DF_Generators = CSV.read(".//inputs//csv//data_generators.csv", DataFrame);
+DF_Generators = CSV.read(".//inputs//data_generators.csv", DataFrame);
 # Generators location map: if a generator g is located in zone z Map_Gens[g,z]=1; and 0 otherwise
-Map_Gens = readdlm(".//inputs//csv//location_generators.csv", ','; header = true);
+Map_Gens = readdlm(".//inputs//location_generators.csv", ','; header = true);
 
 #Peaker Units' specifications and location
-DF_Peakers = CSV.read(".//inputs//csv//data_peakers.csv", DataFrame);
+DF_Peakers = CSV.read(".//inputs//data_peakers.csv", DataFrame);
 # Peakers location map: if a peaker p is located in zone z Map_Gens[p,z]=1; # and 0 otherwise
-Map_Peakers = readdlm(".//inputs//csv//location_peakers.csv", ','; header = true);
+Map_Peakers = readdlm(".//inputs//location_peakers.csv", ','; header = true);
 
 # Storage Units' specification and location
-DF_Storage = CSV.read(".//inputs//csv//data_storage.csv", DataFrame);
-Map_Storage = readdlm(".//inputs//csv//location_storage.csv", ','; header = true);
+DF_Storage = CSV.read(".//inputs//data_storage.csv", DataFrame);
+Map_Storage = readdlm(".//inputs//location_storage.csv", ','; header = true);
 
 # Energy demand at each location
-FUCR_Demands = readdlm(".//inputs//csv//data_demand.csv", ','; header = true);
-SUCR_Demands = readdlm(".//inputs//csv//data_demand_updated.csv", ','; header = true);
-BUCR_Demands = readdlm(".//inputs//csv//data_demand_actual.csv", ','; header = true);
+FUCR_Demands = readdlm(".//inputs//data_demand.csv", ','; header = true);
+SUCR_Demands = readdlm(".//inputs//data_demand_updated.csv", ','; header = true);
+BUCR_Demands = readdlm(".//inputs//data_demand_actual.csv", ','; header = true);
 
 # solar generation data at each location
-FUCR_SolarGs = readdlm(".//inputs//csv//data_solar.csv", ','; header = true);
-SUCR_SolarGs = readdlm(".//inputs//csv//data_solar_updated.csv", ','; header = true);
-BUCR_SolarGs = readdlm(".//inputs//csv//data_solar_actual.csv", ','; header = true);
+FUCR_SolarGs = readdlm(".//inputs//data_solar.csv", ','; header = true);
+SUCR_SolarGs = readdlm(".//inputs//data_solar_updated.csv", ','; header = true);
+BUCR_SolarGs = readdlm(".//inputs//data_solar_actual.csv", ','; header = true);
 
 # wind energy data for each location
-FUCR_WindGs = readdlm(".//inputs//csv//data_wind.csv", ','; header = true);
-SUCR_WindGs = readdlm(".//inputs//csv//data_wind_updated.csv", ','; header = true);
-BUCR_WindGs = readdlm(".//inputs//csv//data_wind_actual.csv", ','; header = true);
+FUCR_WindGs = readdlm(".//inputs//data_wind.csv", ','; header = true);
+SUCR_WindGs = readdlm(".//inputs//data_wind_updated.csv", ','; header = true);
+BUCR_WindGs = readdlm(".//inputs//data_wind_actual.csv", ','; header = true);
 
 #hydro generation data for each location
-FUCR_HydroGs = readdlm(".//inputs//csv//data_hydro.csv", ','; header = true);
-SUCR_HydroGs = readdlm(".//inputs//csv//data_hydro_updated.csv", ','; header = true);
-BUCR_HydroGs = readdlm(".//inputs//csv//data_hydro_actual.csv", ','; header = true);
+FUCR_HydroGs = readdlm(".//inputs//data_hydro.csv", ','; header = true);
+SUCR_HydroGs = readdlm(".//inputs//data_hydro_updated.csv", ','; header = true);
+BUCR_HydroGs = readdlm(".//inputs//data_hydro_actual.csv", ','; header = true);
 
 #nuclear generation timeseries for each location
-FUCR_NuclearGs = readdlm(".//inputs//csv//data_nuclear.csv", ','; header = true);
-SUCR_NuclearGs = readdlm(".//inputs//csv//data_nuclear_updated.csv", ','; header = true);
-BUCR_NuclearGs = readdlm(".//inputs//csv//data_nuclear_actual.csv", ','; header = true);
+FUCR_NuclearGs = readdlm(".//inputs//data_nuclear.csv", ','; header = true);
+SUCR_NuclearGs = readdlm(".//inputs//data_nuclear_updated.csv", ','; header = true);
+BUCR_NuclearGs = readdlm(".//inputs//data_nuclear_actual.csv", ','; header = true);
 
 #Cogenerators' generation timeseries for each location
-FUCR_CogenGs = readdlm(".//inputs//csv//data_cogen.csv", ','; header = true);
-SUCR_CogenGs = readdlm(".//inputs//csv//data_cogen_updated.csv", ','; header = true);
-BUCR_CogenGs = readdlm(".//inputs//csv//data_cogen_actual.csv", ','; header = true);
+FUCR_CogenGs = readdlm(".//inputs//data_cogen.csv", ','; header = true);
+SUCR_CogenGs = readdlm(".//inputs//data_cogen_updated.csv", ','; header = true);
+BUCR_CogenGs = readdlm(".//inputs//data_cogen_actual.csv", ','; header = true);
 
-TranC = readdlm(".//inputs//csv//LineCapacity.csv", ','; header = true);
-TranS = readdlm(".//inputs//csv//LineSusceptance.csv", ','; header = true);
-Reserve_Reqs = readdlm(".//inputs//csv//data_reserve_reqs.csv", ','; header = true);
+TranC = readdlm(".//inputs//LineCapacity.csv", ','; header = true);
+TranS = readdlm(".//inputs//LineSusceptance.csv", ','; header = true);
+Reserve_Reqs = readdlm(".//inputs//data_reserve_reqs.csv", ','; header = true);
 
-FuelPrice = readdlm(".//inputs//csv//data_fuel_price.csv", ','; header = true);
-FuelPricePeakers = readdlm(".//inputs//csv//data_fuel_price_peakers.csv", ','; header = true);
+FuelPrice = readdlm(".//inputs//data_fuel_price.csv", ','; header = true);
+FuelPricePeakers = readdlm(".//inputs//data_fuel_price_peakers.csv", ','; header = true);
 
 FuelPrice_head = FuelPrice[2];
 FuelPrice = FuelPrice[1];

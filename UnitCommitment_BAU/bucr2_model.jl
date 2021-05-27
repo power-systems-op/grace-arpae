@@ -217,14 +217,14 @@ function bucr2_model(day::Int64, hour::Int64, df_gens::DataFrame,
 	time_BUCR2model = (t2_BUCR2model -t1_BUCR2model)/1.0e9;
 	@info "BUCR2model for day: $day and hour $(hour+INIT_HR_SUCR) setup executed in (s): $time_BUCR2model";
 
-	open(".//outputs//csv//time_performance.csv", FILE_ACCESS_APPEND) do io
+	open(".//outputs//time_performance.csv", FILE_ACCESS_APPEND) do io
 			writedlm(io, hcat("BUCR2model", time_BUCR2model, "day: $day",
 					"hour $(hour+INIT_HR_SUCR)", "", "Model Setup"), ',')
 	end; # closes file
 
 	# solve the First WAUC model (BUCR)
 	JuMP.optimize!(BUCR2model)
-	open(".//outputs//csv//objective_values_v76.csv", FILE_ACCESS_APPEND) do io
+	open(".//outputs//objective_values_v76.csv", FILE_ACCESS_APPEND) do io
 			writedlm(io, hcat("BUCR2model", "day: $day",
 					"hour $(hour+INIT_HR_SUCR)", "", JuMP.objective_value(BUCR2model)), ',')
 	end;
@@ -256,14 +256,14 @@ function bucr2_model(day::Int64, hour::Int64, df_gens::DataFrame,
 	println("BUCR2model Number of variables: ", JuMP.num_variables(BUCR2model))
 	@info "BUCR2model Number of variables: " JuMP.num_variables(BUCR2model)
 
-	open(".//outputs//csv//time_performance.csv", FILE_ACCESS_APPEND) do io
+	open(".//outputs//time_performance.csv", FILE_ACCESS_APPEND) do io
 			writedlm(io, hcat("BUCR2model", JuMP.num_variables(BUCR2model), "day: $day",
 					"hour $(hour+INIT_HR_SUCR)", "", "Variables"), ',')
 	end;
 
 	@debug "BUCR2model for day: $day and hour $(hour+INIT_HR_SUCR) optimized executed in (s): $(solve_time(BUCR2model))";
 
-	open(".//outputs//csv//time_performance.csv", FILE_ACCESS_APPEND) do io
+	open(".//outputs//time_performance.csv", FILE_ACCESS_APPEND) do io
 			writedlm(io, hcat("BUCR2model", solve_time(BUCR2model), "day: $day",
 					"hour $(hour+INIT_HR_SUCR)", "", "Model Optimization"), ',')
 	end; # closes file
@@ -274,7 +274,7 @@ function bucr2_model(day::Int64, hour::Int64, df_gens::DataFrame,
 
 	# Write the conventional generators' schedules
 	t1_write_BUCR2model_results = time_ns()
-	open(".//outputs//csv//BUCR_GenOutputs.csv", FILE_ACCESS_APPEND) do io
+	open(".//outputs//BUCR_GenOutputs.csv", FILE_ACCESS_APPEND) do io
 		for g=1:GENS
 			writedlm(io, hcat(day, hour+INIT_HR_SUCR, g, df_gens.UNIT_ID[g],
 				df_gens.MinPowerOut[g], df_gens.MaxPowerOut[g],
@@ -289,7 +289,7 @@ function bucr2_model(day::Int64, hour::Int64, df_gens::DataFrame,
 	end; # closes file
 
 	# Write the peakers' schedules
-	open(".//outputs//csv//BUCR_PeakerOutputs.csv", FILE_ACCESS_APPEND) do io
+	open(".//outputs//BUCR_PeakerOutputs.csv", FILE_ACCESS_APPEND) do io
 		for k=1:PEAKERS
 			writedlm(io, hcat(day, hour+INIT_HR_SUCR, k, df_peakers.UNIT_ID[k],
 				df_peakers.MinPowerOut[k], df_peakers.MaxPowerOut[k],
@@ -301,7 +301,7 @@ function bucr2_model(day::Int64, hour::Int64, df_gens::DataFrame,
 	end; # closes file
 
 	# Writing storage units' optimal schedules into CSV file
-	open(".//outputs//csv//BUCR_StorageOutputs.csv", FILE_ACCESS_APPEND) do io
+	open(".//outputs//BUCR_StorageOutputs.csv", FILE_ACCESS_APPEND) do io
 		for p=1:STORG_UNITS
 			writedlm(io, hcat(day, hour+INIT_HR_SUCR, p, df_storage.Name[p],
 					df_storage.Power[p],
@@ -316,7 +316,7 @@ function bucr2_model(day::Int64, hour::Int64, df_gens::DataFrame,
 	end; # closes file
 
 	# Writing the transmission flow schedules in CSV file
-	open(".//outputs//csv//BUCR_TranFlowOutputs.csv", FILE_ACCESS_APPEND) do io
+	open(".//outputs//BUCR_TranFlowOutputs.csv", FILE_ACCESS_APPEND) do io
 		for n=1:N_ZONES, m=1:M_ZONES
 			writedlm(io, hcat(day, hour+INIT_HR_SUCR, n, m,
 				JuMP.value.(bucrm_powerFlow[n,m]), TranC[n,m]), ',')
@@ -325,7 +325,7 @@ function bucr2_model(day::Int64, hour::Int64, df_gens::DataFrame,
 
 
 	# Writing the curtilment, overgeneration, and spillage outcomes in CSV file
-	open(".//outputs//csv//BUCR_Curtail.csv", FILE_ACCESS_APPEND) do io
+	open(".//outputs//BUCR_Curtail.csv", FILE_ACCESS_APPEND) do io
 		for n=1:N_ZONES
 		   writedlm(io, hcat(day, hour+INIT_HR_SUCR, n,
 			   JuMP.value.(bucrm_OverGen[n]), JuMP.value.(bucrm_Demand_Curt[n]),
@@ -338,7 +338,7 @@ function bucr2_model(day::Int64, hour::Int64, df_gens::DataFrame,
 	time_write_BUCR2model_results = (t2_write_BUCR2model_results -t1_write_BUCR2model_results)/1.0e9;
 	@info "Write BUCR2model results for day $day and hour $(hour+INIT_HR_SUCR) executed in (s): $time_write_BUCR2model_results";
 
-	open(".//outputs//csv//time_performance.csv", FILE_ACCESS_APPEND) do io
+	open(".//outputs//time_performance.csv", FILE_ACCESS_APPEND) do io
 			writedlm(io, hcat("BUCR2model", time_write_BUCR2model_results, "day: $day",
 					"hour $(hour+INIT_HR_SUCR)", "", "Write CSV files"), ',')
 	end; #closes file
