@@ -221,4 +221,4 @@ open(".//outputs//postprocess//perform_error_TOTAL_$(Start_date)_$(Final_date).c
     writedlm(io, hcat("Generation Cost [Missing replaced]", MAE_GenCost_NoMiss, MSE_GenCost_NoMiss, RMSE_GenCost_NoMiss), ',')
 end; # closes file
 
-#include(".//postprocessing//get_perform_errors.jl")
+#include(".//postprocessing//get_perform_err_metrics.jl")
