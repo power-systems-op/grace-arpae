@@ -130,7 +130,7 @@ end; # end function
 
 
 """
-CO₂ emissions [metric ton] = avg. heat rate[mmbtu/MWh] * CO₂ factor[kg/mmbu] * Power Out[MWh] * 10⁻³
+CO₂ emissions [metric ton] = avg. heat rate[mmbtu/MWh] * CO₂ emissions rate[kg/mmbu] * Power Out[MWh] * 10⁻³
  The CO₂ factor was obtained from the EIA site:
  [https://www.eia.gov/electricity/annual/html/epa_a_03.html]
 """
@@ -318,5 +318,12 @@ CSV.write(".//outputs//postprocess//postproc_model_cost_emiss_byFuel_$(Start_dat
 # ASHV_CT03_0 and ASHV_CT04_0 are in data_fuel_price.csv and data_fuel_price_peakers.csv input files
 # ASHV_CC01, ASHV_CC02 are not in data_fuel_price.csv or data_fuel_price_peakers.csv
 # input files. In the fuel price files provided by Duke there is only info of them from August 2019.
+
+# Getting time-series statistics
+# Reference: https://www.tutorialspoint.com/time_series/time_series_error_metrics.htm
+
+# Root Mean Square Error:
+# RMSE = ⎷ (1/n ∑(yₜ' - yₜ)²)
+# Mean Absolute Error
 
 #include(".//postprocessing//calc_model_costs.jl")

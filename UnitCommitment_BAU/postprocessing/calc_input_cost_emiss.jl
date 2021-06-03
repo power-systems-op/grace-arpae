@@ -3,7 +3,6 @@ using DataFrames
 using DataFramesMeta
 using Dates
 using DelimitedFiles
-using JuMP
 using Logging
 using CSV
 using Query
